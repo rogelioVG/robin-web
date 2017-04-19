@@ -15,11 +15,12 @@ function initializeFireBase() {
 
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyDOhYuX1ZG7mhvzqAIWHWaxB78GXvg7UFM",
-    authDomain: "robinbank.firebaseapp.com",
-    databaseURL: "https://robinbank.firebaseio.com",
-    projectId: "firebase-robinbank",
-    storageBucket: "firebase-robinbank.appspot.com",
+    apiKey: "AIzaSyA-Ck5hQjP5V3Wj3OrecvjPl4NNNzb0gqs",
+    authDomain: "testnew-de7c3.firebaseapp.com",
+    databaseURL: "https://testnew-de7c3.firebaseio.com",
+    projectId: "testnew-de7c3",
+    storageBucket: "testnew-de7c3.appspot.com",
+    messagingSenderId: "183924315473"
   };
 
   //Initializing with selected config
@@ -42,9 +43,8 @@ function doParentCreate () {
   //Create Account with Firebase internal method
   const promiseCreate = auth.createUserWithEmailAndPassword(sEmail, sPassword);
 
-
-  //Add to Tutor Table
-  //writeParentIntoTutorTable(userId,sName,sEmail,sMobile);
+  //GetUserId and Register tutor into the tutor branch
+  promiseCreate.then(user=> writeParentIntoTutorTable(user.uid,sName,sEmail,sMobile));
 
 }
 
