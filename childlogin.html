@@ -26,6 +26,12 @@
 <!-- Bootstrap-->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+<!-- Compiled and minified CSS -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
+ <!-- Compiled and minified JavaScript -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
 <!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
 
@@ -40,25 +46,21 @@
 <script defer src="/__/firebase/init.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.7.8/firebase.js"></script>
 
-<link rel="stylesheet" href="css/index.css" type='text/css'>
+<link rel="stylesheet" href="css/form.css" type='text/css'>
 
 
 </head>
 
 <body>
-<nav>
-  <br>
- <h1> Child Login </h1>
- <br>
+ <center><h1> Login </h1></center>
 
-<nav>
 <form>
-Name: <input id="nameTextField" type="text"> <br>
-Your Email: <input id="emailTextField" type="text"><br>
-Password: <input id="passwordTextField" type="text"><br>
-Your Parent's Email: <input id="parentEmailTextField" type="text"><br>
+<input placeholder="Name"id="nameTextField" type="text"> <br>
+<input placeholder="Your Email"id="emailTextField" type="text"><br>
+<input placeholder="Password"id="passwordTextField" type="text"><br>
+<input placeholder="Your Parent's Email"id="parentEmailTextField" type="text"><br>
 <!-- <button id="childLoginButton" type="button"> Login </button> -->
-<button class="white" id="childCreateButton" type="button"> Create </button>
+<center><button class="btn btn-lrg" id="childCreateButton" type="button"> Create </button> </center>
 
 </form>
 

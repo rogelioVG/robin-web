@@ -26,21 +26,33 @@
 <!-- Bootstrap-->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<!-- Firebase --> 
+<!-- Compiled and minified CSS -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
+ <!-- Compiled and minified JavaScript -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+
+<link rel="stylesheet" href="css/form.css" type='text/css'>
+
 
 </head>
 
 <body>
 
- <h1> Parent Login </h1> <br> <br>
-Name: <input id="nameTextField" type="text"> <br>
-Email: <input id="emailTextField" type="text"><br>
-Mobile: <input id="mobileTextField" type="text"><br>
-Password: <input id="passwordTextField" type="text"><br>
-<button id="parentLoginButton" type="button"> Login </button>
-<button id="parentCreateButton" type="button"> Create </button>
-
+<center><h1> Parent Login </h1></center>
+<form>
+<input placeholder="Name" id="nameTextField" type="text"> <br>
+<input placeholder="Email" id="emailTextField" type="text"><br>
+<input placeholder="Phone #" id="mobileTextField" type="text"><br>
+<input placeholder="Password" id="passwordTextField" type="text"><br>
+<center>
+  <button class="btn" id="parentLoginButton" type="button"> Login </button>
+  <button class="btn" id="parentCreateButton" type="button"> Create </button>
+</center>
+</form>
 </body>
 
 </html>
