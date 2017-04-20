@@ -50,7 +50,7 @@ function doParentCreate () {
 
 function writeParentIntoTutorTable(userId, sName, sEmail, sMobile) {
 
-    console.log("Writing into Tutor Table Values: ");
+    console.log("Writing into Tutor branch Values: ");
     console.log("Id: " + userId );
     console.log("Name: " + sName );
     console.log("Email: " + sEmail);

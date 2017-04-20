@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   initializeFireBase();
 
-  $( "#childLoginButton" ).on( "click", doChildLogin);
+  //$( "#childLoginButton" ).on( "click", doChildLogin);
 
   $( "#childCreateButton" ).on( "click", doChildCreate);
 
@@ -15,11 +15,12 @@ function initializeFireBase() {
 
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyDOhYuX1ZG7mhvzqAIWHWaxB78GXvg7UFM",
-    authDomain: "robinbank.firebaseapp.com",
-    databaseURL: "https://robinbank.firebaseio.com",
-    projectId: "firebase-robinbank",
-    storageBucket: "firebase-robinbank.appspot.com",
+    apiKey: "AIzaSyA-Ck5hQjP5V3Wj3OrecvjPl4NNNzb0gqs",
+    authDomain: "testnew-de7c3.firebaseapp.com",
+    databaseURL: "https://testnew-de7c3.firebaseio.com",
+    projectId: "testnew-de7c3",
+    storageBucket: "testnew-de7c3.appspot.com",
+    messagingSenderId: "183924315473"
   };
 
   //Initializing with selected config
@@ -39,37 +40,57 @@ function doChildCreate () {
   //Instantiate firebase Auth Object
   const auth = firebase.auth();
 
+  if(validateParent(sParentEmail)) {
+    //Create Account with Firebase internal method
+    const promiseCreate = auth.createUserWithEmailAndPassword(sEmail, sPassword);
 
-
-  //Create Account with Firebase internal method
-  const promiseCreate = auth.createUserWithEmailAndPassword(sEmail, sPassword);
-
-
-  //Add to Tutor Table
-  //writeParentIntoTutorTable(userId,sName,sEmail,sMobile);
+    //GetUserId and Register child into the children branch
+    promiseCreate.then(user=> addChildToDB(user.uid,sName,sEmail,sParentEmail));
+  }
+  else {
+    console.log("Email of parent wasn't found");
+  }
 
 }
 
 function validateParent(pEmail) {
-  
+
+  const parentRef = firebase.database().ref().child('Tutor');
+
+  var bParentExists = false;
+  console.log("Dejame ver!");
+
+  parentRef.on('value', function(snapshot) {
+    console.log("Dejame ver!");
+    snapshot.forEach(function(childSnapshot) {
+
+      const tutor = childSnapshot.val();
+      const email = tutor.email;
+      console.log("Dejame ver!");
+      if (pEmail == email){
+        bParentExists = true;
+      }
+    })
+
+  });
+  return bParentExists;
 }
 
-function addChildToDB(userId, sName, sEmail, sMobile) {
+function addChildToDB(userId, sName, sEmail, sParentEmail) {
 
-    console.log("Writing into Tutor Table Values: ");
+    console.log("Writing into children branch Values:");
     console.log("Id: " + userId );
     console.log("Name: " + sName );
     console.log("Email: " + sEmail);
-    console.log("Phone: " + sMobile);
+    console.log("Parent Email: " + sParentEmail);
 
-    firebase.database().ref('Tutor/' + userId).set({
-    name: sName,
+    firebase.database().ref('children/' + userId).set({
+    balance: 0,
     email: sEmail,
-    phone : sMobile,
-    currency: "USD",
-    address: "nil",
-    stripeID: "nil",
-    children: "nil"
+    history: "nil",
+    name: sName,
+    tasks: "nil",
+    tutor: sParentEmail
   });
 
 }
