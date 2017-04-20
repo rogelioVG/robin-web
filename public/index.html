@@ -18,12 +18,12 @@
 
     <script>
     const config = {
-      apiKey: "AIzaSyDOhYuX1ZG7mhvzqAIWHWaxB78GXvg7UFM",
-      authDomain: "robinbank.firebaseapp.com",
-      databaseURL: "https://robinbank.firebaseio.com",
-      projectId: "firebase-robinbank",
-      storageBucket: "firebase-robinbank.appspot.com",
-      messagingSenderId: "944009933174"
+      apiKey: "AIzaSyA-Ck5hQjP5V3Wj3OrecvjPl4NNNzb0gqs",
+      authDomain: "testnew-de7c3.firebaseapp.com",
+      databaseURL: "https://testnew-de7c3.firebaseio.com",
+      projectId: "testnew-de7c3",
+      storageBucket: "testnew-de7c3.appspot.com",
+      messagingSenderId: "183924315473"
     };
 
     firebase.initializeApp(config);
@@ -32,7 +32,7 @@
 
 
     firebase.database().ref().child('data').child('usd').on('value', function(snapshot) {
-      //console.log(snapshot.val());
+      console.log(snapshot.val());
 
 
     // var starCountRef = firebase.database().ref('data/usd');
@@ -68,28 +68,28 @@
     <p id="load">Firebase SDK Loading&hellip;</p>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        firebase.database().ref('/data/usd').on('value', snapshot => {
-          console.log(snapshot.val());
-        });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
+      // document.addEventListener('DOMContentLoaded', function() {
+      //   // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+      //   // // The Firebase SDK is initialized and available here!
+      //   //
+      //   // firebase.auth().onAuthStateChanged(user => { });
+      //   firebase.database().ref('/data/usd').on('value', snapshot => {
+      //     console.log(snapshot.val());
+      //   });
+      //   // firebase.messaging().requestPermission().then(() => { });
+      //   // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+      //   //
+      //   // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+      //
+      //   try {
+      //     let app = firebase.app();
+      //     let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
+      //     document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+      //   } catch (e) {
+      //     console.error(e);
+      //     document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+      //   }
+      // });
     </script>
   </body>
 </html>

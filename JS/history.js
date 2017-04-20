@@ -23,8 +23,6 @@ function initializeFireBase() {
   };
 
   //Initializing with selected config
-  console.log("Starting Firebase with this config: ");
-  console.log(config);
   firebase.initializeApp(config);
 }
 
@@ -56,8 +54,6 @@ function addLoginListener() {
 function getUserTypeAndLoadData()
 {
   var user = firebase.auth().currentUser;
-  console.log("this is the user: ");
-  console.log(user);
 
   //Check if the user is a parent
   const parentRef = firebase.database().ref().child('Tutor');
@@ -71,7 +67,11 @@ function getUserTypeAndLoadData()
 
       if (user.email == email){
 
-        LoadParentData(user);
+        var obj = tutor.children;
+        var childID = obj[Object.keys(obj)[0]];
+
+
+        LoadParentData(childID);
 
       }
     });
@@ -99,7 +99,7 @@ function getUserTypeAndLoadData()
 
 }
 
-function LoadParentData(user) {
+function LoadParentData(childID) {
 
   var html = "<p> History of your child: </p>"
   $( "#historyData" ).append( html );
@@ -107,22 +107,23 @@ function LoadParentData(user) {
 
 
   //Load the info of your child
-  const childrenRef = firebase.database().ref().child('children');
+  const childrenRef = firebase.database().ref().child('children').child(childID);
 
+  var html = "";
   childrenRef.on('value', function(snapshot) {
 
-    snapshot.forEach(function(childSnapshot) {
+    var morro = snapshot.val();
+    const transactions = morro.history
+    for (var key in transactions) {
+      if (transactions.hasOwnProperty(key)) {
+        transaction = transactions[key];
+        const sAmount = transaction.amount;
+        const sName = transaction.name;
 
-      const child = childSnapshot.val();
-      const Id = child.tutor;
-
-      if(user.uid == Id) {
-
-        loadHistoryInView(child.history);
-
+        html += "<ul>" + sName + ": " + sAmount + "</ul>";
       }
-
-    });
+    }
+    $("#historyData" ).append( html );
 
   });
 

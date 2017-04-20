@@ -29,17 +29,38 @@
 <!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
 
+<!-- update the version number as needed -->
+<script defer src="/__/firebase/3.8.0/firebase-app.js"></script>
+<!-- include only the Firebase features as you need -->
+<script defer src="/__/firebase/3.8.0/firebase-auth.js"></script>
+<script defer src="/__/firebase/3.8.0/firebase-database.js"></script>
+<script defer src="/__/firebase/3.8.0/firebase-messaging.js"></script>
+<script defer src="/__/firebase/3.8.0/firebase-storage.js"></script>
+<!-- initialize the SDK after all desired features are loaded -->
+<script defer src="/__/firebase/init.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.7.8/firebase.js"></script>
+
+<link rel="stylesheet" href="css/index.css" type='text/css'>
+
+
 </head>
 
 <body>
+<nav>
+  <br>
+ <h1> Child Login </h1>
+ <br>
 
- <h1> Child Login </h1> <br> <br>
+<nav>
+<form>
 Name: <input id="nameTextField" type="text"> <br>
 Your Email: <input id="emailTextField" type="text"><br>
 Password: <input id="passwordTextField" type="text"><br>
 Your Parent's Email: <input id="parentEmailTextField" type="text"><br>
 <!-- <button id="childLoginButton" type="button"> Login </button> -->
-<button id="childCreateButton" type="button"> Create </button>
+<button class="white" id="childCreateButton" type="button"> Create </button>
+
+</form>
 
 
 </body>
