@@ -70,8 +70,8 @@ function getUserTypeAndLoadData()
         var obj = tutor.children;
         var childID = obj[Object.keys(obj)[0]];
 
-
-        LoadParentData(childID);
+        console.log(childID);
+        loadHistory(childID);
 
       }
     });
@@ -90,7 +90,8 @@ function getUserTypeAndLoadData()
 
       if (user.email == email){
 
-        LoadChildData(user);
+        console.log(user.uid);
+        loadHistory(user.uid);
 
       }
     });
@@ -99,14 +100,11 @@ function getUserTypeAndLoadData()
 
 }
 
-function LoadParentData(childID) {
+function loadHistory(childID) {
 
-  var html = "<p> History of your child: </p>"
+  var html = "<p> History: </p>"
   $( "#historyData" ).append( html );
-  console.log("user is a parent");
 
-
-  //Load the info of your child
   const childrenRef = firebase.database().ref().child('children').child(childID);
 
   var html = "";
@@ -126,31 +124,5 @@ function LoadParentData(childID) {
     $("#historyData" ).append( html );
 
   });
-
-}
-
-function LoadChildData(user) {
-
-  var html = "<p> Your History: </p>"
-  $( "#historyData" ).append( html );
-  console.log("user is a child");
-
-}
-
-
-function loadHistoryInView (history) {
-
-  var html = "";
-  history.forEach(function(transactionSnapShot) {
-
-    const transaction = transactionSnapShot.val();
-    const sAmount = transaction.amount;
-    const sName = transaction.name;
-
-    html += "<ul>" + sName + ": " + sAmount + "</ul>";
-
-  });
-
-  $( "#historyData" ).append( html );
 
 }
