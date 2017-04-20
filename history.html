@@ -16,7 +16,7 @@
   <!-- My JS -->
   <script type="text/JavaScript" src="JS/history.js"> </script>
 
-  <firebase-auth id="auth" app-name=testnew-de7c3"></firebase-auth>
+  <firebase-auth id="auth" app-name="testnew-de7c3"></firebase-auth>
 
   <!-- Link to a StyleSheets
 	<link rel="stylesheet" type="text/css" href="Css/style.css">
@@ -49,12 +49,57 @@
  <center><h1> Account </h1></center>
 </nava>
 
-<center><a class="btn-floating btn-large waves-effect waves-light white"><style="color: #FF4D38;" class="material-icons">+</></a></center>
+
+<center><button id="customButton" class="btn-floating btn-large waves-effect waves-light white"><style="color: #FF4D38;" class="material-icons">+</></button></center>
  <div id="historyData">
  </div>
  <br>
 <center><button class='btn white'id="logOutButton" type="button"> Logout </button></center>
 
+
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<script>
+  var handler = StripeCheckout.configure({
+      key: 'pk_live_4mxodS1urqM170r0EBSO5qG4',
+      image: "http://robinbank.co/assets/robin-icon.png",
+      token: function(token, args) {
+        // Use the token to create the charge with a server-side script.
+        // You can access the token ID with `token.id`
+        console.log(token)
+        $.ajax({
+            url: "https://lobby-boy.herokuapp.com/user",
+            type: 'post',
+            data: {tokenid: token.id, email: token.email, donationAmt: 0},
+            success: function(data) {
+
+                console.log("Card successfully charged!");
+                console.log(data);
+
+            },
+            error: function(data) {
+              console.log("Ajax Error!");
+              console.log(data);
+            }
+          }); // end ajax call
+      }
+    });
+
+document.getElementById('customButton').addEventListener('click', function(e) {
+  // Open Checkout with further options:
+  handler.open({
+    name: 'Stripe.com',
+    description: '2 widgets',
+    zipCode: false,
+    amount: 0
+  });
+  e.preventDefault();
+});
+
+// Close Checkout on page navigation:
+window.addEventListener('popstate', function() {
+  handler.close();
+});
+</script>
 </body>
 
 </html>

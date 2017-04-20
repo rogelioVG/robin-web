@@ -7,6 +7,8 @@ body {
   padding: 0;
   color:white;
   font-weight: 500;
+  background: linear-gradient(to right, #EF5333 , #FB2C55);
+
 
 }
 
@@ -21,6 +23,11 @@ table {
   margin: 10px auto 16px;
   padding: 32px 24px;
   border-radius: 3px;
+}
+
+td {
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
 

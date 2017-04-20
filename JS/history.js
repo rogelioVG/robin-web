@@ -42,7 +42,6 @@ function addLoginListener() {
 
     }
     else {
-      alert('Signed Out');
       window.location.href = "ParentLogin.html";
 
     }

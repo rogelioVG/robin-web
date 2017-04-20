@@ -13,6 +13,9 @@ body {
   margin: 0;
   padding: 0;
 
+  background: linear-gradient(to right, #EF5333 , #FB2C55); 
+
+
 }
 
 img {
