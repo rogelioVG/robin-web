@@ -37,52 +37,47 @@ function doChildCreate () {
   const sParentEmail = $("#parentEmailTextField").val();
   const sPassword = $("#passwordTextField").val();
 
-  //Instantiate firebase Auth Object
-  const auth = firebase.auth();
-
-  if(validateParent(sParentEmail)) {
-    //Create Account with Firebase internal method
-    const promiseCreate = auth.createUserWithEmailAndPassword(sEmail, sPassword);
-
-    //GetUserId and Register child into the children branch
-    promiseCreate.then(user=> addChildToDB(user.uid,sName,sEmail,sParentEmail));
-  }
-  else {
-    console.log("Email of parent wasn't found");
-  }
+  validateParent(sParentEmail,sName,sEmail,sPassword);
 
 }
 
-function validateParent(pEmail) {
+function validateParent(pEmail,sName,sEmail,sPassword) {
 
   const parentRef = firebase.database().ref().child('Tutor');
 
-  var bParentExists = false;
-  console.log("Dejame ver!");
 
   parentRef.on('value', function(snapshot) {
-    console.log("Dejame ver!");
+
     snapshot.forEach(function(childSnapshot) {
 
       const tutor = childSnapshot.val();
       const email = tutor.email;
-      console.log("Dejame ver!");
       if (pEmail == email){
-        bParentExists = true;
+
+
+        //Instantiate firebase Auth Object
+        const auth = firebase.auth();
+
+        //Create Account with Firebase internal method
+        const promiseCreate = auth.createUserWithEmailAndPassword(sEmail, sPassword);
+
+        //GetUserId and Register child into the children branch
+        promiseCreate.then(user=> addChildToDB(user.uid,sName,sEmail,childSnapshot.key));
+
       }
-    })
+    });
 
   });
-  return bParentExists;
+
 }
 
-function addChildToDB(userId, sName, sEmail, sParentEmail) {
+function addChildToDB(userId, sName, sEmail, sTutor) {
 
     console.log("Writing into children branch Values:");
     console.log("Id: " + userId );
     console.log("Name: " + sName );
     console.log("Email: " + sEmail);
-    console.log("Parent Email: " + sParentEmail);
+    console.log("Parent : " + sTutor);
 
     firebase.database().ref('children/' + userId).set({
     balance: 0,
@@ -90,7 +85,7 @@ function addChildToDB(userId, sName, sEmail, sParentEmail) {
     history: "nil",
     name: sName,
     tasks: "nil",
-    tutor: sParentEmail
+    tutor: sTutor
   });
 
 }

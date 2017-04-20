@@ -87,18 +87,17 @@ function doParentLogin () {
 
 }
 
-
 function addLoginListener() {
 
   firebase.auth().onAuthStateChanged (user => {
 
     if(user) {
-
       //Display user Info
       console.log(user);
+      window.location.href = "history.html";
+
     }
     else {
-
       console.log("Not logged in");
       //Send to Login Page
     }

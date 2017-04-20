@@ -3,15 +3,20 @@
 <html>
 
 <head>
-  <title>Parent Login</title>
+  <title>History</title>
 
   <meta charset="UTF-8"/>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
 
   <!-- JQuery -->
   <script type="text/JavaScript" src="JS/jquery.js"> </script>
 
   <!-- My JS -->
-  <script type="text/JavaScript" src="JS/ParentLogin.js"> </script>
+  <script type="text/JavaScript" src="JS/history.js"> </script>
+
+  <firebase-auth id="auth" app-name=testnew-de7c3"></firebase-auth>
 
   <!-- Link to a StyleSheets
 	<link rel="stylesheet" type="text/css" href="Css/style.css">
@@ -26,20 +31,15 @@
 <!-- Bootstrap-->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<!-- Firebase --> 
-<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+
 
 </head>
 
 <body>
 
- <h1> Parent Login </h1> <br> <br>
-Name: <input id="nameTextField" type="text"> <br>
-Email: <input id="emailTextField" type="text"><br>
-Mobile: <input id="mobileTextField" type="text"><br>
-Password: <input id="passwordTextField" type="text"><br>
-<button id="parentLoginButton" type="button"> Login </button>
-<button id="parentCreateButton" type="button"> Create </button>
+ <h1> history </h1> <br> <br>
+ <div id="historyData">            </div>
+<button id="logOutButton" type="button"> Logout </button>
 
 </body>
 
