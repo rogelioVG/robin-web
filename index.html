@@ -4,24 +4,34 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
+    <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
+     <!-- Compiled and minified JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
     <!-- Initialize the Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/3.7.8/firebase.js"></script>
+    <link rel="stylesheet" href="css/index.css" type='text/css'>
 
-    
+
 
     <title>React App</title>
   </head>
   <body>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+    <div class="box">
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+      <center><img class "logo" src="assets/robin-logo.png"></center>
 
-      To begin the development, run `npm start`.
-      To create a production bundle, use `npm run build`.
-    -->
+
+      <br>
+      <center><button class="btn btn-large btn-blue" onclick="location.href='ParentLogin.html';" id="childCreateButton" type="button"> Parents </button> </center>
+      <center><button class="btn btn-large btn-green" onclick="location.href='childlogin.html';"id="childCreateButton" type="button"> Children </button> </center>
+
+
+    </div>
+
+
   </body>
 </html>

@@ -102,12 +102,11 @@ function getUserTypeAndLoadData()
 
 function loadHistory(childID) {
 
-  var html = "<p> History: </p>"
-  $( "#historyData" ).append( html );
+
 
   const childrenRef = firebase.database().ref().child('children').child(childID);
 
-  var html = "";
+  var html = "<table class='bordered highlight'> <tbody>";
   childrenRef.on('value', function(snapshot) {
 
     var morro = snapshot.val();
@@ -117,10 +116,19 @@ function loadHistory(childID) {
         transaction = transactions[key];
         const sAmount = transaction.amount;
         const sName = transaction.name;
+        var color = " style= 'color: blue'"
+        if (transaction.to == "Robin"){
+           color = " style= 'color: #FB2C55'";
+        }
+        else{
+           color = " style= 'color: #3DD87F'";
+        }
 
-        html += "<ul>" + sName + ": " + sAmount + "</ul>";
+        html += "<tr> <td style= 'color: navy'>" + sName + "</td><td" + color + "> " + sAmount + " </td> </tr>";
       }
     }
+    console.log(html);
+    html += "</tbody></table>"
     $("#historyData" ).append( html );
 
   });
