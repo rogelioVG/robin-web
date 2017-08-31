@@ -52,6 +52,7 @@
 
 <center><button id="customButton" class="btn-floating btn-large waves-effect waves-light white"><style="color: #FF4D38;" class="material-icons">+</></button></center>
  <div id="historyData">
+
  </div>
  <br>
 <center><button class='btn white'id="logOutButton" type="button"> Logout </button></center>
@@ -66,6 +67,7 @@
         // Use the token to create the charge with a server-side script.
         // You can access the token ID with `token.id`
         console.log(token)
+        
         $.ajax({
             url: "https://lobby-boy.herokuapp.com/user",
             type: 'post',

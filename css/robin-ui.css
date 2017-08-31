@@ -1,0 +1,152 @@
+.btn-info, .round {
+  border-radius: 10px;
+  background-color: #0DC0FF;
+}
+
+.blue-hover:hover {
+  background-color: #0D91FF;
+  border-color: white;
+  color: white;
+  border-width: 4px;
+}
+
+.blue-button {
+  border-radius:25px;
+  background-color: #0D91FF;
+  font-style: helvetica;
+  width: 250px;
+  height: 50px;
+  text-transform: capitalize;
+  font-size: 1.5em;
+}
+
+.btn-top {
+  position: absolute;
+  bottom: 100px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+}
+
+.blue-border-button {
+  border-radius:25px;
+  border-color: #0D91FF;
+  background-color: transparent;
+  color: #0D91FF;
+  font-style: helvetica;
+  width: 250px;
+  height: 50px;
+  text-transform: none;
+  font-size: 1.5em;
+  border-width: 4px;
+  margin-top: 15px;
+}
+
+.bottom {
+  position: absolute;
+  bottom: 30px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+}
+
+.welcome-box {
+  background: white;
+  max-width: 360px;
+  margin: 10px auto 16px;
+  padding: 32px 24px;
+  border-radius: 3px;
+}
+
+.orange-logo {
+  width: 150px;
+  margin-bottom: 50px;
+}
+
+.margin-top {
+  margin-top: 100px;
+}
+
+.sub {
+  font-style: helvetica;
+  color: navy;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.text-margin {
+  
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.white-button{
+  background-color: white;
+  border: 0;
+  border-radius: 25px;
+  color: navy;
+}
+
+.orange-button {
+  background-color: #EF5333;
+  border: 0;
+  border-radius: 25px;
+  color: white;
+}
+
+.dad-img{
+  margin-top: 100px;
+  margin-bottom: 30px;
+  width: 150px; 
+}
+
+.card-img{
+  margin-top: 50px;
+  margin-bottom: 30px;
+  width: 270px; 
+}
+
+#myProgress {
+    width: 100%;
+    background-color: lightgrey;
+}
+#myBar {
+    width: 0%;
+    height: 30px;
+    background-color: #18D37E;
+}
+
+form {
+  color: navy;
+}
+
+input[type="text"]{
+  font-size: 1.3em;
+  color:navy;
+  font-weight: bold;
+  outline: none;
+}
+
+input[type="password"]{
+  font-size: 1.3em;
+  color:navy;
+  font-weight: bold;
+  
+}
+
+.caret {
+  border-color: transparent !important;
+}
+
+option, select:disabled{
+  font-size: 1.3em;
+  color: navy !important;
+}
+
+::-webkit-input-placeholder {
+   color:navy;
+   font-weight: bold;
+
+}
+
+
