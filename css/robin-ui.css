@@ -50,7 +50,7 @@
   right: 0;
 }
 
-.welcome-box {
+.box {
   background: white;
   max-width: 360px;
   margin: 10px auto 16px;
@@ -75,7 +75,6 @@
 }
 
 .text-margin {
-  
   margin-top: 30px;
   margin-bottom: 30px;
 }
@@ -146,7 +145,6 @@ option, select:disabled{
 ::-webkit-input-placeholder {
    color:navy;
    font-weight: bold;
-
 }
 
 

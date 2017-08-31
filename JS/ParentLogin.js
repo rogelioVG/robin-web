@@ -1,3 +1,12 @@
+// This script needs to refactoring!!!
+//////////////////////////////////////
+// Login and Account creation should be split into 
+// 3 different views with their respecting scripts.
+//
+// -Login
+// -Parent Create Account
+// -Child Create Account
+
 $(document).ready(function() {
 
   initializeFireBase();
