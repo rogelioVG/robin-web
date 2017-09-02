@@ -47,14 +47,27 @@
 
 <body>
 <nava>
- <center><h1> Tasks </h1></center>
+ <center><h1> New Task </h1></center>
 </nava>
 
-
-<center><button id="newTaskButton" class="btn-floating btn-large waves-effect waves-light white"><style="color: #FF4D38;" class="material-icons">+</></button></center>
-
-<div id="tasksData">
+<div id="dialog-form" title="New task">
+ 
+  <form id = "formTask" method = "POST">
+    <fieldset>
+      Task<br>
+      <input type="text" name="taskName" id="taskNameF"  >
+      
+      Amount<br>
+      <input type="text" name="taskAmount" id="taskAmountF" >
+      <!-- Allow form submission with keyboard without duplicating the dialog button -->
+      <button type="button" tabindex="-1" id ="submitTask">Submit</button>
+    </fieldset>
+  </form>
 </div>
+<!--
+<center><button id="newTaskButton" class="btn-floating btn-large waves-effect waves-light white" onclick = "newTask()"><style="color: #FF4D38;" class="material-icons">+</></button></center>
+
+-->
 
 </body>
 
