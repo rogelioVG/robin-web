@@ -105,8 +105,10 @@ function loadHistory(childID) {
 
   const childrenRef = firebase.database().ref().child('children').child(childID);
 
-  var html = "<table class='bordered highlight'> <tbody>";
+  
   childrenRef.on('value', function(snapshot) {
+    clearTable();
+    var html = "<table  class='bordered highlight'> <tbody>";
 
     var morro = snapshot.val();
     const transactions = morro.history
@@ -132,4 +134,9 @@ function loadHistory(childID) {
 
   });
 
+}
+
+function clearTable() {
+  $( "#historyData" ).empty();
+  //console.log("alv");
 }
