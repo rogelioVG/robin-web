@@ -10,12 +10,9 @@ $(document).ready(function() {
 
 $( "#newTaskButton" ).click( function(){ openW("newTask.html");});
 $("#submitTask").click(function(){
-  console.log("ejecutando submit task click");
   var taskName = $("#taskNameF").val();
   var taskAmount = $("#taskAmountF").val();
 
-  
-  console.log(taskName + " " + taskAmount);
   
   if(!isNaN(taskAmount)){
     newTask(taskName,taskAmount);
@@ -24,15 +21,29 @@ $("#submitTask").click(function(){
 });
 
 $("#tasksData").on("click",".clickRow",function(){
-  var tId = $(this).attr('id');
-  console.log(tId);
-  console.log("click");
+  var tId = $(this).closest('tr').attr('id');
   var taskRef = firebase.database().ref('children/' + childID +'/tasks/' + tId);
-  //console.log("valor" + taskRef.child('completed').val());
   
-  taskRef.update({completed: !($(this).children("td").attr("style") == 'color:  #3DD87F')});
+  taskRef.update({completed: !($(this).attr("style") == 'color:  #3DD87F')});
+});
+
+$("#tasksData").on("click",".payTask",function() {
+  var tId = $(this).closest('tr').attr('id');
+  var cantidad;
+  var taskRef = firebase.database().ref('children/' + childID +'/tasks/' + tId);
+
+  taskRef.once("value").then(function(snapshot){
+
+    cantidad = snapshot.val().amount;
+    var childrenRef = firebase.database().ref('children/' + childID)
+    childrenRef.once("value").then(function(snapshot){
+    cantidad = (Number(snapshot.val().balance) + Number(cantidad)).toString();
+
+    childrenRef.update({balance: cantidad});
+  });
   
-  //console.log("escrito" + false);
+  });
+
 });
 
 });
@@ -127,8 +138,6 @@ function getUserTypeAndLoadData()
       const email = child.email;
 
       if (user.email == email){
-
-        console.log(user.uid);
         childID = user.uid;
         loadTasks();
 
@@ -157,26 +166,29 @@ function loadTasks() {
         transaction = transactions[key];
         const sAmount = transaction.amount;
         const sName = transaction.name;
+        var sBoton; 
         var color = " style= 'color: blue'"
         if (transaction.completed){
            color = " style= 'color:  #3DD87F'";
+           sBoton  = "<td"+ color + " class = 'payTask'><button type='button'>Pay</button></td>";
         }
         else{
            color = " style= 'color: #FB2C55'";
+           sBoton = "<td class = 'clickRow'></td>";
         }
 
-        html += "<tr class = 'clickRow' id = '" + key + "'> <td " + color + ">" + sName + "</td><td" + color + "> $";
+        html += "<tr  id = '" + key + "'> <td class = 'clickRow'" + color + ">" + sName + "</td><td class = 'clickRow' id ='amount" + sAmount + 
+        "' " + color + "> $";
         if(sAmount ===""){
-          html += "0 </td> </tr>"
+          html += "0</td>" + sBoton + " </tr>"
         } 
         else{
-          html+= sAmount + " </td> </tr>";
+          html+= sAmount + " </td>" + sBoton + " </tr>";
         }
       }
     }
     
     html += "</tbody></table>"
-    console.log(html);
     
     $("#tasksData" ).append( html );
 
@@ -195,20 +207,17 @@ function newTask(taskName, taskAmount) {
   /*const childrenRef = firebase.database().ref().child('children').child(childID);
   const taskRef = childrenRef.child('tasks');
   var newTaskRef = taskRef.push();*/
-  console.log("casi1" + taskName + taskAmount);
+
   var newTaskRef = firebase.database().ref('children/' + childID +'/tasks').push();
 
-  console.log("casi2");
   newTaskRef.set({
     addedByUser: user.uid,
     amount: taskAmount,
     completed: false,
     name: taskName
   });
-  console.log("exito");
 }
 
 function clearTable() {
   $( "#tasksData" ).empty();
-  console.log("alv");
 }
