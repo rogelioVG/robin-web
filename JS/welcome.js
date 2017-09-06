@@ -13,7 +13,7 @@ function loadNext(){
 	progress += 11.2
 	var eleml = document.getElementById("myBar"); 
 	eleml.style.width = progress+'%';
-	$(".box").load(welcomeArray[index]);
+	$(".box").load("welcomeArray[index]");
 }
 
 function loadLogin(){
