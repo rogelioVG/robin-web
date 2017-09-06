@@ -1,4 +1,4 @@
-var childID, user;
+var childID, user, isTutor;
 
 $(document).ready(function() {
 
@@ -20,6 +20,7 @@ $("#submitTask").click(function(){
   }
 });
 
+//task completado
 $("#tasksData").on("click",".clickRow",function(){
   var tId = $(this).closest('tr').attr('id');
   var taskRef = firebase.database().ref('children/' + childID +'/tasks/' + tId);
@@ -27,7 +28,9 @@ $("#tasksData").on("click",".clickRow",function(){
   taskRef.update({completed: !($(this).attr("style") == 'color:  #3DD87F')});
 });
 
+//pagar
 $("#tasksData").on("click",".payTask",function() {
+  if(isTutor) {
   var tId = $(this).closest('tr').attr('id');
   var cantidad;
   var taskRef = firebase.database().ref('children/' + childID +'/tasks/' + tId);
@@ -43,7 +46,7 @@ $("#tasksData").on("click",".payTask",function() {
   });
   
   });
-
+}
 });
 
 });
@@ -117,7 +120,7 @@ function getUserTypeAndLoadData()
 
         var obj = tutor.children;
         childID = obj[Object.keys(obj)[0]];
-
+        isTutor = true;
         if(window.location.href.substring(window.location.href.length - 10) === "tasks.html"){
 
           loadTasks();
@@ -139,6 +142,7 @@ function getUserTypeAndLoadData()
 
       if (user.email == email){
         childID = user.uid;
+        isTutor = false;
         loadTasks();
 
       }
