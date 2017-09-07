@@ -81,6 +81,7 @@ function initializeFireBase() {
 
   //Initializing with selected config
   firebase.initializeApp(config);
+  console.log("log2");
 }
 
 
@@ -106,7 +107,7 @@ function addLoginListener() {
 function getUserTypeAndLoadData()
 {
   user = firebase.auth().currentUser;
-  
+  console.log("log1");
   //Check if the user is a parent
   const parentRef = firebase.database().ref().child('Tutor');
 
@@ -122,10 +123,9 @@ function getUserTypeAndLoadData()
         var obj = tutor.children;
         childID = obj[Object.keys(obj)[0]];
         isTutor = true;
-        if(window.location.href.substring(window.location.href.length - 10) === "tasks.html"){
+        console.log("llamada");
 
-          loadTasks();
-        }
+        loadGoals();
       }
     });
 
@@ -144,7 +144,7 @@ function getUserTypeAndLoadData()
       if (user.email == email){
         childID = user.uid;
         isTutor = false;
-        loadTasks();
+        loadGoals();
 
       }
     });
@@ -153,49 +153,39 @@ function getUserTypeAndLoadData()
 
 }
 
-function loadTasks() {
+function loadGoals() {
 
   
-
+  console.log("loadtasks");
   const childrenRef = firebase.database().ref().child('children').child(childID);
   
 
   childrenRef.on('value', function(snapshot) {
-
+    console.log("loadtasks2");
     clearTable();
-    var html = "<table id ='taskTable' class='bordered highlight'> <tbody>";
+    var html = "<table id ='goalsTable' class='bordered highlight'> <tbody>";
     var morro = snapshot.val();
-    const transactions = morro.tasks
+    const transactions = morro.wishlist;
     for (var key in transactions) {
       if (transactions.hasOwnProperty(key)) {
         transaction = transactions[key];
-        const sAmount = transaction.amount;
+        const sNest = transaction.nest;
+        const sPrice = transaction.price;
         const sName = transaction.name;
-        var sBoton; 
-        var color = " style= 'color: blue'"
-        if (transaction.completed){
-           color = " style= 'color:  #3DD87F'";
-           sBoton  = "<td"+ color + " class = 'payTask'><button type='button'>Pay</button></td>";
-        }
-        else{
-           color = " style= 'color: #FB2C55'";
-           sBoton = "<td class = 'clickRow'></td>";
-        }
+        const sLeftToPay = transaction.leftToPay;
+        const sThumbnail = transaction.thumbnail;
+        const sUrl = transaction.url;
+        
 
-        html += "<tr  id = '" + key + "'> <td class = 'clickRow'" + color + ">" + sName + "</td><td class = 'clickRow' id ='amount" + sAmount + 
-        "' " + color + "> $";
-        if(sAmount ===""){
-          html += "0</td>" + sBoton + " </tr>"
-        } 
-        else{
-          html+= sAmount + " </td>" + sBoton + " </tr>";
-        }
+        html += "<tr  id = '" + key + "'> <td><img src ='" + sThumbnail + "' style='width:128px;height:128px;'></td><td style='color:blue'>" 
+        + sName + "</td><td style='color:blue'><button type= 'button'>" + sLeftToPay + "</button></td>";
+        
       }
     }
     
     html += "</tbody></table>"
-    
-    $("#tasksData" ).append( html );
+    console.log(html);
+    $("#goalsData" ).append( html );
 
   });
 
@@ -224,6 +214,6 @@ function newTask(taskName, taskAmount) {
 }
 
 function clearTable() {
-  $( "#tasksData" ).empty();
+  $( "#goalsData" ).empty();
 }
 
