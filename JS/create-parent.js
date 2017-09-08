@@ -4,9 +4,6 @@ $(document).ready(function() {
 
   $(".create-parent").on( "click", createParent);
 
-  //Add realtime Listener
-  addLoginListener();
-
 });
 
 function initializeFireBase() {
@@ -26,8 +23,7 @@ function initializeFireBase() {
   firebase.initializeApp(config);
 }
 
-function createParent() {
-  
+function createParent() {  
   //Retreive user data from the form
   const sName = $("#nameTextField").val();
   const sEmail = $("#emailTextField").val();
@@ -59,7 +55,26 @@ function sendToDatabase(userId, sName, sEmail, sMobile) {
     children: "nil"
   });
 
+  login()
+}
+
+function login () {
+
+  //Retreive user data from the form
+  const sEmail = $("#emailTextField").val();
+  const sPassword = $("#passwordTextField").val();
+
+  //Instantiate firebase Auth Object
+  const auth = firebase.auth();
+
+  //Sign in with Firebase internal method
+  const promise = auth.signInWithEmailAndPassword(sEmail, sPassword);
+
+  //check for errors
+  promise.catch(e=> alert(e.message));
+  
   loadNext()
+
 }
 
 function loadNext(){

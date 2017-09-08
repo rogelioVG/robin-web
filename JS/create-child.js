@@ -1,9 +1,7 @@
 $(document).ready(function() {
-  alert("create child")
   initializeFireBase();
 
   $(".create-child").on( "click", createChild);
-  alert("create child")
 
   //Add realtime Listener
 
@@ -23,41 +21,66 @@ function initializeFireBase() {
 
   //Initializing with selected config
   console.log("Starting Firebase with this config: ");
-  firebase.initializeApp(config);
+  if (!firebase.apps.length) {
+    firebase.initializeApp(config);
+  }
 }
 
 function createChild() {
-  alert("si jala")
   
   //Retreive user data from the form
   const name = $("#nameTextField").val();
   const email = $("#emailTextField").val();
   const parentEmail = $("#parentEmailTextField").val();
   const school = $("#schoolSelect").val();
-  const sPassword = $("#passwordTextField").val();
+  const password = $("#passwordTextField").val();
+
+  var tutorID = ""
 
   //Instantiate firebase Auth Object
   const auth = firebase.auth();
 
+  var parentFound = false;
+
   var ref = firebase.database().ref("Tutor");
 
-  ref.on("value", function(snapshot) {
+  ref.once("value", function(snapshot) {
+
+    // Look for every parent
     snapshot.forEach(function(childSnapshot){
-      const tutor = childSnapshot.key()
-      alert(tutor)
+      const tutor = childSnapshot.val()
+
+      //If the parent email matches, get his ID and activate the parentFound flag
+      if (tutor.email == parentEmail) {
+        tutorID = childSnapshot.key
+        parentFound = true;
+      }
     })
+
+    if (parentFound == true) {
+      //createAccount(email, password, name, school);
+      const promiseCreate = auth.createUserWithEmailAndPassword(email, password);
+
+      //check for errors
+      promiseCreate.catch(e=> alert(e.message));
+
+      //GetUserId and Register tutor into the tutor branch
+      promiseCreate.then(user=> sendToDatabase(user.uid,name,email,tutorID,school));
+    }
+    else{
+      alert("There're no parents registered with that email. Try a different email");
+    }
+
+    // alert(Object.keys(snapshot))
+
+    // // for (var tutor in snapshot) {
+    // //   console.log(tutor)
+    // // }
+
   }, function (error) {
      console.log("Error: " + error.code);
   });
 
-  //Create Account with Firebase internal method
-  const promiseCreate = auth.createUserWithEmailAndPassword(sEmail, sPassword);
-
-  //check for errors
-  promiseCreate.catch(e=> alert(e.message));
-
-  //GetUserId and Register tutor into the tutor branch
-  promiseCreate.then(user=> sendToDatabase(user.uid,name,email,school));
 
 }
 
@@ -66,13 +89,21 @@ function createChild() {
 ////////////////////
 
 function sendToDatabase(childID, name, email, tutorID, school) {
-  firebase.database().ref('children/' + userId).set({
-    name: sName,
-    email: sEmail,
+
+  firebase.database().ref('children/' + childID).set({
+    name: name,
+    email: email,
     tutor: tutorID,
     balance: 0,
     school: school
   });
+
+  // var tutorRef = firebase.database().ref('Tutor/' + tutorID + "/children")
+
+  firebase.database().ref('Tutor/' + tutorID + "/children/" + name).set(childID);
+  // tutorRef.set({
+  //   name: childID
+  // });
 
   loadNext()
 }

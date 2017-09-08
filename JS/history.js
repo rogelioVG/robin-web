@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   initializeFireBase();
 
-  $( "#logOutButton" ).on( "click", LogOut);
+  $( "#logOutButton" ).on( "click", logOut);
 
   //Add realtime Listener
   addLoginListener();
@@ -26,7 +26,7 @@ function initializeFireBase() {
   firebase.initializeApp(config);
 }
 
-function LogOut(){
+function logOut(){
 
   firebase.auth().signOut();
 
@@ -42,7 +42,7 @@ function addLoginListener() {
 
     }
     else {
-      window.location.href = "ParentLogin.html";
+      window.location.href = "login.html";
 
     }
 
@@ -69,7 +69,6 @@ function getUserTypeAndLoadData()
         var obj = tutor.children;
         var childID = obj[Object.keys(obj)[0]];
 
-        console.log(childID);
         loadHistory(childID);
 
       }
@@ -89,7 +88,6 @@ function getUserTypeAndLoadData()
 
       if (user.email == email){
 
-        console.log(user.uid);
         loadHistory(user.uid);
 
       }
@@ -101,39 +99,52 @@ function getUserTypeAndLoadData()
 
 function loadHistory(childID) {
 
-
-
   const childrenRef = firebase.database().ref().child('children').child(childID);
 
   
   childrenRef.on('value', function(snapshot) {
     clearTable();
-    var html = "<table  class='bordered highlight'> <tbody>";
 
-    var morro = snapshot.val();
-    const transactions = morro.history
-    for (var key in transactions) {
-      if (transactions.hasOwnProperty(key)) {
-        transaction = transactions[key];
-        const sAmount = transaction.amount;
-        const sName = transaction.name;
-        var color = " style= 'color: blue'"
-        if (transaction.to == "Robin"){
-           color = " style= 'color: #FB2C55'";
-        }
-        else{
-           color = " style= 'color: #3DD87F'";
-        }
+    var transactionArray = []
 
-        html += "<tr> <td style= 'color: navy'>" + sName + "</td><td" + color + "> " + sAmount + " </td> </tr>";
-      }
+    var child = snapshot.val();
+    const history = child.history
+
+    for (var key in history) {
+
+      //Build a transaction object/dictionary for each key in history. Then append to array.
+      const transaction = history[key];
+      transactionArray.push(transaction);
     }
-    console.log(html);
-    html += "</tbody></table>"
-    $("#historyData" ).append( html );
+
+    transactionArray.reverse()
+    showHistory(transactionArray)
 
   });
 
+}
+
+function showHistory(transactionArray){
+  var html = "<table  class='bordered highlight'> <tbody>";
+  console.log(transactionArray)
+  for (var trans in transactionArray) {
+    console.log(transactionArray[trans].amount);
+
+    var color = " style= 'color: navy'"
+
+    if (transactionArray[trans].to == "Robin"){
+      color = " style= 'color: #FB2C55'";
+    }
+    else{
+      color = " style= 'color: #3DD87F'";
+    }
+
+
+    html += "<tr> <td style= 'color: navy'>" + transactionArray[trans].name + "</td><td" + color + "> " + transactionArray[trans].amount + " </td> </tr>";
+  }
+
+  html += "</tbody></table>"
+  $("#historyData" ).append(html);
 }
 
 function clearTable() {
