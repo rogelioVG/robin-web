@@ -1,3 +1,11 @@
+
+
+body {
+  background-color: lightgray;
+  font-weight: 500;
+}
+
+
 .btn-info, .round {
   border-radius: 10px;
   background-color: #0DC0FF;
@@ -52,8 +60,8 @@
 
 .box {
   background: white;
-  max-width: 360px;
-  margin: 10px auto 16px;
+  max-width: 400px;
+  margin: 0px auto 0px;
   padding: 32px 24px;
   border-radius: 3px;
 }
@@ -147,4 +155,42 @@ option, select:disabled{
    font-weight: bold;
 }
 
+
+.account-title {
+  color: black;
+  font-style: helvetica;
+  font-weight: bold;
+  font-size: 4.5em;
+}
+
+.top-bar {
+  color: black;
+  font-style: helvetica;
+  font-weight: bold;
+  font-size: 4.5em;
+  background-color: blue;
+}
+
+.balance {
+  color: #0DC0FF;
+  font-style: helvetica;
+  font-weight: bold;
+  font-size: 3em;
+}
+
+/*.material-icons{
+  color: white;
+  font-size: 50px;
+}*/
+
+.orange-btn {
+  background-color: #FF4D38;
+  color: white;
+  font-size: 2.3em;
+  margin: 10px;
+}
+
+.orange-btn:hover {
+  background-color: #FF4D38;
+}
 

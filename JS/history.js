@@ -87,7 +87,6 @@ function getUserTypeAndLoadData()
       const email = child.email;
 
       if (user.email == email){
-
         loadHistory(user.uid);
 
       }
@@ -99,10 +98,10 @@ function getUserTypeAndLoadData()
 
 function loadHistory(childID) {
 
-  const childrenRef = firebase.database().ref().child('children').child(childID);
+  const childRef = firebase.database().ref().child('children').child(childID);
 
   
-  childrenRef.on('value', function(snapshot) {
+  childRef.on('value', function(snapshot) {
     clearTable();
 
     var transactionArray = []
@@ -119,9 +118,19 @@ function loadHistory(childID) {
 
     transactionArray.reverse()
     showHistory(transactionArray)
+    loadBalance(childID);
 
   });
 
+}
+
+function loadBalance(childID) {
+  const childRef = firebase.database().ref().child('children/'+childID+'/balance');
+
+  childRef.on('value', function(snapshot) {
+    const balance = snapshot.val();
+    $(".balance" ).append("$"+balance);
+  })
 }
 
 function showHistory(transactionArray){

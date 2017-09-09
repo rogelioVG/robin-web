@@ -38,26 +38,47 @@
  <!-- Compiled and minified JavaScript -->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 
- <link rel="stylesheet" href="css/account.css" type='text/css'>
+ <!-- <link rel="stylesheet" href="css/account.css" type='text/css'> -->
+ <link rel="stylesheet" type="text/css" href="CSS/robin-ui.css">
 
 
 
 </head>
 
 <body>
-<nava>
+  
+  <!-- <div>
+    <div class="top-bar"> Account </div>
+  </div> -->
+
+
+<!-- <nava>
  <center><h1> Account </h1></center>
 </nava>
 
 
+
 <center>
   <button id="customButton" style="color: #FF4D38;" class="btn-floating btn-large material-icons waves-effect waves-light white"> + </></button>
-</center>
- <div id="historyData">
+</center> -->
+<div class="box">
 
+  <center>
+    <div>
+    <h2 class="account-title"> Account </h2>
+    </div>
+
+    <div class="balance"> </div>
+
+    <button id="customButton" class="btn-floating btn-large material-icons waves-effect waves-light orange-btn"> + </></button>
+
+  </center>
+
+ <div id="historyData" class="boxs">
  </div>
+</div>
  <br>
-<center><button class='btn white'id="logOutButton" type="button"> Logout </button></center>
+<center><button class='btn white' id="logOutButton" type="button"> Logout </button></center>
 
 
   <script src="https://checkout.stripe.com/checkout.js"></script>

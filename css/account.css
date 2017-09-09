@@ -6,7 +6,7 @@ body {
   margin: 0;
   padding: 0;
   color:white;
-  font-weight: 500;
+  font-weight: bold;
   background: linear-gradient(to right, #EF5333 , #FB2C55);
 
 
@@ -42,5 +42,7 @@ td {
   color: #FF4D38;
   font-size: 50px;
 }
+
+
 
 }
