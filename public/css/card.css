@@ -10,14 +10,10 @@ html {
   height: 100%;
 }
 
-body {
-  background: #F6F9FC;
-  display: flex;
-  align-items: center;
-}
+
 
 form {
-  width: 480px;
+  
   margin: 20px auto;
 }
 
@@ -41,7 +37,7 @@ label {
   font-weight: 400;
   border: 1px solid gray;
   border-radius: 24px;
-  color: navy;
+  color: #5A37FF;
   outline: none;
   height: 48px;
   line-height: 48px;
@@ -49,7 +45,6 @@ label {
   margin-top: 8px;
   cursor: text;
   width: 320px;
-  /*float: right;*/
 }
 
 .field::-webkit-input-placeholder { color: #CFD7DF; }
@@ -58,6 +53,32 @@ label {
 
 .field:focus,
 .field.StripeElement--focus {
+  border-color: #5A37FF ;
+}
+
+input {
+  background: white;
+  box-sizing: border-box;
+  font-weight: 400;
+  border: 1px solid gray;
+  border-radius: 24px;
+  color: navy;
+  outline: none;
+  height: 48px;
+  line-height: 48px;
+  padding: 0 20px;
+  margin-bottom: 8px;
+  cursor: text;
+  width: 320px;
+  /*float: right;*/
+}
+
+input::-webkit-input-placeholder { color: #CFD7DF; }
+input::-moz-placeholder { color: #CFD7DF; }
+input:-ms-input-placeholder { color: #CFD7DF; }
+
+input:focus,
+input.StripeElement--focus {
   border-color: #5A37FF ;
 }
 
@@ -120,4 +141,19 @@ button:active {
 .success .token {
   font-weight: 500;
   font-size: 13px;
+}
+
+.selectWrapper{
+  border-radius:36px;
+  display:inline-block;
+  overflow:hidden;
+  background:#cccccc;
+  border:1px solid #cccccc;
+}
+.selectBox{
+
+  width:320px;
+  height: 48px;
+  border:0px;
+  outline:none;
 }

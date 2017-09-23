@@ -1,7 +1,13 @@
 
-
+* {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 15px;
+  font-variant: normal;
+  padding: 0;
+  margin: 0;
+}
 body {
-  background-color: white;
+  background-color: #ECEFF1;
   font-weight: 500;
 }
 
@@ -15,7 +21,7 @@ body {
   background-color: #0D91FF;
   border-color: white;
   color: white;
-  border-width: 4px;
+  border-width: 2px;
 }
 
 .blue-button {
@@ -26,6 +32,7 @@ body {
   height: 50px;
   text-transform: capitalize;
   font-size: 1.5em;
+  color:white;
 }
 
 .btn-top {
@@ -62,10 +69,12 @@ body {
   background: white;
   max-width: 400px;
   min-width: 340px;
+  height: 100vh;
   margin: 0px auto 0px;
   padding: 32px 24px;
   border-radius: 3px;
 }
+
 
 .orange-logo {
   width: 150px;
@@ -81,11 +90,12 @@ body {
   color: navy;
   font-size: 1.2em;
   font-weight: bold;
+  margin: 30px;
 }
 
 .text-margin {
-  margin-top: 30px;
-  margin-bottom: 30px;
+  
+  margin: 30px;
 }
 
 .white-button{
@@ -122,7 +132,9 @@ body {
 }
 
 #myProgress {
-    width: 100%;
+    
+    max-width: 400px;
+    min-width: 340px;
     background-color: lightgrey;
 }
 #myBar {
@@ -132,19 +144,19 @@ body {
 }
 
 form {
-  color: navy;
+  color: #5A37FF;
 }
 
 input[type="text"]{
   font-size: 1.3em;
-  color:navy;
+  color:#5A37FF;
   font-weight: bold;
   outline: none;
 }
 
 input[type="password"]{
   font-size: 1.3em;
-  color:navy;
+  color:#5A37FF;
   font-weight: bold;
   
 }
@@ -220,5 +232,9 @@ option, select:disabled{
 
 .orange-btn:hover {
   background-color: #FF4D38;
+}
+
+.left {
+  float: left !important;
 }
 

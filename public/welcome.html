@@ -3,6 +3,7 @@
 <html>
 
 <head>
+
   <title>Robin</title>
 
   <meta charset="UTF-8"/>
@@ -21,34 +22,43 @@
   <firebase-auth id="auth" app-name="testnew-de7c3"></firebase-auth>
 
   <script type='text/javascript' > 
-  var welcomeArray = ['welcome.html','step-one.html', "step-two.html", "step-three.html", "step-four.html", "step-five.html", "step-six.html", "step-seven.html", "step-eight.html", "step-nine.html"];
-  var index = 0; 
-  var progress = 0; 
-</script>
+    var welcomeArray = ['welcome.html','step-one.html', "step-two.html", "step-three.html", "step-four.html", "step-five.html", "step-six.html", "step-seven.html", "step-eight.html", "step-nine.html"];
+    var index = 0; 
+    var progress = 0; 
+  </script>
 
   <!-- Link to a StyleSheets
 	<link rel="stylesheet" type="text/css" href="Css/style.css">
   -->
 
-<!-- Bootstrap-->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- Bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
 <!-- Bootstrap-->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-<!-- Bootstrap-->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
-<!-- Compiled and minified CSS -->
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+<!-- 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
 
- <!-- Compiled and minified JavaScript -->
- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"> </script> -->
 
-  <link rel="stylesheet" type="text/css" href="CSS/bootstrap-theme.css">
-  <link rel="stylesheet" type="text/css" href="CSS/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="CSS/robin-ui.css">
+
+
+
+
+
+  <script src="https://js.stripe.com/v3/"></script>
+
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+  <link rel="stylesheet" type='text/css' href="/css/card.css">
+  <link rel="stylesheet" type="text/css" href="css/robin-ui.css">
 
   <script type="text/JavaScript" src="JS/welcome.js"></script>
 
@@ -58,18 +68,21 @@
 </head>
 
 <body>
-
-<div id="myProgress">
-  <div id="myBar"></div>
-</div>
+<center>
+  <div id="myProgress">
+    <div id="myBar" class="left"></div>
+  </div>
+</center>
+  
 
 <div class="box" id="main">
 <center>
+
   <div>
     <img src="assets/robin-logo.png" alt="Robin" class="orange-logo margin-top">
   <div>
    <br><br><br><br>
-  <p class="sub text-margin">
+  <p class="sub">
     Robin is a mobile piggy bank for kids to learn with real money.
   </p>
   <br><br><br><br><br><br>
