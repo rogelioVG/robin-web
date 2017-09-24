@@ -9,7 +9,15 @@ $(document).ready(function() {
   addLoginListener();
 //Agregar nuevo nest, codigo de ejemplo, cambiar tags
 //$( ".material-icons-table" ).click( function(){ openW("tasks.html");});
+/*
+$("#goalsData").on("click",".material-icons-table",function(){
+  selectedGoal = $(this).closest('tr').attr('id');
+  console.log(selectedGoal);
+  sessionStorage.setItem("selectedGoal",selectedGoal);
+  openW("addtonest.html");
+});
 
+*/
 $("#submitTask").click(function(){
   var taskName = $("#taskNameF").val();
   var taskAmount = $("#taskAmountF").val();
@@ -20,6 +28,16 @@ $("#submitTask").click(function(){
     window.close();
   }
 });
+
+
+
+$("#goalsData").on("click",".Delete", function() {
+  goalId = $(this).closest('tr').attr('id');
+
+  var noGoal = firebase.database().ref('children/' + childID +'/wishlist/' + goalId);
+  
+  noGoal.ref.remove();
+})
 
 //agregar dinero a nest
 $("#goalsData").on("click",".material-icons-table",function(){
@@ -153,9 +171,9 @@ function loadGoals() {
         
 
         html += "<tr  id = '" + key + "'> <td><img src ='" + sThumbnail + "' style='width:128px;height:128px;'></td><td style='color:blue'> <p>" 
-        + sName + "<button class='btn-floating btn-large waves-effect waves-light white'><style='color:#3DD87F;' class='material-icons-table'>+</></button> </td><td style='color:#3DD87F'> <p>"
+        + sName + "<button class='btn-floating btn-large waves-effect waves-light white'><style='color:#3DD87F;' class='material-icons-table'>+</></button> </td><td style='color:#3DD87F'><button class='Delete'>Delete</button> <p>"
          + ((Number(sNest.substring(1)) * 100) / Number(sPrice.substring(1))).toPrecision(2) 
-        +"%</p><button type= 'button'>" + sLeftToPay + "</button></td>";
+        +"%</p><button type= 'button'>" + sLeftToPay + "</button></td> ";
         
       }
     }

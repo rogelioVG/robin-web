@@ -8,11 +8,10 @@ var card = elements.create('card', {
     base: {
       iconColor: '#F99A52',
       color: '#32315E',
-      lineHeight: '48px',
+      lineHeight: '100px',
       fontWeight: 400,
       fontFamily: '"Helvetica Neue", "Helvetica", sans-serif',
-      fontSize: '15px',
-
+      fontSize: '1.5em',
       '::placeholder': {
         color: '#CFD7DF',
       }
