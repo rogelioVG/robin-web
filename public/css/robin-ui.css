@@ -11,7 +11,6 @@ body {
   font-weight: 500;
 }
 
-
 .btn-info, .round {
   border-radius: 10px;
   background-color: #0DC0FF;
@@ -32,7 +31,7 @@ body {
   height: 50px;
   text-transform: capitalize;
   font-size: 1.5em;
-  color:white;
+  color: white;
 }
 
 .btn-top {
@@ -65,6 +64,7 @@ body {
   right: 0;
 }
 
+
 .box {
   background: white;
   max-width: 400px;
@@ -74,6 +74,8 @@ body {
   padding: 32px 24px;
   border-radius: 3px;
 }
+
+
 
 
 .orange-logo {
@@ -237,4 +239,6 @@ option, select:disabled{
 .left {
   float: left !important;
 }
+
+
 
