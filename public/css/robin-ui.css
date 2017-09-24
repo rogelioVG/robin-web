@@ -51,6 +51,28 @@
     right: 0;
   }
 
+  button {
+    background-color: #0D91FF;
+    color: white;
+    border-radius: 100px;
+    border: 0;
+    margin-top: 20px;
+    font-size: 3.5em;
+    font-weight: 500;
+    width: 75%;
+    height: 120px;
+    line-height: 48px;
+    outline: none;
+  }
+
+  button:focus {
+  background-color: lightgray;  
+  }
+
+  button:active {
+    background: lightgray;
+  }
+
 
   .orange-logo {
     width: 50%;
@@ -76,23 +98,85 @@
     width: 400px; 
   }
 
+  .card-img{
+    margin-top: 200px;
+    margin-bottom: 75px;
+    width: 50%; 
+  }
+
+
+  .img{
+    margin-bottom: 30px;
+    width: 50%; 
+  }
+
   /*Form Style from Stripe*/
 
   .field {
     background: white;
     box-sizing: border-box;
     font-weight: 400;
-    border: 1px solid gray;
-    border-radius: 24px;
+    border: 4px solid gray;
+    border-radius: 100px;
     color: #5A37FF;
     outline: none;
-    height: 48px;
+    height: 120px;
     line-height: 48px;
     padding: 0 20px;
     margin-top: 8px;
     cursor: text;
     width: 75%;
+    font-size: 3em;
   }
+
+  input {
+    background: white;
+    box-sizing: border-box;
+    font-weight: 400;
+    border: 4px solid gray;
+    border-radius: 102px;
+    color: navy;
+    outline: none;
+    height: 120px;
+    line-height: 49px;
+    padding: 0 20px;
+    margin-bottom: 34px;
+    cursor: text;
+    width: 75%;
+    /* float: right; */
+  }
+
+  input[type="text"]{
+    font-size: 3em;
+    color:#5A37FF;
+    font-weight: bold;
+    outline: none;
+  }
+
+  input[type="password"]{
+    font-size: 3em;
+    color:#5A37FF;
+    font-weight: bold;
+  }
+
+  .selectWrapper{
+    border-radius:100px;
+    width: 75%;
+    display:inline-block;
+    overflow:hidden;
+    background:#cccccc;
+    border:3px solid #cccccc;
+  }
+  .selectBox{
+
+    width:100%;
+    height: 120px;
+    border:0px;
+    outline:none;
+    font-size: 2.5em;
+    padding: 0 20px;
+  }
+
 }
 
 
@@ -172,8 +256,63 @@
     margin-bottom: 30px;
     width: 150px; 
   }
-}
 
+  .card-img{
+    margin-top: 50px;
+    margin-bottom: 30px;
+    width: 75%; 
+  }
+
+  input[type="text"]{
+    font-size: 1.3em;
+    color:#5A37FF;
+    font-weight: bold;
+    outline: none;
+  } 
+
+  input[type="password"]{
+    font-size: 1.3em;
+    color:#5A37FF;
+    font-weight: bold;
+  }
+
+  .selectWrapper{
+    border-radius:36px;
+    display:inline-block;
+    overflow:hidden;
+    background:#cccccc;
+    border:1px solid #cccccc;
+  }
+  .selectBox{
+
+    width:320px;
+    height: 48px;
+    border:0px;
+    outline:none;
+  }
+
+  button {
+    background-color: #0D91FF;
+    color: white;
+    border-radius: 24px;
+    border: 0;
+    margin-top: 20px;
+    font-size: 17px;
+    font-weight: 500;
+    width: 250px;
+    height: 48px;
+    line-height: 48px;
+    outline: none;
+  }
+
+  button:focus {
+  background-color: lightgray;  
+  }
+
+  button:active {
+    background: lightgray;
+  }
+}
 
 * {
   font-family: "Helvetica Neue", Helvetica, sans-serif;
@@ -217,19 +356,6 @@ body {
   color: white;
 }
 
-.img{
-  margin-top: 100px;
-  margin-bottom: 30px;
-  width: 150px; 
-
-}
-
-.card-img{
-  margin-top: 50px;
-  margin-bottom: 30px;
-  width: 270px; 
-}
-
 #myProgress {
     background-color: lightgrey;
 }
@@ -242,20 +368,6 @@ body {
 
 form {
   color: #5A37FF;
-}
-
-input[type="text"]{
-  font-size: 1.3em;
-  color:#5A37FF;
-  font-weight: bold;
-  outline: none;
-}
-
-input[type="password"]{
-  font-size: 1.3em;
-  color:#5A37FF;
-  font-weight: bold;
-  
 }
 
 .caret {
