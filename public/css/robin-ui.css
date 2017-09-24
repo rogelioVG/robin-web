@@ -10,6 +10,15 @@
     border-radius: 3px;
   }
 
+  .top-bar {
+    color: white;
+    font-style: helvetica;
+    font-weight: bold;
+    font-size: 6em;
+    background-color: #FF4D38;
+    height: 150px;
+  }
+
   .blue-button {
     border-radius: 100px;
     background-color: #0D91FF;
@@ -105,9 +114,17 @@
   }
 
 
-  .img{
+  .img {
     margin-bottom: 30px;
     width: 50%; 
+  }
+
+  #historyData {
+    font-size: 3.5em;
+  }
+
+  .balance {
+    font-size: 7em;
   }
 
   /*Form Style from Stripe*/
@@ -316,8 +333,8 @@
 
 * {
   font-family: "Helvetica Neue", Helvetica, sans-serif;
-  font-size: 15px;
-  font-variant: normal;
+/*  font-size: 15px;
+*/  font-variant: normal;
   padding: 0;
   margin: 0;
 }
@@ -385,21 +402,12 @@ option, select:disabled{
 }
 
 
-.account-title {
+/*.account-title {
   color: black;
   font-style: helvetica;
   font-weight: bold;
   font-size: 4.5em;
-}
-
-.top-bar {
-  color: white;
-  font-style: helvetica;
-  font-weight: bold;
-  font-size: 3.3em;
-  background-color: #FF4D38;
-  height: 70px;
-}
+}*/
 
 .tasks-bar {
   color: white;
@@ -414,7 +422,6 @@ option, select:disabled{
   color: #0DC0FF;
   font-style: helvetica;
   font-weight: bold;
-  font-size: 3em;
 }
 
 .pay-btn {
