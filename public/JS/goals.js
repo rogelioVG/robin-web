@@ -1,4 +1,4 @@
-var childID, user, isTutor;
+var childID, user, isTutor, selectedGoal;
 
 $(document).ready(function() {
 
@@ -7,8 +7,9 @@ $(document).ready(function() {
 
   //Add realtime Listener
   addLoginListener();
+//Agregar nuevo nest, codigo de ejemplo, cambiar tags
+//$( ".material-icons-table" ).click( function(){ openW("tasks.html");});
 
-$( "#newTaskButton" ).click( function(){ openW("newTask.html");});
 $("#submitTask").click(function(){
   var taskName = $("#taskNameF").val();
   var taskAmount = $("#taskAmountF").val();
@@ -20,16 +21,16 @@ $("#submitTask").click(function(){
   }
 });
 
-//task completado
-$("#tasksData").on("click",".clickRow",function(){
-  var tId = $(this).closest('tr').attr('id');
-  var taskRef = firebase.database().ref('children/' + childID +'/tasks/' + tId);
-  
-  taskRef.update({completed: !($(this).attr("style") == 'color:  #3DD87F')});
+//agregar dinero a nest
+$("#goalsData").on("click",".material-icons-table",function(){
+  selectedGoal = $(this).closest('tr').attr('id');
+  console.log(selectedGoal);
+  sessionStorage.setItem("selectedGoal",selectedGoal);
+  openW("addtonest.html");
 });
 
 //pagar
-$("#tasksData").on("click",".payTask",function() {
+$("#tasksData").on("click",".payTask",function(){
   if(isTutor) {
     var tId = $(this).closest('tr').attr('id');
     var cantidad;
@@ -123,8 +124,7 @@ function getUserTypeAndLoadData()
         var obj = tutor.children;
         childID = obj[Object.keys(obj)[0]];
         isTutor = true;
-        console.log("llamada");
-
+        console.log(childID);
         loadGoals();
       }
     });
@@ -144,6 +144,7 @@ function getUserTypeAndLoadData()
       if (user.email == email){
         childID = user.uid;
         isTutor = false;
+        console.log(childID);
         loadGoals();
 
       }
@@ -177,8 +178,10 @@ function loadGoals() {
         const sUrl = transaction.url;
         
 
-        html += "<tr  id = '" + key + "'> <td><img src ='" + sThumbnail + "' style='width:128px;height:128px;'></td><td style='color:blue'>" 
-        + sName + "</td><td style='color:blue'><button type= 'button'>" + sLeftToPay + "</button></td>";
+        html += "<tr  id = '" + key + "'> <td><img src ='" + sThumbnail + "' style='width:128px;height:128px;'></td><td style='color:blue'> <p>" 
+        + sName + "<button class='btn-floating btn-large waves-effect waves-light white'><style='color:#3DD87F;' class='material-icons-table'>+</></button> </td><td style='color:#3DD87F'> <p>"
+         + ((Number(sNest.substring(1)) * 100) / Number(sPrice.substring(1))).toPrecision(2) 
+        +"%</p><button type= 'button'>" + sLeftToPay + "</button></td>";
         
       }
     }
@@ -217,3 +220,6 @@ function clearTable() {
   $( "#goalsData" ).empty();
 }
 
+function addMoney(quantity, goalName) {
+
+}
