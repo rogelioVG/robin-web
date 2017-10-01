@@ -1,0 +1,148 @@
+.box {
+  background: white;
+  max-width: 400px;
+  margin: 0px auto 0px;
+  padding: 32px 24px;
+  border-radius: 3px;
+}
+
+body {
+  background: lightgray;
+  color: white;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+
+  background: linear-gradient(to right, #EF5333 , #FB2C55); 
+
+
+}
+
+img {
+  max-width: 170px;
+}
+
+
+::-webkit-input-placeholder {
+    color: navy;
+    opacity: 1 !important; /* for older chrome versions. may no longer apply. */
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: navy;
+    opacity: 1 !important;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    color: navy;
+    opacity: 1 !important;
+}
+
+:-ms-input-placeholder {
+   color: navy;
+}
+
+form {
+  background: white;
+  max-width: 360px;
+  margin: 10px auto 16px;
+  padding: 32px 24px;
+  margin-left: 50px;
+  margin-right: 50px;
+  border-radius: 3px;
+  color: navy;
+  font-weight: bold;
+}
+
+body {
+  background: #FF4D38;
+  color: white;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  /*background: linear-gradient(to right, #EF5333 , #FB2C55);
+*/
+  background-color: lightgray;
+
+}
+text:focus {
+  border-bottom: 1px solid orange;
+  -webkit-box-shadow: 0 1px 0 0 orange;
+  -moz-box-shadow: 0 1px 0 0 orange;
+  box-shadow: 0 1px 0 0 orange;
+}
+p{
+  color: gray;
+  font-size: 1.3em;
+}
+
+input {
+text-align: center;
+}
+
+
+.btn:hover {
+  background: #0DC0FF;
+}
+
+.charge:hover {
+  background: #18D37E;
+}
+
+
+.btn {
+  color: white;
+  background: #0DC0FF;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  
+}
+
+.charge {
+  margin-top: 16px;
+  border-radius:25px;
+  background-color: #18D37E;
+  font-style: helvetica;
+  width: 250px;
+  height: 50px;
+  text-transform: capitalize;
+  font-size: 1.5em;
+}
+
+.digit-btn {
+  border-radius:40px;
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 90px;
+  min-height: 60px;
+  font-size: 2em;
+}
+
+.amount {
+  font-size: 3em;
+  color: navy;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+
+::-webkit-input-placeholder {
+    color: navy;
+    opacity: 1 !important; /* for older chrome versions. may no longer apply. */
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: navy;
+    opacity: 1 !important;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    color: navy;
+    opacity: 1 !important;
+}
+
+:-ms-input-placeholder {
+   color: navy;
+}
+
+
