@@ -168,13 +168,22 @@ function loadGoals() {
         const sLeftToPay = goal.leftToPay;
         const sThumbnail = goal.thumbnail;
         const sUrl = goal.url;
+
+        var buyBtnSize = '250px'
+        if (sLeftToPay.length > 7) {
+          buyBtnSize = '320px'
+        }
         
 
-        html += "<tr  id = '" + key + "'> <td><img src ='" + sThumbnail + "' style='width:128px;height:128px;'></td><td style='color:blue'> <p>" 
-        + sName + "<button class='btn-floating btn-large waves-effect waves-light white'><style='color:#3DD87F;' class='material-icons-table'>+</></button> </td><td style='color:#3DD87F'><button class='Delete'>Delete</button> <p>"
-         + ((Number(sNest.substring(1)) * 100) / Number(sPrice.substring(1))).toPrecision(2) 
-        +"%</p><button type= 'button'>" + sLeftToPay + "</button></td> ";
-        
+        html += "<tr  id = '" + key + "'> <td><img class='thumbnail' src ='" + sThumbnail + "''></td>" 
+        + " <td> "
+        + "<p class='product-name'>" + sName + "</p>" 
+        + " <per class='percentage'> "+((Number(sNest.substring(1)) * 100) / Number(sPrice.substring(1))).toPrecision(2) + "%</per>" 
+        + " <button class='btn-floating btn-large waves-effect waves-light orange material-icons-table'>+</></button> "
+        + " <input class='buy-btn'" + "style='width: " + buyBtnSize + "' " + "type='button' value='" + sLeftToPay + "''>"
+        + " <div> <button class='delete-button'> x </button> </div> "
+        + " </td>"
+
       }
     }
     

@@ -129,7 +129,7 @@ function loadBalance(childID) {
 
   childRef.on('value', function(snapshot) {
     const balance = snapshot.val();
-    $(".balance" ).append("$"+balance);
+    $(".balance" ).html("$"+balance);
   })
 }
 

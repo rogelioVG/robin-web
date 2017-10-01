@@ -29,7 +29,7 @@ function setOutcome(result) {
   if (result.token) {
     // Use the token to create a charge or a customer
     // https://stripe.com/docs/charges
-    alert(result.token.id);
+    
     // successElement.querySelector('.token').textContent = result.token.id;
     // successElement.classList.add('visible');
     createCharge(result.token.id);
@@ -53,7 +53,6 @@ document.querySelector('center').addEventListener('submit', function(e) {
   var extraDetails = {
     name: form.querySelector('input[name=cardholder-name]').value
   };
-  alert("CACACA");
   stripe.createToken(card, extraDetails).then(setOutcome);
 
 });
@@ -68,13 +67,14 @@ function createCharge(token) {
 
   var $name = $(".nameTextField").val();
   var $email = $(".emailTextField").val();
-  alert(token);
-  alert($email);
+  alert("new print");
 
   $.ajax({
       url: "https://lobby-boy.herokuapp.com/user",
       method: "POST",
       type: "POST",
+      // contentType: "application/json",
+      dataType: "text/html",
       xhrFields: {
         withCredentials: true
       },
@@ -83,14 +83,13 @@ function createCharge(token) {
         'name': $name,
         'email': $email,
       },
-      dataType: "jsonp",
       success:function(response) {
         alert(response);
-        alert("CSSCS");
+        alert("success");
       },
       error: function(response){
         alert("Connection Failed :(");
-        alert(response);
+        console.log(JSON.stringify(response));
       }
     });
 }

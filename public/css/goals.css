@@ -1,0 +1,49 @@
+
+@media screen and (min-width: 720px){
+
+  .goals-bar {
+    color: white;
+    font-style: helvetica;
+    font-weight: bold;
+    font-size: 6em;
+    background-color: #3DD87F;
+    height: 150px;
+  }
+
+  .thumbnail {
+    width:270px;
+    height:270px; 
+    margin-left: 
+  }
+
+  .product-name {
+    font-size: 3.5em;
+    color: navy;
+  }
+
+  .delete-button {
+    width: 70px;
+    height: 70px;
+    font-size: 50px;
+    background-color: #FB2C55;
+    float: right;    
+  }
+
+  .percentage {
+    color: #3DD87F;
+    font-size: 3.5em;
+  }
+
+  .buy-btn {
+    width: 250px;
+    font-size: 50px;
+    border-radius: 100px;
+    border-color: #0D91FF;
+    background-color: transparent;
+    color: #0D91FF;
+    border-width: 10px;
+    float: right;
+  }
+
+
+}
