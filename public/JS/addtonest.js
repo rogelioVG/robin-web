@@ -1,4 +1,4 @@
-var selGoal
+var selGoal;
 $(document).ready(function() {
 
 
@@ -71,7 +71,7 @@ $(document).ready(function() {
 
     $('.addNest').on("click", function(){
       selGoal = sessionStorage.getItem("selectedGoal");
-
+      console.log('click');
       var childRef = firebase.database().ref('children/' + childID);
       var bal
       var nest;
@@ -79,12 +79,13 @@ $(document).ready(function() {
       var iAmount = Number(amount) * 100;
 
       childRef.once("value").then(function(snapshot){
-
+        console.log('ssnap');
         bal = Number(snapshot.val().balance);
 
         if(iAmount <= bal){
-          var goalInfo = snapshot.child(wishlist).val();
-          leftPay = Number(goalInfo[leftToPay].substring(1)) * 100;
+          var goalInfo = snapshot.child("wishlist").val();
+          console.log('log');
+          leftPay = Number(goalInfo.leftToPay.substring(1)) * 100;
 
           if(iAmount > leftPay){
             iAmount = leftPay;
@@ -99,10 +100,15 @@ $(document).ready(function() {
           nest = "$" + (nest / 100).toFixed(2);
           leftPay = "$" + (leftPay / 100).toFixed(2);
           childRef.update({balance: bal});
+          childRef.child("wishlist/" + selGoal).update({
+            nest: nest,
+            leftToPay: leftPay
+          });
+          console.log('write');
         }
       });
       
-      window.close();
+      //window.close();
     });
 
 });
