@@ -40,7 +40,7 @@ $("#goalsData").on("click",".Delete", function() {
 })
 
 //agregar dinero a nest
-$("#goalsData").on("click",".material-icons-table",function(){
+$("#goalsData").on("click",".nest-btn",function(){
   selectedGoal = $(this).closest('tr').attr('id');
   console.log(selectedGoal);
   sessionStorage.setItem("selectedGoal",selectedGoal);
@@ -177,11 +177,13 @@ function loadGoals() {
 
         html += "<tr  id = '" + key + "'> <td><img class='thumbnail' src ='" + sThumbnail + "''></td>" 
         + " <td> "
-        + "<p class='product-name'>" + sName + "</p>" 
-        + " <per class='percentage'> "+((Number(sNest.substring(1)) * 100) / Number(sPrice.substring(1))).toPrecision(2) + "%</per>" 
-        + " <button class='btn-floating btn-large waves-effect waves-light orange material-icons-table'>+</></button> "
-        + " <input class='buy-btn'" + "style='width: " + buyBtnSize + "' " + "type='button' value='" + sLeftToPay + "''>"
         + " <div> <button class='delete-button'> x </button> </div> "
+        + "<p class='product-name'>" + sName + "</p>" 
+        + " <div class='percentage'> "+((Number(sNest.substring(1)) * 100) / Number(sPrice.substring(1))).toPrecision(2) + "%</div>" 
+        + " <div class='right'> "
+        + " <button class='nest-btn'>+</></button> "
+        + " <input class='buy-btn'" + "style='width: " + buyBtnSize + "' " + "type='button' value='" + sLeftToPay + "''>"
+        + " <div class='right'> "
         + " </td>"
 
       }

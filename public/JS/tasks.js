@@ -29,7 +29,7 @@ $("#tasksData").on("click",".clickRow",function(){
 });
 
 //pagar
-$("#tasksData").on("click",".payTask",function() {
+$("#tasksData").on("click",".pay-task",function() {
   if(isTutor) {
   var tId = $(this).closest('tr').attr('id');
   var cantidad;
@@ -172,17 +172,22 @@ function loadTasks() {
         const sName = transaction.name;
         var sBoton; 
         var color = " style= 'color: blue'"
-        if (transaction.completed){
-           color = " style= 'color:  #3DD87F'";
-           sBoton  = "<td"+ color + " class = 'payTask'><button type='button'>Pay</button></td>";
+
+        if (transaction.completed) {
+           color = " style= 'color:  #3DD87F' ";
+           sBoton  = "<td class = 'pay-task'> <input type='button' value='Pay'/> </td>";
         }
-        else{
-           color = " style= 'color: #FB2C55'";
+        else {
+           color = " style= 'color: #5A37FF; '";
            sBoton = "<td class = 'clickRow'></td>";
         }
 
-        html += "<tr  id = '" + key + "'> <td class = 'clickRow'" + color + ">" + sName + "</td><td class = 'clickRow' id ='amount" + sAmount + 
+        html += "<tr  id = '" + key + "'>" 
+        + " <td class = 'clickRow task-name'" + color + ">" + sName + "</td> "
+        + " <td class = 'clickRow task-amount' id ='amount" + sAmount + 
         "' " + color + "> $";
+
+
         if(sAmount ===""){
           html += "0</td>" + sBoton + " </tr>"
         } 

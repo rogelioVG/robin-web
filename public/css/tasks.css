@@ -1,12 +1,12 @@
 
 @media screen and (min-width: 720px){
 
-  .goals-bar {
+  .tasks-bar {
     color: white;
     font-style: helvetica;
     font-weight: bold;
     font-size: 6em;
-    background-color: #3DD87F;
+    background-color: #5A37FF;
     height: 150px;
     position: fixed;
     width: 100%;
@@ -16,22 +16,64 @@
     margin-top: 200px;
   }
 
+  td {
+    height: 200px;
+  }
+
   .title {
     position: relative;
     top:20px;
   }
 
-  .thumbnail {
+  .add-task {
+    color: white;
+    font-size: 6.5em;
+    background-color: #5A37FF;
+    width: 100px;
+    height: 100px;
+    position: fixed;
+    top:5px;
+    right: 10px;
+  }
+
+  .task-name {
+    font-size: 3.5em;
+  }
+
+  .task-amount {
+    font-size: 3.5em;
+  }
+
+  .pay-task {
+    width: 200px;
+    font-size: 3em;
+    font-weight: bold;
+    border-radius: 100px;
+    border-color: #0D91FF;
+    background-color: transparent;
+    color: red;
+    border-width: 10px;
+    padding: 20px 0;
+  }
+
+    input {
+    background: white;
+    box-sizing: border-box;
+    border: 10px solid #0D91FF;
+    border-radius: 100px;
+    color: #0D91FF;
+    height: 120px;
+    width: 200px;
+    
+  }
+
+  /*.thumbnail {
     width:270px;
     height:270px; 
     margin-left: 10px;
     margin-right: 10px;
   }
 
-  .product-name {
-    font-size: 3.5em;
-    color: navy;
-  }
 
   .delete-button {
     width: 70px;
@@ -68,21 +110,10 @@
     color: #0D91FF;
     border-width: 10px;
 
-  }
+  }*/
 
-  .right {
+  /*.right {
     float: right;
-  }
-
-  .add-goal {
-    color: white;
-    font-size: 6.5em;
-    background-color: #3DD87F;
-    width: 100px;
-    height: 100px;
-    position: fixed;
-    top:5px;
-    right: 10px;
-  }
+  }*/
 
 }

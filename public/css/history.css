@@ -1,0 +1,38 @@
+
+@media screen and (min-width: 720px){
+
+  .tasks-bar {
+    color: white;
+    font-style: helvetica;
+    font-weight: bold;
+    font-size: 6em;
+    background-color: #5A37FF;
+    height: 150px;
+    position: fixed;
+    width: 100%;
+  }
+
+  .balance {
+    margin-top: 150px;
+  }
+
+
+  .title {
+    position: relative;
+    top:20px;
+  }
+
+  .add-funds {
+    color: white;
+    font-size: 6.5em;
+    background-color: #FF4D38;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 50px;
+  }
+
+  .trans-amount {
+    margin-right: 30px;
+    float: right;
+  }
+}

@@ -1,10 +1,13 @@
 
 @media screen and (min-width: 720px){
 
+  body {
+    background: white;
+  }
+
   .box {
     background: white;
-    
-    height: 100vh;
+    height: 100%;
     margin: 0px auto 0px;
     padding: 32px 24px;
     border-radius: 3px;
@@ -17,16 +20,10 @@
     font-size: 6em;
     background-color: #FF4D38;
     height: 150px;
+    position: fixed;
+    width: 100%;
   }
 
-  .tasks-bar {
-    color: white;
-    font-style: helvetica;
-    font-weight: bold;
-    font-size: 6em;
-    background-color: #5A37FF;
-    height: 150px;
-  }
 
   .blue-button {
     border-radius: 100px;
@@ -180,7 +177,6 @@
     margin-bottom: 34px;
     cursor: text;
     width: 75%;
-    /* float: right; */
   }
 
   input[type="text"]{
@@ -215,6 +211,25 @@
   }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @media screen and (max-width: 720px){
@@ -367,10 +382,7 @@
   padding: 0;
   margin: 0;
 }
-body {
-  background-color: #ECEFF1;
-  font-weight: 500;
-}
+
 
 .blue-hover:hover {
   background-color: #0D91FF;

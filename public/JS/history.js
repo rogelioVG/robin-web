@@ -149,7 +149,9 @@ function showHistory(transactionArray){
     }
 
 
-    html += "<tr> <td style= 'color: navy'>" + transactionArray[trans].name + "</td><td" + color + "> " + transactionArray[trans].amount + " </td> </tr>";
+    html += "<tr>"
+    + "<td style= 'color: navy'>" + transactionArray[trans].name + "</td>" 
+    + "<td class='trans-amount'" + color + "> " + transactionArray[trans].amount + " </td> </tr>";
   }
 
   html += "</tbody></table>"
