@@ -71,7 +71,6 @@ $(document).ready(function() {
 
     $('.addNest').on("click", function(){
       selGoal = sessionStorage.getItem("selectedGoal");
-      console.log('click');
       var childRef = firebase.database().ref('children/' + childID);
       var bal
       var nest;
@@ -79,20 +78,17 @@ $(document).ready(function() {
       var iAmount = Number(amount) * 100;
 
       childRef.once("value").then(function(snapshot){
-        console.log('ssnap');
         bal = Number(snapshot.val().balance);
 
         if(iAmount <= bal){
-          var goalInfo = snapshot.child("wishlist").val();
-          console.log('log');
+          var goalInfo = snapshot.child("wishlist/"+selGoal).val();
           leftPay = Number(goalInfo.leftToPay.substring(1)) * 100;
-
           if(iAmount > leftPay){
             iAmount = leftPay;
           }
 
           
-          nest = Number(goalInfo[nest].substring(1)) * 100; //Para quitarle el $
+          nest = Number(goalInfo.nest.substring(1)) * 100; //Para quitarle el $
           nest = nest + iAmount;
           leftPay = leftPay - iAmount;
           bal = bal - iAmount;
@@ -104,11 +100,10 @@ $(document).ready(function() {
             nest: nest,
             leftToPay: leftPay
           });
-          console.log('write');
         }
       });
       
-      //window.close();
+      window.close();
     });
 
 });
