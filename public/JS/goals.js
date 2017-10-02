@@ -24,6 +24,9 @@ $("#goalsData").on("click",".nest-btn",function(){
   openW("addtonest.html");
 });
 
+$(".add-goal").click(function(){
+  openW("newgoal.html");
+});
 
 });
 
