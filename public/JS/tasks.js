@@ -46,6 +46,7 @@ $("#tasksData").on("click",".pay-task",function() {
   });
   
   });
+  addToHistory(taskRef);
 }
 });
 
@@ -229,4 +230,25 @@ function newTask(taskName, taskAmount) {
 
 function clearTable() {
   $( "#tasksData" ).empty();
+}
+
+function addToHistory(taskRef){
+  
+  var sAmount, sName;
+
+   taskRef.once("value").then(function(snapshot){
+
+    sAmount = snapshot.val().amount;
+    sName = snapshot.val().name; 
+    var historyRef = firebase.database().ref('children/' + childID + '/history').push();
+    historyRef.set({
+      amount: "$" + sAmount,
+      from: user.uid,
+      name: sName,
+      to: childID
+    });
+
+  });
+
+ 
 }

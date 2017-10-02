@@ -100,10 +100,38 @@ $(document).ready(function() {
             nest: nest,
             leftToPay: leftPay
           });
+
+          addToHistory(childRef.child("wishlist/" + selGoal))
+          window.close();
+        }
+        else {
+          amount = "";
+          $('.amount').html("$0.0");
+          alert("You don't have enough money!");
         }
       });
       
-      window.close();
+      
     });
 
 });
+
+function addToHistory(goalRef){
+  
+  var  sName;
+
+   goalRef.once("value").then(function(snapshot){
+
+    sName = snapshot.val().name; 
+    var historyRef = firebase.database().ref('children/' + childID + '/history').push();
+    historyRef.set({
+      amount: "$" + amount,
+      from: 'child',
+      name: sName,
+      to: 'Robin'
+    });
+
+  });
+
+ 
+}
