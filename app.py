@@ -4,9 +4,9 @@ import requests, bs4
 app = Flask(__name__)
 
 
-@app.route('/_scrap')
+@app.route('/')
 def scrap():
-	
+	print('req')
 	url = request.args.get('url','0',type = str)
 	res = requests.get(url)
 	try:

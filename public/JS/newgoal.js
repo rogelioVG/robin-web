@@ -7,16 +7,29 @@ $(document).ready(function() {
   addLoginListener();
 
   $('#urlButton').on('click', function() {
-    $.getJSON(//url,
-    {
-      url: $('input[name="url"]').val)()
-    }, function(data) {
-      $('#productName').text(data.name);
-      $('#productPrice').text(data.price);
-      $('#productThumbnail').attr('src',data.thumbnail);
-      $('#accept').text('<button id = "acceptButton">Accept</button>');
+    sUrl = $('input[name="url"]').val();
+    console.log("click");
+    $.ajax({
+      url: "https://flask-robin.herokuapp.com/_scrap",
+      method: "GET",
+      type: "GET",
+      // contentType: "application/json",
+      dataType: "json",
+      xhrFields: {
+        withCredentials: true
+      },
+      data: {
+        'url': sUrl
+      },
+      success:function(response) {
+        alert(response);
+        alert("success");
+      },
+      error: function(response){
+        alert("Connection Failed :(");
+        console.log(JSON.stringify(response));
+      }
     });
-    return false;
   });
   
   $('#accept').on('click','#acceptButton',function() {
@@ -24,7 +37,7 @@ $(document).ready(function() {
     sPrice = $('#productPrice').text();
     sName = $('productName').text();
     sThumbnail = $('productThumbnail').attr('src');
-    sUrl = $('input[name="url"]').val)();
+    sUrl = $('input[name="url"]').val();
     newGoalRef.set({
     leftToPay: sPrice,
     name: sName,
@@ -90,7 +103,6 @@ function getUserTypeAndLoadData() {
         childID = obj[Object.keys(obj)[0]];
         isTutor = true;
         console.log(childID);
-        loadGoals();
       }
     });
 
