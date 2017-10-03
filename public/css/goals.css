@@ -12,7 +12,11 @@
     width: 100%;
   }
 
-  table {
+  .thumbnail {
+    width: 100px;
+  }
+
+  #goalsData {
     margin-top: 200px;
   }
 

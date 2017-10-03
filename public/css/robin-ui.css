@@ -24,6 +24,41 @@
     width: 100%;
   }
 
+  .bottom-bar {
+    color: white;
+    font-style: helvetica;
+    font-weight: bold;
+    background-color: #f9f9f9;
+    height: 150px;
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    border-top-color: lightgray;
+    border-top-width: 2px;
+    border-top-style: solid;
+
+  }
+
+  .tab-table {
+    table-layout: fixed;
+  }
+
+  .tab {
+    height: 50px;
+    font-size: 2em;
+    font-weight: lighter;
+    color: #bababa;
+    line-height: 50px;
+  }
+
+  .tab-icon {
+    width: 60px;
+    margin-top: 20px;
+  }
+
+  .blank-space {
+    height: 150px;
+  }
 
   .blue-button {
     border-radius: 100px;

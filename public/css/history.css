@@ -22,7 +22,13 @@
     top:20px;
   }
 
-  .add-funds {
+  .trans-name {
+    table-layout: fixed;
+    width: 70%;
+
+  }  
+
+  .make-deposit {
     color: white;
     font-size: 6.5em;
     background-color: #FF4D38;
@@ -35,4 +41,15 @@
     margin-right: 30px;
     float: right;
   }
+
+  .logout-btn {
+    color: white;
+    font-size: 50px;
+    position: fixed;
+    width: 200px;
+    background-color: transparent;
+    top:5px;
+    right: 10px;
+  }
+
 }

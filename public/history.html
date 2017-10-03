@@ -51,18 +51,10 @@
     <div class="top-bar"> 
       <center class="title"> Account </center>
     </div>
+
+    <button id="logOutButton" class="logout-btn" > Log Out </button>
   </div>
 
-
-<!-- <nava>
- <center><h1> Account </h1></center>
-</nava>
-
-
-
-<center>
-  <button id="customButton" style="color: #FF4D38;" class="btn-floating btn-large material-icons waves-effect waves-light white"> + </></button>
-</center> -->
 
 <div class="box">
 
@@ -70,18 +62,65 @@
 
     <div class="balance"> </div>
 
-    <button id="customButton" class="add-funds" > + </button>
+    <button id="customButtons" class="make-deposit" > + </button>
 
   </center>
 
   <div id="historyData"> </div>
-  
+
+  <!-- <center><button class=' logout-btn' id="logOutButton" type="button"> Logout </button></center>
+ -->
+  <div class="blank-space"> </div>
+
 </div>
 
 <br>
 
-<center><button class='btn white' id="logOutButton" type="button"> Logout </button></center>
 
+<div>
+
+  <div class="bottom-bar" > 
+    <table class="tab-table">
+
+      <td class="tab" > 
+        <!-- <a href="history.html"> -->
+          <center>
+            <img src="assets/robin-icon.png" alt="Robin" class="tab-icon">
+          </center> 
+        <!-- </a> -->
+        <center> Account </center>
+      </td>
+
+      <td class="tab" > 
+        <a href="goals.html">
+          <center>
+            <img src="assets/goals-icon.png" alt="Robin" class="tab-icon">
+          </center>
+        </a> 
+        <center> Goals </center>
+      </td>
+
+      <!-- <td class="tab"> 
+        <a href="stores.html">
+          <center>
+            <img src="assets/shopping-icon.png" alt="Robin" class="tab-icon">
+          </center>
+        </a>
+        <center> Store </center>
+      </td> -->
+
+      <td class="tab" > 
+        <a href="tasks.html">
+          <center>
+            <img src="assets/check-icon.png" alt="Robin" class="tab-icon">
+          </center>
+        </a>
+        <center> Tasks </center> 
+      </td>
+    </table>
+  </div>
+
+</div>
 
   <script src="https://checkout.stripe.com/checkout.js"></script>
   <script>
@@ -128,6 +167,7 @@
   });
 
   </script>
-</body>
+
+
 
 </html>

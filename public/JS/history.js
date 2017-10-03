@@ -1,8 +1,11 @@
+var tutorID;
+
 $(document).ready(function() {
 
   initializeFireBase();
 
-  $( "#logOutButton" ).on( "click", logOut);
+  $("#logOutButton" ).on( "click", logOut);
+  $(".make-deposit").on("click", makeDeposit);
 
   //Add realtime Listener
   addLoginListener();
@@ -27,9 +30,11 @@ function initializeFireBase() {
 }
 
 function logOut(){
-
   firebase.auth().signOut();
+}
 
+function makeDeposit() {
+  window.location.href = "deposit.html"
 }
 
 function addLoginListener() {
@@ -62,6 +67,7 @@ function getUserTypeAndLoadData()
     snapshot.forEach(function(childSnapshot) {
 
       const tutor = childSnapshot.val();
+      tutorID = tutor;
       const email = tutor.email;
 
       if (user.email == email){
@@ -135,9 +141,9 @@ function loadBalance(childID) {
 
 function showHistory(transactionArray){
   var html = "<table  class='bordered highlight'> <tbody>";
-  console.log(transactionArray)
+  
   for (var trans in transactionArray) {
-    console.log(transactionArray[trans].amount);
+    
 
     var color = " style= 'color: navy'"
 
@@ -148,9 +154,17 @@ function showHistory(transactionArray){
       color = " style= 'color: #3DD87F'";
     }
 
+    var name = transactionArray[trans].name;
+
+
+    if (name.length > 23) {
+      name = name.substring(0,23)
+      name += "..."
+    }
+
 
     html += "<tr>"
-    + "<td style= 'color: navy'>" + transactionArray[trans].name + "</td>" 
+    + "<td class='trans-name' style= 'color: navy'>" + name + "</td>" 
     + "<td class='trans-amount'" + color + "> " + transactionArray[trans].amount + " </td> </tr>";
   }
 
@@ -160,5 +174,6 @@ function showHistory(transactionArray){
 
 function clearTable() {
   $( "#historyData" ).empty();
-  //console.log("alv");
 }
+
+
