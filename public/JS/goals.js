@@ -7,29 +7,6 @@ $(document).ready(function() {
 
   //Add realtime Listener
   addLoginListener();
-//Agregar nuevo nest, codigo de ejemplo, cambiar tags
-//$( ".material-icons-table" ).click( function(){ openW("tasks.html");});
-/*
-$("#goalsData").on("click",".material-icons-table",function(){
-  selectedGoal = $(this).closest('tr').attr('id');
-  console.log(selectedGoal);
-  sessionStorage.setItem("selectedGoal",selectedGoal);
-  openW("addtonest.html");
-});
-
-*/
-$("#submitTask").click(function(){
-  var taskName = $("#taskNameF").val();
-  var taskAmount = $("#taskAmountF").val();
-
-  
-  if(!isNaN(taskAmount)){
-    newTask(taskName,taskAmount);
-    window.close();
-  }
-});
-
-
 
 $("#goalsData").on("click",".Delete", function() {
   goalId = $(this).closest('tr').attr('id');
@@ -47,6 +24,9 @@ $("#goalsData").on("click",".nest-btn",function(){
   openW("addtonest.html");
 });
 
+$(".add-goal").click(function(){
+  openW("newgoal.html");
+});
 
 });
 
@@ -61,8 +41,6 @@ function openW(plink) {
     alert('Please allow popups for this website');
 }
 }
-
-
 
 
 function initializeFireBase() {
