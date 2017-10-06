@@ -10,7 +10,7 @@ $(document).ready(function() {
     sUrl = $('input[name="url"]').val();
     console.log("click");
     $.ajax({
-      url: "https://flask-robin.herokuapp.com/_scrap",
+      url: "http://127.0.0.1:5000/_scrap",//"https://flask-robin.herokuapp.com/_scrap",
       method: "GET",
       type: "GET",
       // contentType: "application/json",
