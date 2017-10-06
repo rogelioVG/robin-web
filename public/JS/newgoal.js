@@ -38,14 +38,15 @@ $(document).ready(function() {
     sName = $('productName').text();
     sThumbnail = $('productThumbnail').attr('src');
     sUrl = $('input[name="url"]').val();
+
     newGoalRef.set({
-    leftToPay: sPrice,
-    name: sName,
-    nest: "$0.0",
-    price: sPrice,
-    thumbnail: sThumbnail,
-    url: sUrl
-  });
+      leftToPay: sPrice,
+      name: sName,
+      nest: "$0.0",
+      price: sPrice,
+      thumbnail: sThumbnail,
+      url: sUrl
+    });
   });
 });
 

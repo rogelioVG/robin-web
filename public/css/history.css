@@ -1,12 +1,12 @@
 
 @media screen and (min-width: 720px){
 
-  .tasks-bar {
+  .history-bar {
     color: white;
     font-style: helvetica;
     font-weight: bold;
     font-size: 6em;
-    background-color: #5A37FF;
+    background-color: #FF4D38;
     height: 150px;
     position: fixed;
     width: 100%;

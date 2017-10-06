@@ -1,4 +1,6 @@
+var tutor;
 var tutorID;
+var childID;
 
 $(document).ready(function() {
 
@@ -34,7 +36,7 @@ function logOut(){
 }
 
 function makeDeposit() {
-  window.location.href = "deposit.html"
+  window.location.href = "deposit.html";
 }
 
 function addLoginListener() {
@@ -55,8 +57,7 @@ function addLoginListener() {
 
 }
 
-function getUserTypeAndLoadData()
-{
+function getUserTypeAndLoadData() {
   var user = firebase.auth().currentUser;
 
   //Check if the user is a parent
@@ -66,14 +67,18 @@ function getUserTypeAndLoadData()
 
     snapshot.forEach(function(childSnapshot) {
 
-      const tutor = childSnapshot.val();
-      tutorID = tutor;
-      const email = tutor.email;
+      tutorValue = childSnapshot.val();
+
+      const email = tutorValue.email;
 
       if (user.email == email){
 
+        tutor = tutorValue;
+
+        tutorID = childSnapshot.key;
+
         var obj = tutor.children;
-        var childID = obj[Object.keys(obj)[0]];
+        childID = obj[Object.keys(obj)[0]];
 
         loadHistory(childID);
 
@@ -93,7 +98,8 @@ function getUserTypeAndLoadData()
       const email = child.email;
 
       if (user.email == email){
-        loadHistory(user.uid);
+        childID = user.uid;
+        loadHistory(childID);
 
       }
     });
@@ -106,7 +112,6 @@ function loadHistory(childID) {
 
   const childRef = firebase.database().ref().child('children').child(childID);
 
-  
   childRef.on('value', function(snapshot) {
     clearTable();
 
@@ -135,11 +140,11 @@ function loadBalance(childID) {
 
   childRef.on('value', function(snapshot) {
     const balance = snapshot.val();
-    $(".balance" ).html("$"+balance);
+    $(".balance" ).html("$"+(balance/100));
   })
 }
 
-function showHistory(transactionArray){
+function showHistory(transactionArray) {
   var html = "<table  class='bordered highlight'> <tbody>";
   
   for (var trans in transactionArray) {
