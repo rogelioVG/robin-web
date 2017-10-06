@@ -2,7 +2,9 @@
 #from flask import Flask, jsonify, request
 import requests, bs4, sys
 
-res = requests.get('https://www.amazon.com.mx/gp/product/B01IX9Q4WM/')
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'}
+res = requests.get('https://www.amazon.com.mx/gp/product/B01IX9Q4WM/', headers = headers)
+
 print(res.text)
 try:
 	res.raise_for_status()
