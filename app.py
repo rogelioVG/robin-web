@@ -2,9 +2,10 @@
 import requests, bs4, sys
 
 headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'}
-res = requests.get('https://www.amazon.com.mx/dp/B01C93CWU6/', headers = headers)
+res = requests.get('https://www.amazon.com.mx/gp/B01C93CWU6/', headers = headers)
 
-print(res.text)
+#resText = res.text
+#print (resText.encode('cp850', errors='replace'))
 try:
 	res.raise_for_status()
 except:

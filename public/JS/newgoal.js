@@ -13,7 +13,7 @@ $(document).ready(function() {
       url: "http://127.0.0.1:5000/_scrap",//"https://flask-robin.herokuapp.com/_scrap",
       method: "GET",
       type: "GET",
-      // contentType: "application/json",
+      contentType: "application/json",
       dataType: "json",
       xhrFields: {
         withCredentials: true
@@ -22,12 +22,22 @@ $(document).ready(function() {
         'url': sUrl
       },
       success:function(response) {
-        alert(response);
-        alert("success");
+        
+        if(response.name === null){
+          alert("not found");
+        }
+          
+        else {
+          $("#productName").text(response.name);
+          $("#productPrice").text(response.price);
+          $("#productThumbnail").attr("src",response.thumbnail);
+          $("#productData").attr("hidden",false);
+        }
+
+       
       },
       error: function(response){
         alert("Connection Failed :(");
-        console.log(JSON.stringify(response));
       }
     });
   });
