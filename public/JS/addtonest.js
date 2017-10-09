@@ -1,4 +1,5 @@
 var selGoal;
+
 $(document).ready(function() {
 
 

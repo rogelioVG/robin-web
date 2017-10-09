@@ -6,6 +6,10 @@ $(document).ready(function() {
   //Add realtime Listener
   addLoginListener();
 
+  $( ".back" ).click( function() { 
+    window.location.href ="goals.html";
+  });
+
   $('#urlButton').on('click', function() {
     sUrl = $('input[name="url"]').val();
     console.log("click");
@@ -32,6 +36,7 @@ $(document).ready(function() {
           $("#productPrice").text(response.price);
           $("#productThumbnail").attr("src",response.thumbnail);
           $("#productData").attr("hidden",false);
+          $("#accept").attr("hidden",false);
         }
 
        

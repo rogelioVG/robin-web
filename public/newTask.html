@@ -15,7 +15,7 @@
   <script type="text/JavaScript" src="JS/jquery-ui.js"> </script>
 
   <!-- My JS -->
-  <script type="text/JavaScript" src="JS/vistatasks.js"> </script>
+  <script type="text/JavaScript" src="JS/tasks.js"> </script>
 
   <firebase-auth id="auth" app-name="testnew-de7c3"></firebase-auth>
 
@@ -33,37 +33,58 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
-<!-- Compiled and minified CSS -->
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-
- <!-- Compiled and minified JavaScript -->
- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-
- <link rel="stylesheet" href="css/account.css" type='text/css'>
-
+  <link rel="stylesheet" type='text/css' href="/css/card.css">
+  <link rel="stylesheet" type="text/css" href="css/robin-ui.css">
+  <link rel="stylesheet" type="text/css" href="css/tasks.css">
 
 
 </head>
 
 <body>
-<nava>
- <center><h1> New Task </h1></center>
-</nava>
+  <div>
+    <div class="tasks-bar"> 
+      <center class="title"> New Task </center>
+    </div>
+  </div>
 
-<div id="dialog-form" title="New task">
- 
-  <form id = "formTask" method = "POST">
-    <fieldset>
-      Task<br>
-      <input type="text" name="taskName" id="taskNameF"  >
-      
-      Amount<br>
-      <input type="text" name="taskAmount" id="taskAmountF" >
-      <!-- Allow form submission with keyboard without duplicating the dialog button -->
-      <button type="button" tabindex="-1" id ="submitTask">Submit</button>
-    </fieldset>
-  </form>
-</div>
+  <img src="assets/back.png" class="back" ></img>
+
+  <div class="box">
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <center>
+      <div id="dialog-form" title="New task">
+     
+        <form id = "formTask" method = "POST">
+          <fieldset>
+
+            <input id="taskNameF" class="field " placeholder="Name" type="text"/>
+
+            <input id="taskAmountF" class="field " placeholder="Amount" type="number"/>
+
+            <!-- Allow form submission with keyboard without duplicating the dialog button -->
+            <button type="button" tabindex="-1" id ="submitTask" class='new-task bottom'>Add Task</button>
+          </fieldset>
+        </form>
+      </div>
+    </center> 
+    
+    <div class="blank-space"> </div>
+
+  </div>
+
+ <!--  <div id="dialog-form" title="New task">
+   
+    <form id = "formTask" method = "POST">
+      <fieldset>
+        Task<br>
+        <input type="text" name="taskName" id="taskNameF"  >
+        
+        Amount<br>
+        <input type="text" name="taskAmount" id="taskAmountF" >
+        <button type="button" tabindex="-1" id ="submitTask">Submit</button>
+      </fieldset>
+    </form>
+  </div> -->
 <!--
 <center><button id="newTaskButton" class="btn-floating btn-large waves-effect waves-light white" onclick = "newTask()"><style="color: #FF4D38;" class="material-icons">+</></button></center>
 

@@ -1,0 +1,28 @@
+[debug] [2017-10-07T01:03:49.210Z] ----------------------------------------------------------------------
+[debug] [2017-10-07T01:03:49.215Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2017-10-07T01:03:49.216Z] CLI Version:   3.12.0
+[debug] [2017-10-07T01:03:49.216Z] Platform:      darwin
+[debug] [2017-10-07T01:03:49.216Z] Node Version:  v6.10.3
+[debug] [2017-10-07T01:03:49.217Z] Time:          Fri Oct 06 2017 20:03:49 GMT-0500 (CDT)
+[debug] [2017-10-07T01:03:49.217Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-10-07T01:03:49.382Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-10-07T01:03:49.383Z] > authorizing via signed-in user
+[debug] [2017-10-07T01:03:49.388Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/firebase-robinbank  
+ Fri Oct 06 2017 20:03:49 GMT-0500 (CDT)
+[debug] [2017-10-07T01:03:50.513Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-07T01:03:50.515Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/robinbank/tokens  
+ Fri Oct 06 2017 20:03:50 GMT-0500 (CDT)
+[debug] [2017-10-07T01:03:51.163Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/Rogelio/robin-web'...
+[info] 
+[debug] [2017-10-07T01:03:51.169Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/firebase-robinbank  
+ Fri Oct 06 2017 20:03:51 GMT-0500 (CDT)
+[debug] [2017-10-07T01:03:51.761Z] <<< HTTP RESPONSE 200
+[debug] [2017-10-07T01:03:51.762Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/944009933174/clients/_:getWebAppConfig  
+ Fri Oct 06 2017 20:03:51 GMT-0500 (CDT)
+[debug] [2017-10-07T01:03:52.274Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+

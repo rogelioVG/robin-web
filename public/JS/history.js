@@ -8,6 +8,9 @@ $(document).ready(function() {
 
   $("#logOutButton" ).on( "click", logOut);
   $(".make-deposit").on("click", makeDeposit);
+  $(".settings").on("click", function(){window.location.href ="goals.html"});
+  
+  
 
   //Add realtime Listener
   addLoginListener();
