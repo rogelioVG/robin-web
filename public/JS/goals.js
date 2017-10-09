@@ -21,11 +21,11 @@ $("#goalsData").on("click",".nest-btn",function(){
   selectedGoal = $(this).closest('tr').attr('id');
   console.log(selectedGoal);
   sessionStorage.setItem("selectedGoal",selectedGoal);
-  openW("addtonest.html");
+  window.location.href = "addtonest.html";
 });
 
 $(".add-goal").click(function(){
-  openW("newgoal.html");
+  window.location.href = "newgoal.html";
 });
 
 });
@@ -71,7 +71,7 @@ function addLoginListener() {
 
     }
     else {
-      window.location.href = "ParentLogin.html";
+      window.location.href = "login.html";
 
     }
 

@@ -16,6 +16,15 @@
     width: 100px;
   }
 
+  .back {
+    background-color: transparent;
+    width: 75px;
+    height: 75px;
+    position: fixed;
+    top:40px;
+    left: 20px;
+  }
+
   #goalsData {
     margin-top: 200px;
   }
@@ -87,6 +96,10 @@
     position: fixed;
     top:5px;
     right: 10px;
+  }
+
+  .search-product {
+    
   }
 
 }

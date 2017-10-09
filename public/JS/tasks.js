@@ -8,7 +8,14 @@ $(document).ready(function() {
   //Add realtime Listener
   addLoginListener();
 
-$( "#newTaskButton" ).click( function(){ openW("newTask.html");});
+$( "#newTaskButton" ).click( function() { 
+  window.location.href ="newTask.html";
+});
+
+$( ".back" ).click( function() { 
+  window.location.href ="tasks.html";
+});
+
 $("#submitTask").click(function(){
   var taskName = $("#taskNameF").val();
   var taskAmount = $("#taskAmountF").val();

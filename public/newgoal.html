@@ -29,15 +29,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
-  <!-- Compiled and minified CSS -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-
- <!--  <link rel="stylesheet" href="css/account.css" type='text/css'> 
+  <!-- <link rel="stylesheet" href="css/account.css" type='text/css'>  -->
   <link rel="stylesheet" type="text/css" href="css/robin-ui.css">
-  <link rel="stylesheet" type="text/css" href="css/goals.css"> -->
+  <link rel="stylesheet" type="text/css" href="css/goals.css">
 
 
 </head>
@@ -48,19 +42,24 @@
       <center class="title"> New Goal </center>
   </div>
 
+  <img src="assets/back.png" class="back" ></img>
+
   <div class="box"> 
+    <br><br><br><br><br><br><br><br><br><br>
     <center>
       <p>
         <input type="text" name="url" placeholder= "Amazon Product URL">
-        <button id = "urlButton">Submit</button>
+        <button id = "urlButton" class="search-product">Search Product</button>
       </p>
-    </center>
-    <center id = "productData" hidden>
+
+      <div id = "productData" hidden>
         <p id = "productName"></p>
         <p id = "productPrice"></p> + $130
         <img id = "productThumbnail" src = "#">
+      </div>
+
     </center>
-    <iframe src="https://www.amazon.com">No support</iframe>
+    <!-- <iframe src="https://www.amazon.com">No support</iframe> -->
 
   </div>
 
