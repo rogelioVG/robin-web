@@ -10,7 +10,7 @@ $(document).ready(function() {
     sUrl = $('input[name="url"]').val();
     console.log("click");
     $.ajax({
-      url: "http://127.0.0.1:5000/_scrap",//"https://flask-robin.herokuapp.com/_scrap",
+      url: "https://flask-robin.herokuapp.com/_scrap",
       method: "GET",
       type: "GET",
       contentType: "application/json",
@@ -42,13 +42,14 @@ $(document).ready(function() {
     });
   });
   
-  $('#accept').on('click','#acceptButton',function() {
+  $('#acceptButton').on('click',function() {
     newGoalRef = firebase.database().ref('children/' + childID +'/wishlist').push();
     sPrice = $('#productPrice').text();
-    sName = $('productName').text();
-    sThumbnail = $('productThumbnail').attr('src');
+    sName = $('#productName').text();
+    sThumbnail = $('#productThumbnail').attr('src');
     sUrl = $('input[name="url"]').val();
-
+    if(Number(sPrice.substring(1)) < 500)
+      sPrice = '$' + (Number(sPrice.substring(1)) + 130).toString(); //Add the shipping price if price < 500
     newGoalRef.set({
       leftToPay: sPrice,
       name: sName,
