@@ -36,7 +36,7 @@ $(document).ready(function() {
           $("#productPrice").text(response.price);
           $("#productThumbnail").attr("src",response.thumbnail);
           $("#productData").attr("hidden",false);
-          $("#accept").attr("hidden",false);
+          $("#acceptButton").attr("hidden",false);
         }
 
        

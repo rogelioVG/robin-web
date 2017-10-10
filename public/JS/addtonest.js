@@ -2,6 +2,9 @@ var selGoal;
 
 $(document).ready(function() {
 
+    $( ".back" ).click( function() { 
+      window.location.href ="goals.html";
+    });
 
 
     $('.one').on("click", function(){
