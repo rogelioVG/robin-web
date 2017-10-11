@@ -46,6 +46,16 @@
     color: navy;
   }
 
+  #productThumbnail {
+    width: 800px;
+    height: 800px;
+  }
+
+  .product {
+    font-size: 3.5em;
+    color: navy;
+  }
+
   .delete-button {
     width: 70px;
     height: 70px;

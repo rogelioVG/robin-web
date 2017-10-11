@@ -4,11 +4,11 @@ $(document).ready(function() {
 
   initializeFireBase();
 
-
   //Add realtime Listener
   addLoginListener();
 
-$("#goalsData").on("click",".Delete", function() {
+$("#goalsData").on("click",".delete-button", function() {
+
   goalId = $(this).closest('tr').attr('id');
 
   var noGoal = firebase.database().ref('children/' + childID +'/wishlist/' + goalId);
@@ -21,7 +21,7 @@ $("#goalsData").on("click",".nest-btn",function(){
   selectedGoal = $(this).closest('tr').attr('id');
   console.log(selectedGoal);
   sessionStorage.setItem("selectedGoal",selectedGoal);
-  window.location.href = "addtonest.html";
+  window.location.href = "nest.html";
 });
 
 $(".add-goal").click(function(){
@@ -39,7 +39,7 @@ function openW(plink) {
   } else {
     //Browser has blocked it
     alert('Please allow popups for this website');
-}
+  }
 }
 
 
@@ -97,7 +97,7 @@ function getUserTypeAndLoadData()
         var obj = tutor.children;
         childID = obj[Object.keys(obj)[0]];
         isTutor = true;
-        console.log(childID);
+    
         loadGoals();
       }
     });
@@ -117,7 +117,7 @@ function getUserTypeAndLoadData()
       if (user.email == email){
         childID = user.uid;
         isTutor = false;
-        console.log(childID);
+        
         loadGoals();
 
       }
@@ -168,7 +168,7 @@ function loadGoals() {
     }
     
     html += "</tbody></table>"
-    console.log(html);
+    
     $("#goalsData" ).append( html );
 
   });

@@ -31,6 +31,15 @@
     left: 30px;
   }
 
+  .back {
+    background-color: transparent;
+    width: 75px;
+    height: 75px;
+    position: fixed;
+    top:40px;
+    left: 20px;
+  }
+
   .trans-name {
     table-layout: fixed;
     width: 70%;

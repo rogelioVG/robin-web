@@ -1,8 +1,6 @@
 var selGoal;
 $(document).ready(function() {
 
-
-
     $('.one').on("click", function(){
       amount += "1";
       $('.amount').html("$"+amount);
