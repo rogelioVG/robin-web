@@ -28,6 +28,13 @@ $(".add-goal").click(function(){
   window.location.href = "newgoal.html";
 });
 
+$("#goalsData").on("click",".buy-btn",function(){
+  selectedGoal = $(this).closest('tr').attr('id');
+  console.log(selectedGoal);
+  sessionStorage.setItem("selectedGoal",selectedGoal);
+  window.location.href = "buygoal.html";
+});
+
 });
 
 
@@ -157,18 +164,19 @@ function loadGoals() {
         + " <td> "
         + " <div> <button class='delete-button'> x </button> </div> "
         + "<p class='product-name'>" + sName + "</p>" 
-        + " <div class='percentage'> "+((Number(sNest.substring(1)) * 100) / Number(sPrice.substring(1))).toPrecision(2) + "%</div>" 
+        + " <div class='percentage'> "+ Math.floor((Number(sNest.substring(1)) * 100) / Number(sPrice.substring(1))) + "%</div>" 
         + " <div class='right'> "
         + " <button class='nest-btn'>+</></button> "
         + " <input class='buy-btn'" + "style='width: " + buyBtnSize + "' " + "type='button' value='" + sLeftToPay + "''>"
         + " <div class='right'> "
-        + " </td>"
-
+        + " </td>";
+        console.log((Number(sNest.substring(1)) * 100) / Number(sPrice.substring(1)));
       }
     }
     
     html += "</tbody></table>"
-    
+
+    console.log(html);
     $("#goalsData" ).append( html );
 
   });
