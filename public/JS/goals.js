@@ -156,7 +156,7 @@ function loadGoals() {
         html += "<tr  id = '" + key + "'> <td><img class='thumbnail' src ='" + sThumbnail + "''></td>" 
         + " <td> "
         + " <div> <button class='delete-button'> x </button> </div> "
-        + "<p class='product-name'>" + sName + "</p>" 
+        + " <p class='product-name'>" + sName + "</p>" 
         + " <div class='percentage'> "+((Number(sNest.substring(1)) * 100) / Number(sPrice.substring(1))).toPrecision(2) + "%</div>" 
         + " <div class='right'> "
         + " <button class='nest-btn'>+</></button> "
@@ -170,6 +170,8 @@ function loadGoals() {
     html += "</tbody></table>"
     
     $("#goalsData" ).append( html );
+
+    $(".loader").hide();
 
   });
 

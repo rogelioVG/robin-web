@@ -1,6 +1,10 @@
 
 @media screen and (min-width: 720px){
 
+  .loader {
+    background-color: #FF4D38;
+  }
+
   .history-bar {
     color: white;
     font-style: helvetica;
@@ -38,6 +42,14 @@
     position: fixed;
     top:40px;
     left: 20px;
+  }
+
+  .keyboard {
+    position: absolute;
+    bottom: 15%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
   }
 
   .trans-name {

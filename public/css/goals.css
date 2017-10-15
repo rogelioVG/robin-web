@@ -1,6 +1,10 @@
 
 @media screen and (min-width: 720px){
 
+  .loader {
+    background-color: #3DD87F;
+  }
+
   .goals-bar {
     color: white;
     font-style: helvetica;
@@ -23,6 +27,14 @@
     position: fixed;
     top:40px;
     left: 20px;
+  }
+
+  .keyboard {
+    position: absolute;
+    bottom: 15%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
   }
 
   #goalsData {
@@ -74,6 +86,10 @@
     color: white;
     margin-right: 30px; 
 
+  }
+
+  .addNest {
+    background-color: #3DD87F;
   }
 
   .percentage {

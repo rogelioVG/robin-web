@@ -1,4 +1,7 @@
 var selGoal;
+
+var stripe = Stripe('pk_live_4mxodS1urqM170r0EBSO5qG4');
+
 $(document).ready(function() {
 
     $('.one').on("click", function(){
@@ -68,8 +71,9 @@ $(document).ready(function() {
     });
 
     $('.deposit').on("click", function(){
-      alert("stripeID");
-      alert(tutorID.stripeID);
+      //alert(tutor.stripeID);
+      createCharge(amount*100)
+
       
       // Send stripe ID and ammount to lobby-boy for a charge
 
@@ -77,3 +81,43 @@ $(document).ready(function() {
     });
 
 });
+
+
+function createCharge(amountCents) {
+
+  $.ajax({
+      url: "https://lobby-boy.herokuapp.com/create-charge",
+      method: "POST",
+      type: "POST",
+      // contentType: "application/json",
+      // dataType: "json",
+
+      // xhrFields: {
+      //   withCredentials: false
+      // },
+      crossDomain: true,
+      data: {
+        'amount': amountCents,
+        'currency': "MXN",
+        'customerId': "cus_Ba7CDSjAXTJBYA",
+        'description': "Parent Deposit",
+      },
+
+
+      success:function(response) {
+        window.location.href = "history.html";
+      },
+      error: function(response){
+        // var res = JSON.stringify(response)
+        // console.log(response.status)
+
+        if (response.status == 200) {
+          loadLogin();
+        }
+
+        else {
+          alert("Sorry we could not charge your card. Try again with another one, please.");
+        }
+      }
+    });
+}

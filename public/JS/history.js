@@ -10,6 +10,11 @@ $(document).ready(function() {
   $(".make-deposit").on("click", makeDeposit);
   $(".settings").on("click", function(){window.location.href ="goals.html"});
   $(".back").on("click", function(){window.location.href ="history.html"});
+
+  $(".make-deposit").hide();
+
+
+
   
   
 
@@ -135,6 +140,8 @@ function loadHistory(childID) {
     showHistory(transactionArray)
     loadBalance(childID);
 
+    console.log(tutor);
+
   });
 
 }
@@ -179,6 +186,8 @@ function showHistory(transactionArray) {
 
   html += "</tbody></table>"
   $("#historyData" ).append(html);
+  $(".loader").hide();
+  $(".make-deposit").show();
 }
 
 function clearTable() {
