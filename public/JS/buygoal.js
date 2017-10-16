@@ -10,43 +10,6 @@ $(document).ready(function() {
     window.location.href ="goals.html";
   });
 
-  $('#urlButton').on('click', function() {
-    sUrl = $('input[name="url"]').val();
-    console.log("click");
-    $.ajax({
-      url: "https://flask-robin.herokuapp.com/_scrap",
-      method: "GET",
-      type: "GET",
-      contentType: "application/json",
-      dataType: "json",
-      xhrFields: {
-        withCredentials: true
-      },
-      data: {
-        'url': sUrl
-      },
-      success:function(response) {
-        
-        if(response.name === null){
-          alert("not found");
-        }
-          
-        else {
-          $("#productName").text(response.name);
-          $("#productPrice").text(response.price);
-          $("#productThumbnail").attr("src",response.thumbnail);
-          $("#productData").attr("hidden",false);
-          $("#acceptButton").attr("hidden",false);
-        }
-
-       
-      },
-      error: function(response){
-        alert("Connection Failed :(");
-      }
-    });
-  });
-  
   $('#acceptButton').on('click',function() {
     newGoalRef = firebase.database().ref('children/' + childID +'/wishlist').push();
     sPrice = $('#productPrice').text();
@@ -121,6 +84,8 @@ function getUserTypeAndLoadData() {
         childID = obj[Object.keys(obj)[0]];
         isTutor = true;
         console.log(childID);
+        //Fill the product data in the html
+        setProductData();
       }
     });
 
@@ -140,8 +105,8 @@ function getUserTypeAndLoadData() {
         childID = user.uid;
         isTutor = false;
         console.log(childID);
-        loadGoals();
-
+        //Fill the product data in the html
+        setProductData();
       }
     });
 
@@ -149,12 +114,18 @@ function getUserTypeAndLoadData() {
 
 }
 
-function cleanCommas(sPrice){
-  var noCommas = "";
-  for(var i = 0; i < sPrice.length; i++){
-    if(sPrice[i] !== ',')
-      noCommas = noCommas + sPrice[i];
-  }
-  return noCommas;
+function setProductData(){
+  var selGoal = sessionStorage.getItem("selectedGoal");
+  console.log(selGoal)
+  var goalRef = firebase.database().ref('children/' + childID + '/wishlist/' + selGoal);
+  console.log('children/' + childID + '/wishlist/' + selGoal)
+  goalRef.once("value").then(function(snapshot){
+    var goalInfo = snapshot.val();
+    console.log(goalInfo);
+
+    $('#productName').text(goalInfo.name);
+    $('#productThumbnail').attr("src",goalInfo.thumbnail);
+    $('#leftToPay').text(goalInfo.leftToPay);
+  });
 }
 

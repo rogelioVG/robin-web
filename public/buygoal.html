@@ -15,7 +15,7 @@
   <script type="text/JavaScript" src="JS/jquery-ui.js"> </script>
 
   <!-- My JS -->
-  <script type="text/JavaScript" src="JS/newgoal.js"> </script>
+  <script type="text/JavaScript" src="JS/buygoal.js"> </script>
 
   <firebase-auth id="auth" app-name="testnew-de7c3"></firebase-auth>
 
@@ -39,7 +39,7 @@
 <body>
   <div>
     <div class="goals-bar"> 
-      <center class="title"> New Goal </center>
+      <center class="title"> Buy Product </center>
   </div>
 
   <img src="assets/back.png" class="back" ></img>
@@ -47,15 +47,11 @@
   <div class="box"> 
     <br><br><br><br><br><br><br><br><br><br>
     <center>
-      <p>
-        <input type="text" name="url" placeholder= "Amazon Product URL">
-        <button id = "urlButton" class="search-product">Search Product</button>
-      </p>
-      <div id = "productData" hidden>
+      <div id = "productData">
         <p id = "productName"></p>
-        <p id = "productPrice"></p> + $130
         <img id = "productThumbnail" src = "#">
-        <button id ="acceptButton">Accept</button>
+        <p id = "leftToPay"></p>
+        <button id ="buyBotton">Buy</button>
       </div>
 
     </center>

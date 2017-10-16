@@ -105,7 +105,7 @@ $(document).ready(function() {
             leftToPay: leftPay
           });
 
-          addToHistory(childRef.child("wishlist/" + selGoal))
+          addToHistory(childRef.child("wishlist/" + selGoal), iAmount)
           window.close();
         }
         else {
@@ -120,7 +120,7 @@ $(document).ready(function() {
 
 });
 
-function addToHistory(goalRef){
+function addToHistory(goalRef, iAmount){
   
   var  sName;
 
@@ -129,7 +129,7 @@ function addToHistory(goalRef){
     sName = snapshot.val().name; 
     var historyRef = firebase.database().ref('children/' + childID + '/history').push();
     historyRef.set({
-      amount: "$" + amount,
+      amount: "$" + (iAmount/100),
       from: 'child',
       name: sName,
       to: 'Robin'
