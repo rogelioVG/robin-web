@@ -29,10 +29,23 @@ $(".add-goal").click(function(){
 });
 
 $("#goalsData").on("click",".buy-btn",function(){
-  selectedGoal = $(this).closest('tr').attr('id');
+  
+  var childRef = firebase.database().ref().child('children/' + childID);
+  childRef.once("value").then(function(snapshot){
+    selectedGoal = $(this).closest('tr').attr('id');
+    var balance = snapshot.val().balance;
+    var leftToPay = snapshot.child('wishlist/' + selectedGoal).val().leftToPay;
+    if(balance >= Number(leftToPay.substring(1)) * 100) {
+      sessionStorage.setItem("selectedGoal",selectedGoal);
+      window.location.href = "buygoal.html";
+    }
+    else
+      alert('Not enough money!');
+  })
+
+  
   console.log(selectedGoal);
-  sessionStorage.setItem("selectedGoal",selectedGoal);
-  window.location.href = "buygoal.html";
+  
 });
 
 });

@@ -1,4 +1,4 @@
-var childID, user, isTutor;
+var childID, user, isTutor, productUrl;
 
 $(document).ready(function() {
 
@@ -10,24 +10,33 @@ $(document).ready(function() {
     window.location.href ="goals.html";
   });
 
-  $('#acceptButton').on('click',function() {
-    newGoalRef = firebase.database().ref('children/' + childID +'/wishlist').push();
-    sPrice = $('#productPrice').text();
-    sName = $('#productName').text();
-    sThumbnail = $('#productThumbnail').attr('src');
-    sUrl = $('input[name="url"]').val();
-    if(Number(sPrice.substring(1)) < 500)
-      sPrice = '$' + (Number(sPrice.substring(1)) + 130).toString(); //Add the shipping price if price < 500
-    sPrice = cleanCommas(sPrice);
-    newGoalRef.set({
-      leftToPay: sPrice,
-      name: sName,
-      nest: "$0.0",
-      price: sPrice,
-      thumbnail: sThumbnail,
-      url: sUrl
+  $('#buyButton').on('click',function() {
+    var newOrderRef = firebase.database().ref('orders').push();
+    var productName = $( '#productName').text();
+    var productPrice = $( '#productPrice' ).text();
+    var tutorId, address, tutorName;
+    const childrenRef = firebase.database().ref().child('children/' + childID);
+    childrenRef.once('value').then(function(snapshot) {
+      tutorId = snapshot.val().tutor;
     });
-  });
+    const tutorRef = firebase.database().ref().child('Tutor/' + tutorId);
+    tutorRef.once('value').then(function(snapshot) {
+      tutorName = snapshot.val().name;
+      address = snapshot.val().address;  
+    });
+    
+    newOrderRef.set({
+      address: address,
+      amount: productPrice,
+      child-id: childID,
+      client-name: tutorName,
+      currency: "",
+      date: Date(),
+      product: productName,
+      product-url: productUrl,
+      status: "ordered"
+    });
+   
 });
 
 
@@ -122,7 +131,7 @@ function setProductData(){
   goalRef.once("value").then(function(snapshot){
     var goalInfo = snapshot.val();
     console.log(goalInfo);
-
+    productUrl = goalInfo.url;
     $('#productName').text(goalInfo.name);
     $('#productThumbnail').attr("src",goalInfo.thumbnail);
     $('#leftToPay').text(goalInfo.leftToPay);
