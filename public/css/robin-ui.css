@@ -1,6 +1,63 @@
 
 @media screen and (min-width: 720px){
 
+  .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    width: 140px;
+    height: 140px;
+    background-color: #03a9f4;
+    border-radius: 50%;
+  }
+  .loader:after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    border: 0px solid white;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    -webkit-animation: loading 1000ms ease-out forwards infinite;
+            animation: loading 1000ms ease-out forwards infinite;
+  }
+
+  @-webkit-keyframes loading {
+    0% {
+      border: 0px solid white;
+    }
+    20% {
+      border: 8px solid white;
+      width: 0%;
+      height: 0%;
+    }
+    100% {
+      border: 8px solid white;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  @keyframes loading {
+    0% {
+      border: 0px solid white;
+    }
+    20% {
+      border: 8px solid white;
+      width: 0%;
+      height: 0%;
+    }
+    100% {
+      border: 8px solid white;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+
   body {
     background: white;
   }
@@ -163,6 +220,12 @@
     margin-top: 200px;
     margin-bottom: 75px;
     width: 50%; 
+  }
+
+  .keyboard-img {
+    width: 30%;
+    height: 30%;
+    margin-bottom: 40px;
   }
 
 

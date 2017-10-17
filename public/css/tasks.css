@@ -1,6 +1,10 @@
 
 @media screen and (min-width: 720px){
 
+  .loader {
+    background-color: #5A37FF;
+  }
+
   .tasks-bar {
     color: white;
     font-style: helvetica;

@@ -208,6 +208,7 @@ function loadTasks() {
     html += "</tbody></table>"
     
     $("#tasksData" ).append( html );
+    $(".loader").hide();
 
   });
 

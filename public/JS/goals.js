@@ -176,8 +176,13 @@ function loadGoals() {
         html += "<tr  id = '" + key + "'> <td><img class='thumbnail' src ='" + sThumbnail + "''></td>" 
         + " <td> "
         + " <div> <button class='delete-button'> x </button> </div> "
+<<<<<<< HEAD
+        + " <p class='product-name'>" + sName + "</p>" 
+        + " <div class='percentage'> "+((Number(sNest.substring(1)) * 100) / Number(sPrice.substring(1))).toPrecision(2) + "%</div>" 
+=======
         + "<p class='product-name'>" + sName + "</p>" 
         + " <div class='percentage'> "+ Math.floor((Number(sNest.substring(1)) * 100) / Number(sPrice.substring(1))) + "%</div>" 
+>>>>>>> 34b92ad2b322b95b4637b4ec7d7136e35b1f4da9
         + " <div class='right'> "
         + " <button class='nest-btn'>+</></button> "
         + " <input class='buy-btn'" + "style='width: " + buyBtnSize + "' " + "type='button' value='" + sLeftToPay + "''>"
@@ -191,6 +196,8 @@ function loadGoals() {
 
     console.log(html);
     $("#goalsData" ).append( html );
+
+    $(".loader").hide();
 
   });
 

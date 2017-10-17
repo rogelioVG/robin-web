@@ -1,4 +1,6 @@
-// Create a Stripe client ‎5579 0900 1953 3885
+
+
+
 var stripe = Stripe('pk_live_4mxodS1urqM170r0EBSO5qG4');
 var elements = stripe.elements();
 
@@ -32,7 +34,7 @@ function setOutcome(result) {
     
     // successElement.querySelector('.token').textContent = result.token.id;
     // successElement.classList.add('visible');
-    createCharge(result.token.id);
+    createCustomer(result.token.id);
 
   } else if (result.error) {
     alert(result.error.message);
@@ -63,33 +65,41 @@ $('.create-card').on('click', function() {
 
 })
 
-function createCharge(token) {
+function createCustomer(token) {
 
   var $name = $(".nameTextField").val();
   var $email = $(".emailTextField").val();
-  alert("new print");
 
   $.ajax({
-      url: "https://lobby-boy.herokuapp.com/user",
+      url: "https://lobby-boy.herokuapp.com/create-customer",
       method: "POST",
       type: "POST",
       // contentType: "application/json",
-      dataType: "text/html",
-      xhrFields: {
-        withCredentials: true
-      },
+      // dataType: "application/json",
+
+      // xhrFields: {
+      //   withCredentials: true
+      // },
+      crossDomain: true,
       data: {
         'stripeToken': token,
         'name': $name,
         'email': $email,
       },
       success:function(response) {
-        alert(response);
-        alert("success");
+        loadNext();
       },
       error: function(response){
-        alert("Connection Failed :(");
-        console.log(JSON.stringify(response));
+        // var res = JSON.stringify(response)
+        // console.log(response.status)
+
+        if (response.status == 200) {
+          loadNext();
+        }
+
+        else {
+          alert(response);
+        }
       }
-    });
+  });
 }
