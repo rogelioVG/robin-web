@@ -1,25 +1,13 @@
-var tutor;
-var tutorID;
-var childID;
-
 $(document).ready(function() {
 
   initializeFireBase();
 
-  $("#logOutButton" ).on( "click", logOut);
-  $(".make-deposit").on("click", makeDeposit);
-  $(".settings").on("click", function(){window.location.href ="settings.html"});
   $(".back").on("click", function(){window.location.href ="history.html"});
-
-  $(".make-deposit").hide();
-
-
-
-  
-  
 
   //Add realtime Listener
   addLoginListener();
+
+  alert(tutorID);
 
 });
 
@@ -40,82 +28,32 @@ function initializeFireBase() {
   firebase.initializeApp(config);
 }
 
-function logOut(){
-  firebase.auth().signOut();
-}
-
-function makeDeposit() {
-  window.location.href = "deposit.html";
-}
 
 function addLoginListener() {
 
   firebase.auth().onAuthStateChanged (user => {
 
     if(user) {
-      //Display user Info
-      getUserTypeAndLoadData();
+      display();
 
     }
     else {
       window.location.href = "login.html";
-
     }
-
   });
 
 }
 
-function getUserTypeAndLoadData() {
-  var user = firebase.auth().currentUser;
+function display() {
+  console.log("SI")
+  console.log(tutorID)
+  let ref = firebase.database().ref().child('Tutor').child(tutorID).child('children');
 
-  //Check if the user is a parent
-  const parentRef = firebase.database().ref().child('Tutor');
-
-  parentRef.on('value', function(snapshot) {
-
-    snapshot.forEach(function(childSnapshot) {
-
-      tutorValue = childSnapshot.val();
-
-      const email = tutorValue.email;
-
-      if (user.email == email){
-
-        tutor = tutorValue;
-
-        tutorID = childSnapshot.key;
-
-        var obj = tutor.children;
-        childID = obj[Object.keys(obj)[0]];
-
-        loadHistory(childID);
-
-      }
-    });
-
-  });
-
-  //Check if the user is a child
-  const childrenRef = firebase.database().ref().child('children');
-
-  childrenRef.on('value', function(snapshot) {
-
-    snapshot.forEach(function(childSnapshot) {
-
-      const child = childSnapshot.val();
-      const email = child.email;
-
-      if (user.email == email){
-        childID = user.uid;
-        loadHistory(childID);
-
-      }
-    });
-
-  });
-
+  ref.on('value', function(snapshot){
+    console.log(snapshot)
+  })
 }
+
 
 function loadHistory(childID) {
 

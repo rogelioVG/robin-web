@@ -15,9 +15,7 @@
   <script type="text/JavaScript" src="JS/jquery.js"> </script>
 
   <!-- My JS -->
-
-  <script type="text/JavaScript" src="JS/history.js"> </script>
-  <script type="text/javascript" src="JS/deposit.js"></script>
+  <script type="text/JavaScript" src="JS/settings.js"> </script>
 
 
   <!-- Bootstrap-->
@@ -52,15 +50,21 @@
 
     <center>
 
-      <div class="keyboard">
-
-        <img src="assets/receiving.png" alt="Robin" class="keyboard-img margin-top">
-
-        <input type="image" src="assets/receiving.png" />
-
-      </div>
-
+        <input class='settings-img' type="image" src="assets/receiving.png" />
+        <input class='settings-img' type="image" src="assets/receiving.png" />
+   
     </center>
+
+    <p class="settings-text"> You're looking at... </p>
+
+    <div class="selectWrapper">
+      <select id="schoolSelect" class="selectBox" name="schools">
+          <option value="Brillamont">Brillamont</option>
+          <option value="LaSalle">La Salle</option>
+          <option value="Oxford">Oxford</option>
+          <option value="Mater">Colegio Mater</option>
+        </select>
+    </div>
 
   </div>
 
