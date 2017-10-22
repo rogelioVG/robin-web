@@ -12,21 +12,27 @@ $(document).ready(function() {
 
   $('#buyButton').on('click',function() {
     var newOrderRef = firebase.database().ref().child('orders').push();
-    var productName = $( '#productName').text();;
-    var tutorId, address, tutorName, selectedAddress;
+    var productName = $( '#productName').text();
+    var leftToPay = $( '#leftToPay' ).text();
+    var tutorId, address, tutorName, selectedAddress, bal;
 
     const childrenRef = firebase.database().ref().child('children/' + childID);
     childrenRef.once('value').then(function(snapshot) {
       tutorId = snapshot.val().tutor;
       console.log(tutorId)//////////
 
+      bal = Number(snapshot.val().balance);
+      bal = bal - Number(leftToPay.substring(1)) * 100;
+      childrenRef.update({balance: bal});
+
       const tutorRef = firebase.database().ref().child('Tutor/' + tutorId);
-    //console.log(tutorId); /////////////////
+
       tutorRef.once('value').then(function(snapshot) {
         tutorName = snapshot.val().name;
         address = snapshot.val().address; 
         selectedAddress = snapshot.val().selectedAddress;
         address = address[selectedAddress];
+
         newOrderRef.set({
           address: address,
           amount: productPrice,
@@ -45,7 +51,7 @@ $(document).ready(function() {
    var goalRef = childrenRef.child('wishlist/' + selGoal);
    goalRef.remove();
 
-   alert("Product bought!");
+   alert("Product bought!"); 
    window.location.href ="goals.html";   
   });
 })

@@ -78,7 +78,7 @@ $(document).ready(function() {
       var childRef = firebase.database().ref('children/' + childID);
       var bal
       var nest;
-      var leftPay;
+      var leftPay, strLeftPay;
       var iAmount = Number(amount) * 100;
 
       childRef.once("value").then(function(snapshot){
@@ -98,15 +98,22 @@ $(document).ready(function() {
           bal = bal - iAmount;
 
           nest = "$" + (nest / 100).toFixed(2);
-          leftPay = "$" + (leftPay / 100).toFixed(2);
+          strLeftPay = "$" + (leftPay / 100).toFixed(2);
           childRef.update({balance: bal});
           childRef.child("wishlist/" + selGoal).update({
             nest: nest,
-            leftToPay: leftPay
+            leftToPay: strLeftPay
           });
 
           addToHistory(childRef.child("wishlist/" + selGoal), iAmount)
-          window.close();
+          if(leftPay === 0) {
+            alert("Congratulations, you completed your goal!");
+            window.location.href = "buygoal.html";
+          }
+          else {
+            window.location.href = "goals.html";
+          }
+          
         }
         else {
           amount = "";
