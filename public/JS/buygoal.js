@@ -11,15 +11,18 @@ $(document).ready(function() {
   });
 
   $('#buyButton').on('click',function() {
-    var newOrderRef = firebase.database().ref('orders').push();
+    var newOrderRef = firebase.database().ref().child('orders').push();
     var productName = $( '#productName').text();
     var productPrice = $( '#productPrice' ).text();
     var tutorId, address, tutorName;
+
     const childrenRef = firebase.database().ref().child('children/' + childID);
     childrenRef.once('value').then(function(snapshot) {
       tutorId = snapshot.val().tutor;
+      console.log(tutorId)//////////
     });
     const tutorRef = firebase.database().ref().child('Tutor/' + tutorId);
+    //console.log(tutorId); /////////////////
     tutorRef.once('value').then(function(snapshot) {
       tutorName = snapshot.val().name;
       address = snapshot.val().address;  
@@ -28,17 +31,19 @@ $(document).ready(function() {
     newOrderRef.set({
       address: address,
       amount: productPrice,
-      child-id: childID,
-      client-name: tutorName,
+      "child-id": childID,
+      "client-name": tutorName,
       currency: "",
       date: Date(),
       product: productName,
-      product-url: productUrl,
+      "product-url": productUrl,
       status: "ordered"
     });
-   
-});
-
+   var selGoal = sessionStorage.getItem("selectedGoal");
+   var goalRef = childrenRef.child('wishlist/' + selGoal);
+   goalRef.remove();
+  });
+})
 
 
 function initializeFireBase() {
