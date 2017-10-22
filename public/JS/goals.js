@@ -7,48 +7,45 @@ $(document).ready(function() {
   //Add realtime Listener
   addLoginListener();
 
-$("#goalsData").on("click",".delete-button", function() {
+  $("#goalsData").on("click",".delete-button", function() {
 
-  goalId = $(this).closest('tr').attr('id');
+    goalId = $(this).closest('tr').attr('id');
 
-  var noGoal = firebase.database().ref('children/' + childID +'/wishlist/' + goalId);
-  
-  noGoal.ref.remove();
-})
-
-//agregar dinero a nest
-$("#goalsData").on("click",".nest-btn",function(){
-  selectedGoal = $(this).closest('tr').attr('id');
-  console.log(selectedGoal);
-  sessionStorage.setItem("selectedGoal",selectedGoal);
-  window.location.href = "nest.html";
-});
-
-$(".add-goal").click(function(){
-  window.location.href = "newgoal.html";
-});
-
-$("#goalsData").on("click",".buy-btn",function(){
-  
-  var childRef = firebase.database().ref().child('children/' + childID);
-  selectedGoal = $(this).closest('tr').attr('id');
-  childRef.once("value").then(function(snapshot){
+    var noGoal = firebase.database().ref('children/' + childID +'/wishlist/' + goalId);
     
-    var balance = snapshot.val().balance;
-    console.log(selectedGoal)
-    
-    var leftToPay = snapshot.child('wishlist/' + selectedGoal).val().leftToPay;
-    if(balance >= Number(leftToPay.substring(1)) * 100) {
-      sessionStorage.setItem("selectedGoal",selectedGoal);
-      window.location.href = "buygoal.html";
-    }
-    else
-      alert('Not enough money!');
+    noGoal.ref.remove();
   })
 
-  
-  
-});
+  //agregar dinero a nest
+  $("#goalsData").on("click",".nest-btn",function(){
+    selectedGoal = $(this).closest('tr').attr('id');
+    console.log(selectedGoal);
+    sessionStorage.setItem("selectedGoal",selectedGoal);
+    window.location.href = "nest.html";
+  });
+
+  $(".add-goal").click(function(){
+    window.location.href = "newgoal.html";
+  });
+
+  $("#goalsData").on("click",".buy-btn",function(){
+    
+    var childRef = firebase.database().ref().child('children/' + childID);
+    selectedGoal = $(this).closest('tr').attr('id');
+    childRef.once("value").then(function(snapshot){
+      
+      var balance = snapshot.val().balance;
+      console.log(selectedGoal)
+      
+      var leftToPay = snapshot.child('wishlist/' + selectedGoal).val().leftToPay;
+      if(balance >= Number(leftToPay.substring(1)) * 100) {
+        sessionStorage.setItem("selectedGoal",selectedGoal);
+        window.location.href = "buygoal.html";
+      }
+      else
+        alert('Not enough money!');
+    });  
+  });
 
 });
 
