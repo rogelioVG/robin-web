@@ -176,10 +176,6 @@ function loadGoals() {
         html += "<tr  id = '" + key + "'> <td><img class='thumbnail' src ='" + sThumbnail + "''></td>" 
         + " <td> "
         + " <div> <button class='delete-button'> x </button> </div> "
-<<<<<<< HEAD
-=======
-
->>>>>>> 9929ea83f3603077090146a2d4590a3a8700b974
         + "<p class='product-name'>" + sName + "</p>" 
         + " <div class='percentage'> "+ Math.floor((Number(sNest.substring(1)) * 100) / Number(sPrice.substring(1))) + "%</div>" 
         + " <div class='right'> "
