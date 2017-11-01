@@ -27,10 +27,12 @@ $(document).ready(function() {
       },
       success:function(response) {
         
-        if(response.name === null || response.price.indexOf('-') !== -1){
+        if(response.name === null){
           alert("Invalid URL");
         }
-          
+        else if(response.price.indexOf('-') !== -1){
+          alert("Select a specific size")
+        }
         else {
           $("#productName").text(response.name);
           $("#productPrice").text(response.price);
