@@ -50,6 +50,7 @@
 
   <link rel="stylesheet" type='text/css' href="/css/card.css">
   <link rel="stylesheet" type="text/css" href="css/robin-ui.css">
+  <link rel="stylesheet" type="text/css" href="css/history.css">
 
   <script type="text/JavaScript" src="JS/add-address.js"></script>
 
@@ -58,35 +59,42 @@
 </head>
 
 <body>
-<center>
-  <div id="myProgress">
-    <div id="myBar" class="left"></div>
+
+  <div>
+    <div class="history-bar"> 
+      <center class="title"> Add Address </center>
+    </div>
+
   </div>
-</center>
 
-<div class="box" id="main">
-	<center>
-		<img src="assets/robin-logo.png" alt="Robin" class="orange-logo margin-top">
 
-		<form>
-    <input class='field' placeholder="Street" id="streetTextField" type="text"> <br>
-    <input class='field' placeholder="City" id="cityTextField" type="text"><br>
-    <input class='field' placeholder="State" id="stateTextField" type="text"><br>
-    <input class='field' placeholder="Country" id="countryTextField" type="text"><br>
-<!--     <input class='field' placeholder="Interior" id="interiorTextField" type="text"><br>
- -->    <input class='field' placeholder="Exterior" id="exteriorTextField" type="text"><br>
-    <input class='field' placeholder="ZIP Code" id="zipTextField" type="text"><br>
+  <img src="assets/back.png" class="back" ></img>
 
-    
 
-    </form>
 
-    <div>
-        <input  class="create-address btn blue-hover round bottom blue-button" type="button" value="Add Address">
-      </div>
+  <div class="box" id="main">
+  	<center>
+  		<img src="assets/house.png" alt="Robin" class="settings-img margin-top">
 
-	</center>
-</div>
+  		<form>
+      <input class='field' placeholder="Street" id="streetTextField" type="text"> <br>
+      <input class='field' placeholder="City" id="cityTextField" type="text"><br>
+      <input class='field' placeholder="State" id="stateTextField" type="text"><br>
+      <input class='field' placeholder="Country" id="countryTextField" type="text"><br>
+  <!--     <input class='field' placeholder="Interior" id="interiorTextField" type="text"><br>
+   -->    <input class='field' placeholder="Exterior" id="exteriorTextField" type="text"><br>
+      <input class='field' placeholder="ZIP Code" id="zipTextField" type="text"><br>
+
+      
+
+      </form>
+
+      <div>
+          <input  class="add-address btn blue-hover round bottom blue-button" type="button" value="Add Address">
+        </div>
+
+  	</center>
+  </div>
 
 
 </body>
