@@ -13,11 +13,6 @@ $(document).ready(function() {
 
   $(".make-deposit").hide();
 
-
-
-  
-  
-
   //Add realtime Listener
   addLoginListener();
 
@@ -141,6 +136,7 @@ function loadHistory(childID) {
     loadBalance(childID);
 
     console.log(tutor);
+    console.log(tutorID);
 
   });
 

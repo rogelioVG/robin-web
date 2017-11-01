@@ -15,6 +15,7 @@
   <script type="text/JavaScript" src="JS/jquery.js"> </script>
 
   <!-- My JS -->
+  <script type="text/JavaScript" src="JS/history.js"> </script>
   <script type="text/JavaScript" src="JS/settings.js"> </script>
 
 
@@ -49,22 +50,39 @@
   <div class="box">
 
     <center>
+      
+      <a href="add-address.html">
+        <input class='settings-img' type="image" src="assets/house.png" />
+      </a>
 
-        <input class='settings-img' type="image" src="assets/receiving.png" />
-        <input class='settings-img' type="image" src="assets/receiving.png" />
+      <a href="add-child.html">
+        <input class='settings-img' type="image" src="assets/boy.png" />
+      </a>
    
     </center>
 
     <p class="settings-text"> You're looking at... </p>
 
-    <div class="selectWrapper">
-      <select id="schoolSelect" class="selectBox" name="schools">
-          <option value="Brillamont">Brillamont</option>
-          <option value="LaSalle">La Salle</option>
-          <option value="Oxford">Oxford</option>
-          <option value="Mater">Colegio Mater</option>
+    <center> 
+      <div class="selectWrapper">
+        <select onchange="getChild(this)" id="childSelect" class="selectBox" name="children">
+            
         </select>
-    </div>
+      </div>
+    </center>
+
+    <p class="settings-text"> We'll ship purchases to... </p>
+
+    <center>
+      <div class="selectWrapper">
+        <select onchange="getAddress(this)" id="addressSelect" class="selectBox" name="schools">
+            <!-- <option value="Brillamont">Brillamont</option>
+            <option value="LaSalle">La Salle</option>
+            <option value="Oxford">Oxford</option>
+            <option value="Mater">Colegio Mater</option> -->
+        </select>
+      </div>
+    </center>
 
   </div>
 

@@ -1,15 +1,33 @@
+var sessionTutorID = "TCGl5cPi2AWFZkgrrNi9QxzmsvY2"
+
+// var sessionChildren = {
+//   Carolina:"4JmYFNfVvFVl90bJbSPZEObEKpY2",
+//   Octavio: "4m0jrULFcORAkCBTP2XRg1TSewh1"
+// }
+
+var sessionChild = 0
+
 $(document).ready(function() {
 
   initializeFireBase();
 
   $(".back").on("click", function(){window.location.href ="history.html"});
 
+
   //Add realtime Listener
   addLoginListener();
 
-  alert(tutorID);
-
 });
+
+function getAddress(key) {
+  let ref = firebase.database().ref().child('Tutor').child(sessionTutorID).child("selectedAddress");
+  ref.set(key.value);
+}
+
+function getChild(key) {
+  let ref = firebase.database().ref().child('Tutor').child(sessionTutorID).child("selectedChild");
+  ref.set(key.value);
+}
 
 
 function initializeFireBase() {
@@ -34,7 +52,8 @@ function addLoginListener() {
   firebase.auth().onAuthStateChanged (user => {
 
     if(user) {
-      display();
+      displayChildren();
+      displayAddress();
 
     }
     else {
@@ -44,92 +63,54 @@ function addLoginListener() {
 
 }
 
-function display() {
-  console.log("SI")
-  console.log(tutorID)
-  let ref = firebase.database().ref().child('Tutor').child(tutorID).child('children');
+function displayChildren() {
 
-  ref.on('value', function(snapshot){
-    console.log(snapshot)
+  let ref = firebase.database().ref().child('Tutor').child(sessionTutorID);
+
+  ref.child('children').on('value', function(snapshot){
+
+    var children = snapshot.val();
+
+    for (var child in children ){
+      html = "<option value=" + children[child] + ">" + child + "</option>";
+      console.log(children[child]);
+      $("#childSelect" ).append(html);
+    }
+
+    ref.child('selectedChild').once('value', function(snapshot) {
+      document.getElementById('childSelect').value = snapshot.val();
+    });
+
   })
+
 }
 
+function displayAddress() {
 
-function loadHistory(childID) {
+  let ref = firebase.database().ref().child('Tutor').child(sessionTutorID);
 
-  const childRef = firebase.database().ref().child('children').child(childID);
 
-  childRef.on('value', function(snapshot) {
-    clearTable();
+  ref.child('address').on('value', function(snapshot){
 
-    var transactionArray = []
+    var address = snapshot.val();
 
-    var child = snapshot.val();
-    const history = child.history
+    for (var key in address){
 
-    for (var key in history) {
+      var street = address[key].street;
 
-      //Build a transaction object/dictionary for each key in history. Then append to array.
-      const transaction = history[key];
-      transactionArray.push(transaction);
+      html = "<option value=" + key + ">" + street + "</option>";
+      
+      $("#addressSelect").append(html);
     }
 
-    transactionArray.reverse()
-    showHistory(transactionArray)
-    loadBalance(childID);
+    ref.child('selectedAddress').once('value', function(snapshot) {
+      document.getElementById('addressSelect').value = snapshot.val();
+    });
 
-    console.log(tutor);
-
-  });
-
-}
-
-function loadBalance(childID) {
-  const childRef = firebase.database().ref().child('children/'+childID+'/balance');
-
-  childRef.on('value', function(snapshot) {
-    const balance = snapshot.val();
-    $(".balance" ).html("$"+(balance/100));
   })
+
 }
 
-function showHistory(transactionArray) {
-  var html = "<table  class='bordered highlight'> <tbody>";
-  
-  for (var trans in transactionArray) {
-    
 
-    var color = " style= 'color: navy'"
-
-    if (transactionArray[trans].to == "Robin"){
-      color = " style= 'color: #FB2C55'";
-    }
-    else{
-      color = " style= 'color: #3DD87F'";
-    }
-
-    var name = transactionArray[trans].name;
-
-
-    if (name.length > 23) {
-      name = name.substring(0,23)
-      name += "..."
-    }
-
-
-    html += "<tr>"
-    + "<td class='trans-name' style= 'color: navy'>" + name + "</td>" 
-    + "<td class='trans-amount'" + color + "> " + transactionArray[trans].amount + " </td> </tr>";
-  }
-
-  html += "</tbody></table>"
-  $("#historyData" ).append(html);
-  $(".loader").hide();
-  $(".make-deposit").show();
-}
-
-function clearTable() {
-  $( "#historyData" ).empty();
-}
 
 

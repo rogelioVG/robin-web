@@ -104,8 +104,13 @@ function sendToDatabase(childID, name, email, tutorID, school) {
   // tutorRef.set({
   //   name: childID
   // });
+  if (welcome) {
+    loadNext();
+  }
 
-  loadNext()
+  else {
+    window.location.href = "settings.html"
+  }
 }
 
 function loadNext(){

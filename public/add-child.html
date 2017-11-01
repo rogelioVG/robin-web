@@ -22,10 +22,7 @@
   <firebase-auth id="auth" app-name="testnew-de7c3"></firebase-auth>
 
   <script type='text/javascript' > 
-    var welcomeArray = ['welcome.html','step-one.html', "step-two.html", "step-three.html", "step-four.html", "step-five.html", "step-six.html", "step-seven.html", "step-eight.html", "step-nine.html"];
-    var index = 0; 
-    var progress = 0; 
-    var welcome = true;
+    var welcome = false;
   </script>
 
   <!-- Link to a StyleSheets
@@ -54,7 +51,7 @@
   <link rel="stylesheet" type='text/css' href="/css/card.css">
   <link rel="stylesheet" type="text/css" href="css/robin-ui.css">
 
-  <script type="text/JavaScript" src="JS/welcome.js"></script>
+  <script type="text/JavaScript" src="JS/create-child.js"></script>
 
 
 
@@ -69,26 +66,31 @@
 </center>
 
 <div class="box" id="main">
-<center>
+	<center>
+		<img src="assets/robin-logo.png" alt="Robin" class="orange-logo margin-top">
 
-  <div>
-    <img src="assets/robin-logo.png" alt="Robin" class="orange-logo margin-top">
-  <div>
-   <br><br><br><br>
-  <p class="sub">
-    Robin is a mobile piggy bank for kids to learn with real money.
-  </p>
-  
+		<form>
+		<input class='field' placeholder="Name" id="nameTextField" type="text"> <br>
+		<input class='field' placeholder="Email" id="emailTextField" type="text"><br>
+		<input class='field' placeholder="Password" id="passwordTextField" type="password"><br>
+		<input class='field' placeholder="Parent's Email" id="parentEmailTextField" type="text"><br>
+		
+		<div class="selectWrapper">
+			<select id="schoolSelect" class="selectBox" name="schools">
+			    <option value="Brillamont">Brillamont</option>
+			    <option value="LaSalle">La Salle</option>
+			    <option value="Oxford">Oxford</option>
+			    <option value="Mater">Colegio Mater</option>
+		  	</select>
+		</div>
 
-  <div>
-    <input class="next get-robin btn blue-hover round blue-button btn-top" type="button" value="Get Started">
-  </div>
+		</form>
 
-  <div>
-    <input onclick="location.href='index2.html'" class="to-login btn blue-hover bottom round blue-border-button" type="button" value="I Have an Account">
-  </div>
+		<div>
+	    	<input  class="create-child btn blue-hover round bottom blue-button" type="button" value="Create Account">
+	  	</div>
 
-</center>
+	</center>
 </div>
 
 
