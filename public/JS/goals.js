@@ -113,8 +113,7 @@ function getUserTypeAndLoadData()
 
       if (user.email == email){
 
-        var obj = tutor.children;
-        childID = obj[Object.keys(obj)[0]];
+        childID = tutor.selectedChild;
         isTutor = true;
     
         loadGoals();
@@ -150,6 +149,8 @@ function loadGoals() {
 
   const childrenRef = firebase.database().ref().child('children').child(childID);
   
+  console.log(user);
+  console.log(childID);
 
   childrenRef.on('value', function(snapshot) {
     clearTable();
@@ -175,11 +176,6 @@ function loadGoals() {
         html += "<tr  id = '" + key + "'> <td><img class='thumbnail' src ='" + sThumbnail + "''></td>" 
         + " <td> "
         + " <div> <button class='delete-button'> x </button> </div> "
-<<<<<<< HEAD
-        + " <p class='product-name'>" + sName + "</p>" 
-        + " <div class='percentage'> "+((Number(sNest.substring(1)) * 100) / Number(sPrice.substring(1))).toPrecision(2) + "%</div>" 
-=======
->>>>>>> 8a26e3340bef9a5984144c1682488c1ef74279ee
         + "<p class='product-name'>" + sName + "</p>" 
         + " <div class='percentage'> "+ Math.floor((Number(sNest.substring(1)) * 100) / Number(sPrice.substring(1))) + "%</div>" 
         + " <div class='right'> "

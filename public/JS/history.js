@@ -81,8 +81,7 @@ function getUserTypeAndLoadData() {
 
         tutorID = childSnapshot.key;
 
-        var obj = tutor.children;
-        childID = obj[Object.keys(obj)[0]];
+        childID = tutor.selectedChild;
 
         loadHistory(childID);
 

@@ -14,7 +14,7 @@ $(document).ready(function() {
     var newOrderRef = firebase.database().ref().child('orders').push();
     var productName = $( '#productName').text();
     var leftToPay = $( '#leftToPay' ).text();
-    var tutorId, address, tutorName, selectedAddress, bal;
+    var tutorId, address, tutorName, bal;
 
     const childrenRef = firebase.database().ref().child('children/' + childID);
     childrenRef.once('value').then(function(snapshot) {
@@ -29,9 +29,7 @@ $(document).ready(function() {
 
       tutorRef.once('value').then(function(snapshot) {
         tutorName = snapshot.val().name;
-        address = snapshot.val().address; 
-        selectedAddress = snapshot.val().selectedAddress;
-        address = address[selectedAddress];
+        address = snapshot.val().selectedAddress;
 
         newOrderRef.set({
           address: address,
