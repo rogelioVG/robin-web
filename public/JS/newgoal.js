@@ -28,7 +28,7 @@ $(document).ready(function() {
       success:function(response) {
         
         if(response.name === null){
-          alert("not found");
+          alert("Invalid URL");
         }
           
         else {
