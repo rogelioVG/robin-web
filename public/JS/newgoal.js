@@ -27,7 +27,7 @@ $(document).ready(function() {
       },
       success:function(response) {
         
-        if(response.name === null){
+        if(response.name === null || response.price.indexOf('-') !== -1){
           alert("Invalid URL");
         }
           
@@ -56,6 +56,7 @@ $(document).ready(function() {
     if(Number(sPrice.substring(1)) < 500)
       sPrice = '$' + (Number(sPrice.substring(1)) + 130).toString(); //Add the shipping price if price < 500
     sPrice = cleanCommas(sPrice);
+    console.log("add1")
     newGoalRef.set({
       leftToPay: sPrice,
       name: sName,
@@ -64,6 +65,8 @@ $(document).ready(function() {
       thumbnail: sThumbnail,
       url: sUrl
     });
+    console.log("add2")
+
   });
 });
 
@@ -117,8 +120,7 @@ function getUserTypeAndLoadData() {
 
       if (user.email == email){
 
-        var obj = tutor.children;
-        childID = obj[Object.keys(obj)[0]];
+        childID = tutor.selectedChild;
         isTutor = true;
         console.log(childID);
       }
