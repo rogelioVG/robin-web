@@ -1,9 +1,9 @@
 $(document).ready(function() {
+  
   initializeFireBase();
 
-  $(".create-child").on( "click", createChild);
+  $(".add-address").on( "click", addAddress);
   $(".back").on("click", function(){window.location.href ="settings.html"});
-
 
   //Add realtime Listener
 
@@ -28,61 +28,32 @@ function initializeFireBase() {
   }
 }
 
-function createChild() {
+function addAddress() {
   
   //Retreive user data from the form
-  const name = $("#nameTextField").val();
-  const email = $("#emailTextField").val();
-  const parentEmail = $("#parentEmailTextField").val();
-  const school = $("#schoolSelect").val();
-  const password = $("#passwordTextField").val();
-
-  var tutorID = ""
+  // const street = $("#streetTextField").val();
+  // const city = $("#cityTextField").val();
+  // const state = $("#stateTextField").val();
+  // const country = $("#countryTextField").val();
+  // const exterior = $("#exteriorTextField").val();
+  // const zip = $("#zipTextField").val();
 
   //Instantiate firebase Auth Object
   const auth = firebase.auth();
 
-  var parentFound = false;
+  var user = firebase.auth().currentUser;
 
-  var ref = firebase.database().ref("Tutor");
+  var ref = firebase.database().ref("Tutor/" + user.uid + "/address").push();
+  ref.set({
+    street: $("#streetTextField").val(), 
+    city: $("#cityTextField").val(), 
+    state: $("#stateTextField").val(), 
+    country: $("#countryTextField").val(),
+    exterior: $("#exteriorTextField").val(), 
+    zip: $("#zipTextField").val()
+  })
 
-  ref.once("value", function(snapshot) {
-
-    // Look for every parent
-    snapshot.forEach(function(childSnapshot){
-      const tutor = childSnapshot.val()
-
-      //If the parent email matches, get his ID and activate the parentFound flag
-      if (tutor.email == parentEmail) {
-        tutorID = childSnapshot.key
-        parentFound = true;
-      }
-    })
-
-    if (parentFound == true) {
-      //createAccount(email, password, name, school);
-      const promiseCreate = auth.createUserWithEmailAndPassword(email, password);
-
-      //check for errors
-      promiseCreate.catch(e=> alert(e.message));
-
-      //GetUserId and Register tutor into the tutor branch
-      promiseCreate.then(user=> sendToDatabase(user.uid,name,email,tutorID,school));
-    }
-    else{
-      alert("There're no parents registered with that email. Try a different email");
-    }
-
-    // alert(Object.keys(snapshot))
-
-    // // for (var tutor in snapshot) {
-    // //   console.log(tutor)
-    // // }
-
-  }, function (error) {
-     console.log("Error: " + error.code);
-  });
-
+  alert("A new address was added to your profile.")
 
 }
 
@@ -103,9 +74,6 @@ function sendToDatabase(childID, name, email, tutorID, school) {
   // var tutorRef = firebase.database().ref('Tutor/' + tutorID + "/children")
 
   firebase.database().ref('Tutor/' + tutorID + "/children/" + name).set(childID);
-
-  firebase.database().ref('Tutor/' + tutorID + "/selectedChild").set(childID);
-
   // tutorRef.set({
   //   name: childID
   // });

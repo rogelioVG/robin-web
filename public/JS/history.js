@@ -64,6 +64,8 @@ function addLoginListener() {
 function getUserTypeAndLoadData() {
   var user = firebase.auth().currentUser;
 
+  console.log(user.val());
+
   //Check if the user is a parent
   const parentRef = firebase.database().ref().child('Tutor');
 
