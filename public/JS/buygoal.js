@@ -103,8 +103,7 @@ function getUserTypeAndLoadData() {
 
       if (user.email == email){
 
-        var obj = tutor.children;
-        childID = obj[Object.keys(obj)[0]];
+        childID = tutor.selectedChild;
         isTutor = true;
         console.log(childID);
         //Fill the product data in the html

@@ -117,8 +117,7 @@ function getUserTypeAndLoadData()
 
       if (user.email == email){
 
-        var obj = tutor.children;
-        childID = obj[Object.keys(obj)[0]];
+        childID = tutor.selectedChild;
         isTutor = true;
         if(window.location.href.substring(window.location.href.length - 10) === "tasks.html"){
 
