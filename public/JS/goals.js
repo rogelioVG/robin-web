@@ -7,46 +7,45 @@ $(document).ready(function() {
   //Add realtime Listener
   addLoginListener();
 
-$("#goalsData").on("click",".delete-button", function() {
+  $("#goalsData").on("click",".delete-button", function() {
 
-  goalId = $(this).closest('tr').attr('id');
+    goalId = $(this).closest('tr').attr('id');
 
-  var noGoal = firebase.database().ref('children/' + childID +'/wishlist/' + goalId);
-  
-  noGoal.ref.remove();
-})
-
-//agregar dinero a nest
-$("#goalsData").on("click",".nest-btn",function(){
-  selectedGoal = $(this).closest('tr').attr('id');
-  console.log(selectedGoal);
-  sessionStorage.setItem("selectedGoal",selectedGoal);
-  window.location.href = "nest.html";
-});
-
-$(".add-goal").click(function(){
-  window.location.href = "newgoal.html";
-});
-
-$("#goalsData").on("click",".buy-btn",function(){
-  
-  var childRef = firebase.database().ref().child('children/' + childID);
-  childRef.once("value").then(function(snapshot){
-    selectedGoal = $(this).closest('tr').attr('id');
-    var balance = snapshot.val().balance;
-    var leftToPay = snapshot.child('wishlist/' + selectedGoal).val().leftToPay;
-    if(balance >= Number(leftToPay.substring(1)) * 100) {
-      sessionStorage.setItem("selectedGoal",selectedGoal);
-      window.location.href = "buygoal.html";
-    }
-    else
-      alert('Not enough money!');
+    var noGoal = firebase.database().ref('children/' + childID +'/wishlist/' + goalId);
+    
+    noGoal.ref.remove();
   })
 
-  
-  console.log(selectedGoal);
-  
-});
+  //agregar dinero a nest
+  $("#goalsData").on("click",".nest-btn",function(){
+    selectedGoal = $(this).closest('tr').attr('id');
+    console.log(selectedGoal);
+    sessionStorage.setItem("selectedGoal",selectedGoal);
+    window.location.href = "nest.html";
+  });
+
+  $(".add-goal").click(function(){
+    window.location.href = "newgoal.html";
+  });
+
+  $("#goalsData").on("click",".buy-btn",function(){
+    
+    var childRef = firebase.database().ref().child('children/' + childID);
+    selectedGoal = $(this).closest('tr').attr('id');
+    childRef.once("value").then(function(snapshot){
+      
+      var balance = snapshot.val().balance;
+      console.log(selectedGoal)
+      
+      var leftToPay = snapshot.child('wishlist/' + selectedGoal).val().leftToPay;
+      if(balance >= Number(leftToPay.substring(1)) * 100) {
+        sessionStorage.setItem("selectedGoal",selectedGoal);
+        window.location.href = "buygoal.html";
+      }
+      else
+        alert('Not enough money!');
+    });  
+  });
 
 });
 
@@ -176,8 +175,11 @@ function loadGoals() {
         html += "<tr  id = '" + key + "'> <td><img class='thumbnail' src ='" + sThumbnail + "''></td>" 
         + " <td> "
         + " <div> <button class='delete-button'> x </button> </div> "
+<<<<<<< HEAD
         + " <p class='product-name'>" + sName + "</p>" 
         + " <div class='percentage'> "+((Number(sNest.substring(1)) * 100) / Number(sPrice.substring(1))).toPrecision(2) + "%</div>" 
+=======
+>>>>>>> 8a26e3340bef9a5984144c1682488c1ef74279ee
         + "<p class='product-name'>" + sName + "</p>" 
         + " <div class='percentage'> "+ Math.floor((Number(sNest.substring(1)) * 100) / Number(sPrice.substring(1))) + "%</div>" 
         + " <div class='right'> "

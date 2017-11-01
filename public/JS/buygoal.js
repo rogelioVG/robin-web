@@ -1,4 +1,4 @@
-var childID, user, isTutor, productUrl;
+var childID, user, isTutor, productUrl, productPrice;
 
 $(document).ready(function() {
 
@@ -11,34 +11,50 @@ $(document).ready(function() {
   });
 
   $('#buyButton').on('click',function() {
-    var newOrderRef = firebase.database().ref('orders').push();
+    var newOrderRef = firebase.database().ref().child('orders').push();
     var productName = $( '#productName').text();
-    var productPrice = $( '#productPrice' ).text();
-    var tutorId, address, tutorName;
+    var leftToPay = $( '#leftToPay' ).text();
+    var tutorId, address, tutorName, selectedAddress, bal;
+
     const childrenRef = firebase.database().ref().child('children/' + childID);
     childrenRef.once('value').then(function(snapshot) {
       tutorId = snapshot.val().tutor;
-    });
-    const tutorRef = firebase.database().ref().child('Tutor/' + tutorId);
-    tutorRef.once('value').then(function(snapshot) {
-      tutorName = snapshot.val().name;
-      address = snapshot.val().address;  
-    });
-    
-    newOrderRef.set({
-      address: address,
-      amount: productPrice,
-      child-id: childID,
-      client-name: tutorName,
-      currency: "",
-      date: Date(),
-      product: productName,
-      product-url: productUrl,
-      status: "ordered"
-    });
-   
-});
+      console.log(tutorId)//////////
 
+      bal = Number(snapshot.val().balance);
+      bal = bal - Number(leftToPay.substring(1)) * 100;
+      childrenRef.update({balance: bal});
+
+      const tutorRef = firebase.database().ref().child('Tutor/' + tutorId);
+
+      tutorRef.once('value').then(function(snapshot) {
+        tutorName = snapshot.val().name;
+        address = snapshot.val().address; 
+        selectedAddress = snapshot.val().selectedAddress;
+        address = address[selectedAddress];
+
+        newOrderRef.set({
+          address: address,
+          amount: productPrice,
+          "child-id": childID,
+          "client-name": tutorName,
+          currency: "",
+          date: Date(),
+          product: productName,
+          "product-url": productUrl,
+          status: "ordered"
+        });
+      });
+    });
+
+   var selGoal = sessionStorage.getItem("selectedGoal");
+   var goalRef = childrenRef.child('wishlist/' + selGoal);
+   goalRef.remove();
+
+   alert("Product bought!"); 
+   window.location.href ="goals.html";   
+  });
+})
 
 
 function initializeFireBase() {
@@ -131,6 +147,7 @@ function setProductData(){
   goalRef.once("value").then(function(snapshot){
     var goalInfo = snapshot.val();
     console.log(goalInfo);
+    productPrice = goalInfo.price;
     productUrl = goalInfo.url;
     $('#productName').text(goalInfo.name);
     $('#productThumbnail').attr("src",goalInfo.thumbnail);
