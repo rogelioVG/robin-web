@@ -23,14 +23,14 @@ $("#submitTask").click(function(){
   
   if(!isNaN(taskAmount)){
     newTask(taskName,taskAmount);
-    window.close();
+    window.location.href = "tasks.html";
   }
 });
 
 //task completado
 $("#tasksData").on("click",".clickRow",function(){
-  var tId = $(this).closest('tr').attr('id');
-  var taskRef = firebase.database().ref('children/' + childID +'/tasks/' + tId);
+  var taskId = $(this).closest('tr').attr('id');
+  var taskRef = firebase.database().ref('children/' + childID +'/tasks/' + taskId);
   
   taskRef.update({completed: !($(this).attr("style") == 'color:  #3DD87F')});
 });
@@ -38,41 +38,32 @@ $("#tasksData").on("click",".clickRow",function(){
 //pagar
 $("#tasksData").on("click",".pay-task",function() {
   if(isTutor) {
-  var tId = $(this).closest('tr').attr('id');
+  var taskId = $(this).closest('tr').attr('id');
   var cantidad;
-  var taskRef = firebase.database().ref('children/' + childID +'/tasks/' + tId);
+  var taskRef = firebase.database().ref('children/' + childID +'/tasks/' + taskId);
 
+  //Read task data
   taskRef.once("value").then(function(snapshot){
 
     cantidad = snapshot.val().amount;
     var childrenRef = firebase.database().ref('children/' + childID)
-    childrenRef.once("value").then(function(snapshot){
-    cantidad = (Number(snapshot.val().balance) + Number(cantidad)).toString();
 
-    childrenRef.update({balance: cantidad});
-  });
+    //Update Balance
+    childrenRef.once("value").then(function(snapshot){
+      cantidad = (Number(snapshot.val().balance) + Number(cantidad)).toString();
+
+      childrenRef.update({balance: cantidad});
+
+    });
   
   });
+
+  createCharge(cantidad*100)
   addToHistory(taskRef);
 }
 });
 
 });
-
-
-function openW(plink) {
-  var win = window.open(plink);
-  if (win) {
-      //Browser has allowed it to be opened
-    win.focus();
-  } else {
-    //Browser has blocked it
-    alert('Please allow popups for this website');
-}
-}
-
-
-
 
 function initializeFireBase() {
 
@@ -161,19 +152,19 @@ function getUserTypeAndLoadData()
 }
 
 function loadTasks() {
-
   
 
   const childrenRef = firebase.database().ref().child('children').child(childID);
   
 
   childrenRef.on('value', function(snapshot) {
-
+    console.log(snapshot.val())
     clearTable();
     var html = "<table id ='taskTable' class='bordered highlight'> <tbody>";
     var morro = snapshot.val();
     const transactions = morro.tasks
     for (var key in transactions) {
+      alert(key)
       if (transactions.hasOwnProperty(key)) {
         transaction = transactions[key];
         const sAmount = transaction.amount;
@@ -206,6 +197,8 @@ function loadTasks() {
     }
     
     html += "</tbody></table>"
+
+
     
     $("#tasksData" ).append( html );
     $(".loader").hide();
@@ -258,5 +251,46 @@ function addToHistory(taskRef){
 
   });
 
- 
 }
+
+
+function createCharge(amountCents) {
+
+  $.ajax({
+      url: "https://lobby-boy.herokuapp.com/create-charge",
+      method: "POST",
+      type: "POST",
+      // contentType: "application/json",
+      // dataType: "json",
+
+      // xhrFields: {
+      //   withCredentials: false
+      // },
+      crossDomain: true,
+      data: {
+        'amount': amountCents,
+        'currency': "MXN",
+        'customerId': "cus_Ba7CDSjAXTJBYA",
+        'description': "Parent Deposit",
+      },
+
+
+      success:function(response) {
+        window.location.href = "history.html";
+      },
+      error: function(response){
+        // var res = JSON.stringify(response)
+        // console.log(response.status)
+
+        if (response.status == 200) {
+          loadLogin();
+        }
+
+        else {
+          alert("Sorry we could not charge your card. Try again with another one, please.");
+        }
+      }
+    });
+}
+
+
