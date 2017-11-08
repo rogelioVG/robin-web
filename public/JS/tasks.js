@@ -8,11 +8,11 @@ $(document).ready(function() {
   //Add realtime Listener
   addLoginListener();
 
-$( "#newTaskButton" ).click( function() { 
+$( "#newTaskButton" ).click( function() {
   window.location.href ="newTask.html";
 });
 
-$( ".back" ).click( function() { 
+$( ".back" ).click( function() {
   window.location.href ="tasks.html";
 });
 
@@ -20,7 +20,7 @@ $("#submitTask").click(function(){
   var taskName = $("#taskNameF").val();
   var taskAmount = $("#taskAmountF").val();
 
-  
+
   if(!isNaN(taskAmount)){
     newTask(taskName,taskAmount);
     window.close();
@@ -31,7 +31,7 @@ $("#submitTask").click(function(){
 $("#tasksData").on("click",".clickRow",function(){
   var tId = $(this).closest('tr').attr('id');
   var taskRef = firebase.database().ref('children/' + childID +'/tasks/' + tId);
-  
+
   taskRef.update({completed: !($(this).attr("style") == 'color:  #3DD87F')});
 });
 
@@ -47,11 +47,11 @@ $("#tasksData").on("click",".pay-task",function() {
     cantidad = snapshot.val().amount;
     var childrenRef = firebase.database().ref('children/' + childID)
     childrenRef.once("value").then(function(snapshot){
-    cantidad = (Number(snapshot.val().balance) + Number(cantidad)).toString();
+    cantidad = ceil((Number(snapshot.val().balance) + Number(cantidad)).toString()*100);
 
     childrenRef.update({balance: cantidad});
   });
-  
+
   });
   addToHistory(taskRef);
 }
@@ -113,7 +113,7 @@ function addLoginListener() {
 function getUserTypeAndLoadData()
 {
   user = firebase.auth().currentUser;
-  
+
   //Check if the user is a parent
   const parentRef = firebase.database().ref().child('Tutor');
 
@@ -161,10 +161,10 @@ function getUserTypeAndLoadData()
 
 function loadTasks() {
 
-  
+
 
   const childrenRef = firebase.database().ref().child('children').child(childID);
-  
+
 
   childrenRef.on('value', function(snapshot) {
 
@@ -177,7 +177,7 @@ function loadTasks() {
         transaction = transactions[key];
         const sAmount = transaction.amount;
         const sName = transaction.name;
-        var sBoton; 
+        var sBoton;
         var color = " style= 'color: blue'"
 
         if (transaction.completed) {
@@ -189,23 +189,23 @@ function loadTasks() {
            sBoton = "<td class = 'clickRow'></td>";
         }
 
-        html += "<tr  id = '" + key + "'>" 
+        html += "<tr  id = '" + key + "'>"
         + " <td class = 'clickRow task-name'" + color + ">" + sName + "</td> "
-        + " <td class = 'clickRow task-amount' id ='amount" + sAmount + 
+        + " <td class = 'clickRow task-amount' id ='amount" + sAmount +
         "' " + color + "> $";
 
 
         if(sAmount ===""){
           html += "0</td>" + sBoton + " </tr>"
-        } 
+        }
         else{
           html+= sAmount + " </td>" + sBoton + " </tr>";
         }
       }
     }
-    
+
     html += "</tbody></table>"
-    
+
     $("#tasksData" ).append( html );
     $(".loader").hide();
 
@@ -240,13 +240,13 @@ function clearTable() {
 }
 
 function addToHistory(taskRef){
-  
+
   var sAmount, sName;
 
    taskRef.once("value").then(function(snapshot){
 
     sAmount = snapshot.val().amount;
-    sName = snapshot.val().name; 
+    sName = snapshot.val().name;
     var historyRef = firebase.database().ref('children/' + childID + '/history').push();
     historyRef.set({
       amount: "$" + sAmount,
@@ -257,5 +257,5 @@ function addToHistory(taskRef){
 
   });
 
- 
+
 }
