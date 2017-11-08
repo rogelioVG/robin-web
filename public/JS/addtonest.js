@@ -2,7 +2,7 @@ var selGoal;
 
 $(document).ready(function() {
 
-    $( ".back" ).click( function() { 
+    $( ".back" ).click( function() {
       window.location.href ="goals.html";
     });
 
@@ -91,11 +91,11 @@ $(document).ready(function() {
             iAmount = leftPay;
           }
 
-          
+
           nest = Number(goalInfo.nest.substring(1)) * 100; //Para quitarle el $
           nest = nest + iAmount;
           leftPay = leftPay - iAmount;
-          bal = bal - iAmount;
+          bal = ceil(bal - iAmount);
 
           nest = "$" + (nest / 100).toFixed(2);
           strLeftPay = "$" + (leftPay / 100).toFixed(2);
@@ -113,7 +113,7 @@ $(document).ready(function() {
           else {
             window.location.href = "goals.html";
           }
-          
+
         }
         else {
           amount = "";
@@ -121,19 +121,19 @@ $(document).ready(function() {
           alert("You don't have enough money!");
         }
       });
-      
-      
+
+
     });
 
 });
 
 function addToHistory(goalRef, iAmount){
-  
+
   var  sName;
 
    goalRef.once("value").then(function(snapshot){
 
-    sName = snapshot.val().name; 
+    sName = snapshot.val().name;
     var historyRef = firebase.database().ref('children/' + childID + '/history').push();
     historyRef.set({
       amount: "$" + (iAmount/100),
@@ -143,6 +143,4 @@ function addToHistory(goalRef, iAmount){
     });
 
   });
-
- 
 }
