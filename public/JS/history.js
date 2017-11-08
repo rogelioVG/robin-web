@@ -64,7 +64,8 @@ function addLoginListener() {
 function getUserTypeAndLoadData() {
   var user = firebase.auth().currentUser;
 
-  console.log(user.val());
+  console.log(user);
+
 
   //Check if the user is a parent
   const parentRef = firebase.database().ref().child('Tutor');
@@ -84,6 +85,8 @@ function getUserTypeAndLoadData() {
         tutorID = childSnapshot.key;
 
         childID = tutor.selectedChild;
+
+        console.log(childID)
 
         loadHistory(childID);
 
@@ -118,6 +121,7 @@ function loadHistory(childID) {
   const childRef = firebase.database().ref().child('children').child(childID);
 
   childRef.on('value', function(snapshot) {
+
     clearTable();
 
     var transactionArray = []

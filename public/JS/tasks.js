@@ -1,4 +1,4 @@
-var childID, user, isTutor;
+var childID, user, isTutor, tutor;
 
 $(document).ready(function() {
 
@@ -41,24 +41,27 @@ $("#tasksData").on("click",".pay-task",function() {
   var taskId = $(this).closest('tr').attr('id');
   var cantidad;
   var taskRef = firebase.database().ref('children/' + childID +'/tasks/' + taskId);
+  var taskTitle = "Task Completed"
 
   //Read task data
   taskRef.once("value").then(function(snapshot){
 
     cantidad = snapshot.val().amount;
-    var childrenRef = firebase.database().ref('children/' + childID)
+    taskTitle = snapshot.val().name;
+    var childrenRef = firebase.database().ref('children/' + childID);
 
     //Update Balance
     childrenRef.once("value").then(function(snapshot){
       cantidad = (Number(snapshot.val().balance) + Number(cantidad)).toString();
 
       childrenRef.update({balance: cantidad});
+      createCharge(cantidad*100, taskTitle)
+      taskRef.remove()
 
     });
   
   });
 
-  createCharge(cantidad*100)
   addToHistory(taskRef);
 }
 });
@@ -112,11 +115,11 @@ function getUserTypeAndLoadData()
 
     snapshot.forEach(function(childSnapshot) {
 
-      const tutor = childSnapshot.val();
-      const email = tutor.email;
+      const tutorValue = childSnapshot.val();
+      const email = tutorValue.email;
 
       if (user.email == email){
-
+        tutor = tutorValue;
         childID = tutor.selectedChild;
         isTutor = true;
         if(window.location.href.substring(window.location.href.length - 10) === "tasks.html"){
@@ -157,13 +160,12 @@ function loadTasks() {
   
 
   childrenRef.on('value', function(snapshot) {
-    console.log(snapshot.val())
     clearTable();
     var html = "<table id ='taskTable' class='bordered highlight'> <tbody>";
     var morro = snapshot.val();
     const transactions = morro.tasks
     for (var key in transactions) {
-      alert(key)
+      
       if (transactions.hasOwnProperty(key)) {
         transaction = transactions[key];
         const sAmount = transaction.amount;
@@ -253,7 +255,8 @@ function addToHistory(taskRef){
 }
 
 
-function createCharge(amountCents) {
+function createCharge(amountCents, description) {
+
 
   $.ajax({
       url: "https://lobby-boy.herokuapp.com/create-charge",
@@ -268,9 +271,9 @@ function createCharge(amountCents) {
       crossDomain: true,
       data: {
         'amount': amountCents,
-        'currency': "MXN",
-        'customerId': "cus_Ba7CDSjAXTJBYA",
-        'description': "Parent Deposit",
+        'currency': tutor.currency,
+        'customerId': tutor.stripeID,
+        'description': description,
       },
 
 
