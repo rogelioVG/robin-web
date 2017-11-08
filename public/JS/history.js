@@ -108,7 +108,7 @@ function getUserTypeAndLoadData() {
       if (user.email == email){
         childID = user.uid;
         loadHistory(childID);
-
+        $(".make-deposit").hide();
       }
     });
 
@@ -140,8 +140,6 @@ function loadHistory(childID) {
     showHistory(transactionArray)
     loadBalance(childID);
 
-    console.log(tutor);
-    console.log(tutorID);
 
   });
 

@@ -38,32 +38,11 @@ $("#tasksData").on("click",".clickRow",function(){
 //pagar
 $("#tasksData").on("click",".pay-task",function() {
   if(isTutor) {
-  var taskId = $(this).closest('tr').attr('id');
-  var cantidad;
-  var taskRef = firebase.database().ref('children/' + childID +'/tasks/' + taskId);
-  var taskTitle = "Task Completed"
+    var taskID = $(this).closest('tr').attr('id');
+    
+    payTask(taskID);
 
-  //Read task data
-  taskRef.once("value").then(function(snapshot){
-
-    cantidad = snapshot.val().amount;
-    taskTitle = snapshot.val().name;
-    var childrenRef = firebase.database().ref('children/' + childID);
-
-    //Update Balance
-    childrenRef.once("value").then(function(snapshot){
-      cantidad = (Number(snapshot.val().balance) + Number(cantidad)).toString();
-
-      childrenRef.update({balance: cantidad});
-      createCharge(cantidad*100, taskTitle)
-      taskRef.remove()
-
-    });
-  
-  });
-
-  addToHistory(taskRef);
-}
+  }
 });
 
 });
@@ -175,7 +154,11 @@ function loadTasks() {
 
         if (transaction.completed) {
            color = " style= 'color:  #3DD87F' ";
-           sBoton  = "<td class = 'pay-task'> <input type='button' value='Pay'/> </td>";
+           sBoton  = "";
+           if (isTutor) {
+            sBoton  = "<td class = 'pay-task'> <input type='button' value='Pay'/> </td>";
+           }
+          
         }
         else {
            color = " style= 'color: #5A37FF; '";
@@ -188,7 +171,7 @@ function loadTasks() {
         "' " + color + "> $";
 
 
-        if(sAmount ===""){
+        if(sAmount ==="" ){
           html += "0</td>" + sBoton + " </tr>"
         } 
         else{
@@ -234,11 +217,17 @@ function clearTable() {
   $( "#tasksData" ).empty();
 }
 
-function addToHistory(taskRef){
+function addToHistory(taskId){
+
+  var taskRef = firebase.database().ref('children/' + childID +'/tasks/' + taskId);
+
+
   
   var sAmount, sName;
 
    taskRef.once("value").then(function(snapshot){
+
+    console.log(snapshot.val())
 
     sAmount = snapshot.val().amount;
     sName = snapshot.val().name; 
@@ -254,9 +243,30 @@ function addToHistory(taskRef){
 
 }
 
+function payTask(taskId) {
+  var cantidad;
+  var taskRef = firebase.database().ref('children/' + childID +'/tasks/' + taskId);
+  var taskTitle = "Task Completed"
 
-function createCharge(amountCents, description) {
+  //Read task data
+    taskRef.once("value").then(function(snapshot){
 
+      cantidad = snapshot.val().amount;
+      taskTitle = snapshot.val().name;
+      var childrenRef = firebase.database().ref('children/' + childID);
+
+      //Update Balance
+      childrenRef.once("value").then(function(snapshot){
+        
+        createCharge(cantidad*100, taskTitle, taskId, childrenRef)
+
+      });
+    
+    });
+}
+
+
+function createCharge(amountCents, description, taskId, childRef) {
 
   $.ajax({
       url: "https://lobby-boy.herokuapp.com/create-charge",
@@ -278,14 +288,23 @@ function createCharge(amountCents, description) {
 
 
       success:function(response) {
-        window.location.href = "history.html";
+        childRef.once("value").then(function(snapshot){
+            
+            cantidad = round((Number(snapshot.val().balance) + Number(amountCents)));
+            childRef.update({balance: cantidad});
+
+        });
+
+        taskRef.remove()
+        addToHistory(taskId);
       },
       error: function(response){
         // var res = JSON.stringify(response)
         // console.log(response.status)
 
+
         if (response.status == 200) {
-          loadLogin();
+          window.location.href = "login.html";
         }
 
         else {
