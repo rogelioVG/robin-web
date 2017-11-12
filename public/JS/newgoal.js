@@ -58,7 +58,7 @@ $(document).ready(function() {
     if(Number(sPrice.substring(1)) < 500)
       sPrice = '$' + (Number(sPrice.substring(1)) + 130).toString(); //Add the shipping price if price < 500
     sPrice = cleanCommas(sPrice);
-    console.log("add1")
+    
     newGoalRef.set({
       leftToPay: sPrice,
       name: sName,
@@ -67,8 +67,8 @@ $(document).ready(function() {
       thumbnail: sThumbnail,
       url: sUrl
     });
-    console.log("add2")
-
+    
+    window.location.href ="goals.html";
   });
 });
 
