@@ -6,7 +6,7 @@ $(document).ready(function() {
   //Add realtime Listener
   addLoginListener();
 
-  $( ".back" ).click( function() { 
+  $( ".back" ).click( function() {
     window.location.href ="goals.html";
   });
 
@@ -22,7 +22,7 @@ $(document).ready(function() {
       console.log(tutorId)//////////
 
       bal = Number(snapshot.val().balance);
-      bal = bal - Number(leftToPay.substring(1)) * 100;
+      bal = ceil(bal - Number(leftToPay.substring(1)) * 100);
       childrenRef.update({balance: bal});
 
       const tutorRef = firebase.database().ref().child('Tutor/' + tutorId);
@@ -47,10 +47,12 @@ $(document).ready(function() {
 
    var selGoal = sessionStorage.getItem("selectedGoal");
    var goalRef = childrenRef.child('wishlist/' + selGoal);
+   if(Number(leftToPay.substring(1)) > 0) {
+       addToHistory(goalRef,leftToPay);
+   }
    goalRef.remove();
-
-   alert("Product bought!"); 
-   window.location.href ="goals.html";   
+   alert("Product bought!");
+   window.location.href ="goals.html";
   });
 })
 
@@ -152,3 +154,19 @@ function setProductData(){
   });
 }
 
+function addToHistory(goalRef, iAmount){
+    var sName;
+
+    goalRef.once("value").then(function(snapshot){
+
+    sName = snapshot.val().name;
+    var historyRef = firebase.database().ref('children/' + childID + '/history').push();
+    historyRef.set({
+      amount: iAmount,
+      from: 'child',
+      name: sName,
+      to: 'Robin'
+    });
+
+  });
+}

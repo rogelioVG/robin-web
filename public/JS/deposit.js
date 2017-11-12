@@ -2,7 +2,15 @@ var selGoal;
 
 var stripe = Stripe('pk_live_4mxodS1urqM170r0EBSO5qG4');
 
+var tutor;
+
 $(document).ready(function() {
+
+
+
+  var user = firebase.auth().currentUser;
+
+  console.log(user);
 
     $('.one').on("click", function(){
       amount += "1";
@@ -83,6 +91,41 @@ $(document).ready(function() {
 });
 
 
+function addLoginListener() {
+
+  firebase.auth().onAuthStateChanged (user => {
+
+    if(user) {
+      //Display user Info
+      getUserTypeAndLoadData();
+
+    }
+    else {
+      window.location.href = "login.html";
+
+    }
+
+  });
+
+}
+
+
+
+function getUserTypeAndLoadData() {
+  var user = firebase.auth().currentUser;
+
+  //Check if the user is a parent
+  const parentRef = firebase.database().ref().child('Tutor').child(user.uid);
+
+  parentRef.once('value', function(snapshot) {
+
+    tutor = snapshot.val();
+
+  });
+
+}
+
+
 function createCharge(amountCents) {
 
   $.ajax({
@@ -98,8 +141,8 @@ function createCharge(amountCents) {
       crossDomain: true,
       data: {
         'amount': amountCents,
-        'currency': "MXN",
-        'customerId': "cus_Ba7CDSjAXTJBYA",
+        'currency': tutor.currency,
+        'customerId': tutor.stripeID,
         'description': "Parent Deposit",
       },
 

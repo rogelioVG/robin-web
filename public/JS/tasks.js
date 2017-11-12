@@ -1,4 +1,4 @@
-var childID, user, isTutor;
+var childID, user, isTutor, tutor;
 
 $(document).ready(function() {
 
@@ -23,14 +23,14 @@ $("#submitTask").click(function(){
   
   if(!isNaN(taskAmount)){
     newTask(taskName,taskAmount);
-    window.close();
+    window.location.href = "tasks.html";
   }
 });
 
 //task completado
 $("#tasksData").on("click",".clickRow",function(){
-  var tId = $(this).closest('tr').attr('id');
-  var taskRef = firebase.database().ref('children/' + childID +'/tasks/' + tId);
+  var taskId = $(this).closest('tr').attr('id');
+  var taskRef = firebase.database().ref('children/' + childID +'/tasks/' + taskId);
   
   taskRef.update({completed: !($(this).attr("style") == 'color:  #3DD87F')});
 });
@@ -38,41 +38,14 @@ $("#tasksData").on("click",".clickRow",function(){
 //pagar
 $("#tasksData").on("click",".pay-task",function() {
   if(isTutor) {
-  var tId = $(this).closest('tr').attr('id');
-  var cantidad;
-  var taskRef = firebase.database().ref('children/' + childID +'/tasks/' + tId);
+    var taskID = $(this).closest('tr').attr('id');
+    
+    payTask(taskID);
 
-  taskRef.once("value").then(function(snapshot){
-
-    cantidad = snapshot.val().amount;
-    var childrenRef = firebase.database().ref('children/' + childID)
-    childrenRef.once("value").then(function(snapshot){
-    cantidad = (Number(snapshot.val().balance) + Number(cantidad)).toString();
-
-    childrenRef.update({balance: cantidad});
-  });
-  
-  });
-  addToHistory(taskRef);
-}
+  }
 });
 
 });
-
-
-function openW(plink) {
-  var win = window.open(plink);
-  if (win) {
-      //Browser has allowed it to be opened
-    win.focus();
-  } else {
-    //Browser has blocked it
-    alert('Please allow popups for this website');
-}
-}
-
-
-
 
 function initializeFireBase() {
 
@@ -121,11 +94,11 @@ function getUserTypeAndLoadData()
 
     snapshot.forEach(function(childSnapshot) {
 
-      const tutor = childSnapshot.val();
-      const email = tutor.email;
+      const tutorValue = childSnapshot.val();
+      const email = tutorValue.email;
 
       if (user.email == email){
-
+        tutor = tutorValue;
         childID = tutor.selectedChild;
         isTutor = true;
         if(window.location.href.substring(window.location.href.length - 10) === "tasks.html"){
@@ -160,19 +133,18 @@ function getUserTypeAndLoadData()
 }
 
 function loadTasks() {
-
   
 
   const childrenRef = firebase.database().ref().child('children').child(childID);
   
 
   childrenRef.on('value', function(snapshot) {
-
     clearTable();
     var html = "<table id ='taskTable' class='bordered highlight'> <tbody>";
     var morro = snapshot.val();
     const transactions = morro.tasks
     for (var key in transactions) {
+      
       if (transactions.hasOwnProperty(key)) {
         transaction = transactions[key];
         const sAmount = transaction.amount;
@@ -182,7 +154,11 @@ function loadTasks() {
 
         if (transaction.completed) {
            color = " style= 'color:  #3DD87F' ";
-           sBoton  = "<td class = 'pay-task'> <input type='button' value='Pay'/> </td>";
+           sBoton  = "";
+           if (isTutor) {
+            sBoton  = "<td class = 'pay-task'> <input type='button' value='Pay'/> </td>";
+           }
+          
         }
         else {
            color = " style= 'color: #5A37FF; '";
@@ -195,7 +171,7 @@ function loadTasks() {
         "' " + color + "> $";
 
 
-        if(sAmount ===""){
+        if(sAmount ==="" ){
           html += "0</td>" + sBoton + " </tr>"
         } 
         else{
@@ -205,6 +181,8 @@ function loadTasks() {
     }
     
     html += "</tbody></table>"
+
+
     
     $("#tasksData" ).append( html );
     $(".loader").hide();
@@ -239,11 +217,17 @@ function clearTable() {
   $( "#tasksData" ).empty();
 }
 
-function addToHistory(taskRef){
+function addToHistory(taskId){
+
+  var taskRef = firebase.database().ref('children/' + childID +'/tasks/' + taskId);
+
+
   
   var sAmount, sName;
 
    taskRef.once("value").then(function(snapshot){
+
+    console.log(snapshot.val())
 
     sAmount = snapshot.val().amount;
     sName = snapshot.val().name; 
@@ -257,5 +241,77 @@ function addToHistory(taskRef){
 
   });
 
- 
 }
+
+function payTask(taskId) {
+  var cantidad;
+  var taskRef = firebase.database().ref('children/' + childID +'/tasks/' + taskId);
+  var taskTitle = "Task Completed"
+
+  //Read task data
+    taskRef.once("value").then(function(snapshot){
+
+      cantidad = snapshot.val().amount;
+      taskTitle = snapshot.val().name;
+      var childrenRef = firebase.database().ref('children/' + childID);
+
+      //Update Balance
+      childrenRef.once("value").then(function(snapshot){
+        
+        createCharge(cantidad*100, taskTitle, taskId, childrenRef)
+
+      });
+    
+    });
+}
+
+
+function createCharge(amountCents, description, taskId, childRef) {
+
+  $.ajax({
+      url: "https://lobby-boy.herokuapp.com/create-charge",
+      method: "POST",
+      type: "POST",
+      // contentType: "application/json",
+      // dataType: "json",
+
+      // xhrFields: {
+      //   withCredentials: false
+      // },
+      crossDomain: true,
+      data: {
+        'amount': amountCents,
+        'currency': tutor.currency,
+        'customerId': tutor.stripeID,
+        'description': description,
+      },
+
+
+      success:function(response) {
+        childRef.once("value").then(function(snapshot){
+            
+            cantidad = round((Number(snapshot.val().balance) + Number(amountCents)));
+            childRef.update({balance: cantidad});
+
+        });
+
+        taskRef.remove()
+        addToHistory(taskId);
+      },
+      error: function(response){
+        // var res = JSON.stringify(response)
+        // console.log(response.status)
+
+
+        if (response.status == 200) {
+          window.location.href = "login.html";
+        }
+
+        else {
+          alert("Sorry we could not charge your card. Try again with another one, please.");
+        }
+      }
+    });
+}
+
+
