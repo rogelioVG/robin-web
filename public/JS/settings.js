@@ -99,7 +99,7 @@ function displayAddress() {
       var street = address[key].street;
 
       html = "<option value=" + key + ">" + street + "</option>";
-      
+
       $("#addressSelect").append(html);
     }
 
@@ -110,7 +110,3 @@ function displayAddress() {
   })
 
 }
-
-
-
-

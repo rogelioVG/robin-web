@@ -156,9 +156,9 @@ function loadBalance(childID) {
 
 function showHistory(transactionArray) {
   var html = "<table  class='bordered highlight'> <tbody>";
-  
+
   for (var trans in transactionArray) {
-    
+
 
     var color = " style= 'color: navy'"
 
@@ -179,7 +179,7 @@ function showHistory(transactionArray) {
 
 
     html += "<tr>"
-    + "<td class='trans-name' style= 'color: navy'>" + name + "</td>" 
+    + "<td class='trans-name' style= 'color: navy'>" + name + "</td>"
     + "<td class='trans-amount'" + color + "> " + transactionArray[trans].amount + " </td> </tr>";
   }
 
@@ -192,5 +192,3 @@ function showHistory(transactionArray) {
 function clearTable() {
   $( "#historyData" ).empty();
 }
-
-

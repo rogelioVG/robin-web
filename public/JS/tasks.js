@@ -8,11 +8,11 @@ $(document).ready(function() {
   //Add realtime Listener
   addLoginListener();
 
-$( "#newTaskButton" ).click( function() { 
+$( "#newTaskButton" ).click( function() {
   window.location.href ="newTask.html";
 });
 
-$( ".back" ).click( function() { 
+$( ".back" ).click( function() {
   window.location.href ="tasks.html";
 });
 
@@ -20,7 +20,7 @@ $("#submitTask").click(function(){
   var taskName = $("#taskNameF").val();
   var taskAmount = $("#taskAmountF").val();
 
-  
+
   if(!isNaN(taskAmount)){
     newTask(taskName,taskAmount);
     window.location.href = "tasks.html";
@@ -31,7 +31,7 @@ $("#submitTask").click(function(){
 $("#tasksData").on("click",".clickRow",function(){
   var taskId = $(this).closest('tr').attr('id');
   var taskRef = firebase.database().ref('children/' + childID +'/tasks/' + taskId);
-  
+
   taskRef.update({completed: !($(this).attr("style") == 'color:  #3DD87F')});
 });
 
@@ -39,7 +39,7 @@ $("#tasksData").on("click",".clickRow",function(){
 $("#tasksData").on("click",".pay-task",function() {
   if(isTutor) {
     var taskID = $(this).closest('tr').attr('id');
-    
+
     payTask(taskID);
 
   }
@@ -86,7 +86,7 @@ function addLoginListener() {
 function getUserTypeAndLoadData()
 {
   user = firebase.auth().currentUser;
-  
+
   //Check if the user is a parent
   const parentRef = firebase.database().ref().child('Tutor');
 
@@ -133,10 +133,10 @@ function getUserTypeAndLoadData()
 }
 
 function loadTasks() {
-  
+
 
   const childrenRef = firebase.database().ref().child('children').child(childID);
-  
+
 
   childrenRef.on('value', function(snapshot) {
     clearTable();
@@ -144,12 +144,12 @@ function loadTasks() {
     var morro = snapshot.val();
     const transactions = morro.tasks
     for (var key in transactions) {
-      
+
       if (transactions.hasOwnProperty(key)) {
         transaction = transactions[key];
         const sAmount = transaction.amount;
         const sName = transaction.name;
-        var sBoton; 
+        var sBoton;
         var color = " style= 'color: blue'"
 
         if (transaction.completed) {
@@ -158,32 +158,32 @@ function loadTasks() {
            if (isTutor) {
             sBoton  = "<td class = 'pay-task'> <input type='button' value='Pay'/> </td>";
            }
-          
+
         }
         else {
            color = " style= 'color: #5A37FF; '";
            sBoton = "<td class = 'clickRow'></td>";
         }
 
-        html += "<tr  id = '" + key + "'>" 
+        html += "<tr  id = '" + key + "'>"
         + " <td class = 'clickRow task-name'" + color + ">" + sName + "</td> "
-        + " <td class = 'clickRow task-amount' id ='amount" + sAmount + 
+        + " <td class = 'clickRow task-amount' id ='amount" + sAmount +
         "' " + color + "> $";
 
 
         if(sAmount ==="" ){
           html += "0</td>" + sBoton + " </tr>"
-        } 
+        }
         else{
           html+= sAmount + " </td>" + sBoton + " </tr>";
         }
       }
     }
-    
+
     html += "</tbody></table>"
 
 
-    
+
     $("#tasksData" ).append( html );
     $(".loader").hide();
 
@@ -222,7 +222,7 @@ function addToHistory(taskId){
   var taskRef = firebase.database().ref('children/' + childID +'/tasks/' + taskId);
 
 
-  
+
   var sAmount, sName;
 
    taskRef.once("value").then(function(snapshot){
@@ -230,7 +230,7 @@ function addToHistory(taskId){
     console.log(snapshot.val())
 
     sAmount = snapshot.val().amount;
-    sName = snapshot.val().name; 
+    sName = snapshot.val().name;
     var historyRef = firebase.database().ref('children/' + childID + '/history').push();
     historyRef.set({
       amount: "$" + sAmount,
@@ -257,11 +257,11 @@ function payTask(taskId) {
 
       //Update Balance
       childrenRef.once("value").then(function(snapshot){
-        
+
         createCharge(cantidad*100, taskTitle, taskId, childrenRef)
 
       });
-    
+
     });
 }
 
@@ -289,7 +289,7 @@ function createCharge(amountCents, description, taskId, childRef) {
 
       success:function(response) {
         childRef.once("value").then(function(snapshot){
-            
+
             cantidad = round((Number(snapshot.val().balance) + Number(amountCents)));
             childRef.update({balance: cantidad});
 
@@ -313,5 +313,3 @@ function createCharge(amountCents, description, taskId, childRef) {
       }
     });
 }
-
-
