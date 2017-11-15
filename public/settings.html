@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Settings</title>
+
+  <meta charset="UTF-8"/>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+  <firebase-auth id="auth" app-name="testnew-de7c3"></firebase-auth>
+
+  <!-- JQuery -->
+  <script type="text/JavaScript" src="JS/jquery.js"> </script>
+
+  <!-- My JS -->
+  <script type="text/JavaScript" src="JS/history.js"> </script>
+  <script type="text/JavaScript" src="JS/settings.js"> </script>
+
+
+  <!-- Bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <!-- Bootstrap-->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+  <link rel="stylesheet" type="text/css" href="css/robin-ui.css">
+  <link rel="stylesheet" type="text/css" href="css/history.css">
+
+</head>
+
+<body>
+  
+  <div>
+    <div class="history-bar"> 
+      <center class="title"> Settings </center>
+    </div>
+
+  </div>
+
+
+  <img src="assets/back.png" class="back" ></img>
+
+
+  <div class="box">
+
+    <center>
+      
+      <a href="add-address.html">
+        <input class='settings-img' type="image" src="assets/house.png" />
+      </a>
+
+      <a href="add-child.html">
+        <input class='settings-img' type="image" src="assets/boy.png" />
+      </a>
+   
+    </center>
+
+    <p class="settings-text"> You're looking at... </p>
+
+    <center> 
+      <div class="selectWrapper">
+        <select onchange="getChild(this)" id="childSelect" class="selectBox" name="children">
+            
+        </select>
+      </div>
+    </center>
+
+    <p class="settings-text"> We'll ship purchases to... </p>
+
+    <center>
+      <div class="selectWrapper">
+        <select onchange="getAddress(this)" id="addressSelect" class="selectBox" name="schools">
+            <!-- <option value="Brillamont">Brillamont</option>
+            <option value="LaSalle">La Salle</option>
+            <option value="Oxford">Oxford</option>
+            <option value="Mater">Colegio Mater</option> -->
+        </select>
+      </div>
+    </center>
+
+  </div>
+
+
+
+
+</body>
+
+
+</html>

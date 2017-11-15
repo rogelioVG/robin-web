@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Goals</title>
+
+  <meta charset="UTF-8"/>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+
+  <!-- JQuery -->
+  <script type="text/JavaScript" src="JS/jquery.js"> </script>
+  <script type="text/JavaScript" src="JS/jquery-ui.js"> </script>
+
+  <!-- My JS -->
+  <script type="text/JavaScript" src="JS/buygoal.js"> </script>
+
+  <firebase-auth id="auth" app-name="testnew-de7c3"></firebase-auth>
+
+  <!-- Bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <!-- Bootstrap-->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+  <!-- <link rel="stylesheet" href="css/account.css" type='text/css'>  -->
+  <link rel="stylesheet" type="text/css" href="css/robin-ui.css">
+  <link rel="stylesheet" type="text/css" href="css/goals.css">
+
+
+</head>
+
+<body>
+  <div>
+    <div class="goals-bar"> 
+      <center class="title"> Buy Product </center>
+  </div>
+
+  <img src="assets/back.png" class="back" ></img>
+
+  <div class="box"> 
+    <br><br><br><br><br><br><br><br><br><br>
+    <center>
+      <div id = "productData">
+        <p id = "productName"></p>
+        <img id = "productThumbnail" src = "#">
+        <p id = "leftToPay"></p>
+        <button id ="buyButton">Buy</button>
+      </div>
+
+    </center>
+    <!-- <iframe src="https://www.amazon.com">No support</iframe> -->
+
+  </div>
+
+
+</body>
+
+</html>

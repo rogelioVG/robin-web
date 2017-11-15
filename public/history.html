@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Account</title>
+
+  <meta charset="UTF-8"/>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+
+  <!-- JQuery -->
+  <script type="text/JavaScript" src="JS/jquery.js"> </script>
+
+  <!-- My JS -->
+  <script type="text/JavaScript" src="JS/history.js"> </script>
+
+  <firebase-auth id="auth" app-name="testnew-de7c3"></firebase-auth>
+
+  <!-- Link to a StyleSheets
+	<link rel="stylesheet" type="text/css" href="Css/style.css">
+  -->
+
+  <!-- Bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <!-- Bootstrap-->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+  <!-- Compiled and minified CSS -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
+   <!-- Compiled and minified JavaScript -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+
+  <link rel="stylesheet" type="text/css" href="css/robin-ui.css">
+  <link rel="stylesheet" type="text/css" href="css/history.css">
+
+
+</head>
+
+<body>
+  
+  <div>
+    <div class="history-bar"> 
+      <center class="title"> Account </center>
+    </div>
+
+    <button id="logOutButton" class="logout-btn" > Log Out </button>
+  </div>
+
+  <img src="assets/settings.png" class="settings" ></img>
+
+
+  <div class="box">
+
+    <div class="loader"></div>
+
+    <center>
+
+      <div class="balance"> </div>
+
+      <button class="make-deposit" > + </button>
+
+    </center>
+
+    <div id="historyData"> </div>
+
+    <!-- <center><button class=' logout-btn' id="logOutButton" type="button"> Logout </button></center>
+   -->
+    <div class="blank-space"> </div>
+
+  </div>
+
+  <br>
+
+
+  <div>
+
+    <div class="bottom-bar" > 
+      <table class="tab-table">
+
+        <td class="tab" > 
+          <!-- <a href="history.html"> -->
+            <center>
+              <img src="assets/robin-icon.png" alt="Robin" class="tab-icon">
+            </center> 
+          <!-- </a> -->
+          <center> Account </center>
+        </td>
+
+        <td class="tab" > 
+          <a href="goals.html">
+            <center>
+              <img src="assets/goals-icon.png" alt="Robin" class="tab-icon">
+            </center>
+          </a> 
+          <center> Goals </center>
+        </td>
+
+        <!-- <td class="tab"> 
+          <a href="stores.html">
+            <center>
+              <img src="assets/shopping-icon.png" alt="Robin" class="tab-icon">
+            </center>
+          </a>
+          <center> Store </center>
+        </td> -->
+
+        <td class="tab" > 
+          <a href="tasks.html">
+            <center>
+              <img src="assets/check-icon.png" alt="Robin" class="tab-icon">
+            </center>
+          </a>
+          <center> Tasks </center> 
+        </td>
+      </table>
+    </div>
+
+  </div>
+
+</body>  
+
+
+</html>

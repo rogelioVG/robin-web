@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Child Login</title>
+
+  <meta charset="UTF-8"/>
+
+  <!-- JQuery -->
+  <script type="text/JavaScript" src="JS/jquery.js"> </script>
+
+  <!-- My JS -->
+  <script type="text/JavaScript" src="JS/childlogin.js"> </script>
+
+  <!-- Link to a StyleSheets
+	<link rel="stylesheet" type="text/css" href="Css/style.css">
+  -->
+
+<!-- Bootstrap-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Bootstrap-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Bootstrap-->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<!-- Compiled and minified CSS -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+
+ <!-- Compiled and minified JavaScript -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+
+<!-- update the version number as needed -->
+<script defer src="/__/firebase/3.8.0/firebase-app.js"></script>
+<!-- include only the Firebase features as you need -->
+<script defer src="/__/firebase/3.8.0/firebase-auth.js"></script>
+<script defer src="/__/firebase/3.8.0/firebase-database.js"></script>
+<script defer src="/__/firebase/3.8.0/firebase-messaging.js"></script>
+<script defer src="/__/firebase/3.8.0/firebase-storage.js"></script>
+<!-- initialize the SDK after all desired features are loaded -->
+<script defer src="/__/firebase/init.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.7.8/firebase.js"></script>
+
+<link rel="stylesheet" href="css/form.css" type='text/css'>
+
+
+</head>
+
+<body>
+ <center><h1> New Child </h1></center>
+
+<form>
+<input placeholder="Name"id="nameTextField" type="text"> <br>
+<input placeholder="Your Email"id="emailTextField" type="text"><br>
+<input placeholder="Password"id="passwordTextField" type="password"><br>
+<input placeholder="Your Parent's Email"id="parentEmailTextField" type="text"><br>
+<!-- <button id="childLoginButton" type="button"> Login </button> -->
+<center><button class="btn btn-lrg" id="childCreateButton" type="button"> Create </button> </center>
+
+</form>
+
+
+</body>
+
+</html>

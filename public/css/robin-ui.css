@@ -1,0 +1,605 @@
+
+@media screen and (min-width: 720px){
+
+  .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    width: 140px;
+    height: 140px;
+    background-color: #03a9f4;
+    border-radius: 50%;
+  }
+  .loader:after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    border: 0px solid white;
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    -webkit-animation: loading 1000ms ease-out forwards infinite;
+            animation: loading 1000ms ease-out forwards infinite;
+  }
+
+  @-webkit-keyframes loading {
+    0% {
+      border: 0px solid white;
+    }
+    20% {
+      border: 8px solid white;
+      width: 0%;
+      height: 0%;
+    }
+    100% {
+      border: 8px solid white;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  @keyframes loading {
+    0% {
+      border: 0px solid white;
+    }
+    20% {
+      border: 8px solid white;
+      width: 0%;
+      height: 0%;
+    }
+    100% {
+      border: 8px solid white;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+
+  body {
+    background: white;
+  }
+
+  .box {
+    background: white;
+    height: 100%;
+    margin: 0px auto 0px;
+    padding: 32px 24px;
+    border-radius: 3px;
+  }
+
+  .top-bar {
+    color: white;
+    font-style: helvetica;
+    font-weight: bold;
+    font-size: 6em;
+    background-color: #FF4D38;
+    height: 150px;
+    position: fixed;
+    width: 100%;
+  }
+
+  .bottom-bar {
+    color: white;
+    font-style: helvetica;
+    font-weight: bold;
+    background-color: #f9f9f9;
+    height: 150px;
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    border-top-color: lightgray;
+    border-top-width: 2px;
+    border-top-style: solid;
+
+  }
+
+  .tab-table {
+    table-layout: fixed;
+  }
+
+  .tab {
+    height: 50px;
+    font-size: 2em;
+    font-weight: lighter;
+    color: #bababa;
+    line-height: 50px;
+  }
+
+  .tab-icon {
+    width: 60px;
+    margin-top: 20px;
+  }
+
+  .blank-space {
+    height: 150px;
+  }
+
+  .blue-button {
+    border-radius: 100px;
+    background-color: #0D91FF;
+    font-style: helvetica;
+    width: 75%;
+    height: 8%;
+    text-transform: capitalize;
+    font-size: 3.5em;
+    color: white;
+  }
+
+  .blue-border-button {
+    border-radius: 100px;
+    border-color: #0D91FF;
+    background-color: transparent;
+    color: #0D91FF;
+    font-style: helvetica;
+    width: 75%;
+    height: 8%;
+    text-transform: none;
+    font-size: 3.5em;
+    border-width: 10px;
+    margin-top: 15px;
+  }
+
+  .btn-top {
+    position: absolute;
+    bottom: 15%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+  }
+
+  .bottom {
+    position: absolute;
+    bottom: 5%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+  }
+
+  .payTask {
+    border-radius: 100px;
+    background-color: lightgray;
+    font-style: helvetica;
+    width: 10%;
+    height: 40px;
+    text-transform: capitalize;
+    font-size: 1em;
+    color: white;
+  }
+
+  button {
+    background-color: #0D91FF;
+    color: white;
+    border-radius: 100px;
+    border: 0;
+    margin-top: 20px;
+    font-size: 3.5em;
+    font-weight: 500;
+    width: 75%;
+    height: 120px;
+    line-height: 48px;
+    outline: none;
+  }
+
+  button:focus {
+  background-color: lightgray;  
+  }
+
+  button:active {
+    background: lightgray;
+  }
+
+
+  .orange-logo {
+    width: 50%;
+    margin-bottom: 50px;
+  }
+
+  .sub {
+    font-style: helvetica;
+    color: navy;
+    font-size: 3.2em;
+    font-weight: bold;
+    margin: 100px;
+  }
+
+  #myBar {
+    height: 75px;
+  }
+
+
+  .dad-img{
+    margin-top: 200px;
+    margin-bottom: 30px;
+    width: 400px; 
+  }
+
+  .card-img{
+    margin-top: 200px;
+    margin-bottom: 75px;
+    width: 50%; 
+  }
+
+  .keyboard-img {
+    width: 30%;
+    height: 30%;
+    margin-bottom: 40px;
+  }
+
+
+  .settings-img {
+    width: 20%;
+    height: 20%;
+    margin-bottom: 30px;
+    margin-top: 250px;
+    margin-right: 50px;
+    margin-left: 50px;
+  }
+
+  .settings-text {
+    font-size: 3.5em;
+    color: navy;
+    margin-left: 30px;
+    margin-top: 100px;
+  }
+
+  .img {
+    margin-bottom: 30px;
+    width: 50%; 
+  }
+
+  #historyData {
+    font-size: 3.5em;
+  }
+
+  .balance {
+    font-size: 7em;
+  }
+
+  /*Form Style from Stripe*/
+
+  .field {
+    background: white;
+    box-sizing: border-box;
+    font-weight: 400;
+    border: 4px solid gray;
+    border-radius: 100px;
+    color: #5A37FF;
+    outline: none;
+    height: 120px;
+    line-height: 48px;
+    padding: 0 20px;
+    margin-top: 8px;
+    cursor: text;
+    width: 75%;
+    font-size: 3em;
+  }
+
+  .field {
+    background: white;
+    box-sizing: border-box;
+    font-weight: 400;
+    border: 4px solid gray;
+    border-radius: 102px;
+    color: navy;
+    outline: none;
+    height: 120px;
+    line-height: 49px;
+    padding: 0 20px;
+    margin-bottom: 34px;
+    cursor: text;
+    width: 75%;
+  }
+
+  input[type="text"]{
+    font-size: 3em;
+    color:#5A37FF;
+    font-weight: bold;
+    outline: none;
+  }
+
+  input[type="password"]{
+    font-size: 3em;
+    color:#5A37FF;
+    font-weight: bold;
+  }
+
+  .selectWrapper{
+    border-radius:100px;
+    width: 75%;
+    display:inline-block;
+    overflow:hidden;
+    background:#cccccc;
+    border:3px solid #cccccc;
+  }
+  .selectBox{
+
+    width:100%;
+    height: 120px;
+    border:0px;
+    outline:none;
+    font-size: 2.5em;
+    padding: 0 20px;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 720px){
+
+  .box {
+    background: white;
+    max-width: 400px;
+    min-width: 340px;
+    height: 100vh;
+    margin: 0px auto 0px;
+    padding: 32px 24px;
+    border-radius: 3px;
+  }
+
+  .tasks-bar {
+    color: white;
+    font-style: helvetica;
+    font-weight: bold;
+    font-size: 3.3em;
+    background-color: #5A37FF;
+    height: 70px;
+  }
+
+  .blue-button {
+    border-radius:25px;
+    background-color: #0D91FF;
+    font-style: helvetica;
+    width: 250px;
+    height: 50px;
+    text-transform: capitalize;
+    font-size: 1.5em;
+    color: white;
+  }
+
+  .blue-border-button {
+    border-radius:25px;
+    border-color: #0D91FF;
+    background-color: transparent;
+    color: #0D91FF;
+    font-style: helvetica;
+    width: 250px;
+    height: 50px;
+    text-transform: none;
+    font-size: 1.5em;
+    border-width: 4px;
+    margin-top: 15px;
+  }
+
+  .btn-top {
+    position: absolute;
+    bottom: 100px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+  }
+
+  .bottom {
+    position: absolute;
+    bottom: 30px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+  }
+
+  .sub {
+    font-style: helvetica;
+    color: navy;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 30px;
+  }
+
+  #myProgress {
+    max-width: 400px;
+    min-width: 340px;
+    background-color: lightgrey;
+  }
+
+  #myBar {
+    height: 30px;
+  }
+
+  .dad-img{
+    margin-top: 100px;
+    margin-bottom: 30px;
+    width: 150px; 
+  }
+
+  .card-img{
+    margin-top: 50px;
+    margin-bottom: 30px;
+    width: 75%; 
+  }
+
+  input[type="text"]{
+    font-size: 1.3em;
+    color:#5A37FF;
+    font-weight: bold;
+    outline: none;
+  } 
+
+  input[type="password"]{
+    font-size: 1.3em;
+    color:#5A37FF;
+    font-weight: bold;
+  }
+
+  .selectWrapper{
+    border-radius:36px;
+    display:inline-block;
+    overflow:hidden;
+    background:#cccccc;
+    border:1px solid #cccccc;
+  }
+  .selectBox{
+
+    width:320px;
+    height: 48px;
+    border:0px;
+    outline:none;
+  }
+
+  button {
+    background-color: #0D91FF;
+    color: white;
+    border-radius: 24px;
+    border: 0;
+    margin-top: 20px;
+    font-size: 17px;
+    font-weight: 500;
+    width: 250px;
+    height: 48px;
+    line-height: 48px;
+    outline: none;
+  }
+
+  button:focus {
+  background-color: lightgray;  
+  }
+
+  button:active {
+    background: lightgray;
+  }
+}
+
+* {
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
+/*  font-size: 15px;
+*/  font-variant: normal;
+  padding: 0;
+  margin: 0;
+}
+
+
+.blue-hover:hover {
+  background-color: #0D91FF;
+  border-color: white;
+  color: white;
+  border-width: 2px;
+}
+
+.margin-top {
+  margin-top: 20%;
+}
+
+.text-margin {
+  
+  margin: 30px;
+}
+
+.white-button{
+  background-color: white;
+  border: 0;
+  border-radius: 25px;
+  color: navy;
+}
+
+.orange-button {
+  background-color: #EF5333;
+  border: 0;
+  border-radius: 25px;
+  color: white;
+}
+
+#myProgress {
+    background-color: lightgrey;
+}
+
+#myBar {
+  width: 0%;
+  background-color: #18D37E;
+  position: fixed;
+}
+
+form {
+  color: #5A37FF;
+}
+
+.caret {
+  border-color: transparent !important;
+}
+
+option, select:disabled{
+  font-size: 1.3em;
+  color: navy !important;
+}
+
+::-webkit-input-placeholder {
+   color:navy;
+   font-weight: bold;
+}
+
+
+/*.account-title {
+  color: black;
+  font-style: helvetica;
+  font-weight: bold;
+  font-size: 4.5em;
+}*/
+
+
+.balance {
+  color: #0DC0FF;
+  font-style: helvetica;
+  font-weight: bold;
+}
+
+.pay-btn {
+  border-radius:15px;
+  border-color: #0D91FF;
+  background-color: transparent;
+  color: #0D91FF;
+  font-style: helvetica;
+  width: 250px;
+  height: 50px;
+  text-transform: none;
+  font-size: 1.5em;
+  border-width: 4px;
+  margin-top: 15px;
+}
+
+
+.orange-btn {
+  background-color: #FF4D38;
+  color: white;
+  font-size: 2.3em;
+  margin: 10px;
+}
+
+.orange-btn:hover {
+  background-color: #FF4D38;
+}
+
+.left {
+  float: left !important;
+}
+
+
+

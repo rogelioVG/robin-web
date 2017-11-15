@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <title>Robin App</title>
+
+  <meta charset="UTF-8"/>
+  <meta http-equiv="Access-Control-Allow-Origin" content="*"/>
+  <header name = "Access-Control-Allow-Origin" value = "*" />
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+
+  <!-- JQuery -->
+  <script type="text/JavaScript" src="JS/jquery.js"> </script>
+
+  <!-- My JS -->
+<!--   <script type="text/JavaScript" src="JS/history.js"> </script>
+ -->
+  <firebase-auth id="auth" app-name="testnew-de7c3"></firebase-auth>
+
+  <script type='text/javascript' > 
+    var welcome = false;
+  </script>
+
+  <!-- Link to a StyleSheets
+	<link rel="stylesheet" type="text/css" href="Css/style.css">
+  -->
+
+  <!-- Bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Bootstrap-->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+
+
+
+  <script src="https://js.stripe.com/v3/"></script>
+
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+  <link rel="stylesheet" type='text/css' href="/css/card.css">
+  <link rel="stylesheet" type="text/css" href="css/robin-ui.css">
+  <link rel="stylesheet" type="text/css" href="css/history.css">
+
+  <script type="text/JavaScript" src="JS/add-address.js"></script>
+
+
+
+</head>
+
+<body>
+
+  <div>
+    <div class="history-bar"> 
+      <center class="title"> Add Address </center>
+    </div>
+
+  </div>
+
+
+  <img src="assets/back.png" class="back" ></img>
+
+
+
+  <div class="box" id="main">
+  	<center>
+  		<img src="assets/house.png" alt="Robin" class="settings-img margin-top">
+
+  		<form>
+      <input class='field' placeholder="Street" id="streetTextField" type="text"> <br>
+      <input class='field' placeholder="City" id="cityTextField" type="text"><br>
+      <input class='field' placeholder="State" id="stateTextField" type="text"><br>
+      <input class='field' placeholder="Country" id="countryTextField" type="text"><br>
+  <!--     <input class='field' placeholder="Interior" id="interiorTextField" type="text"><br>
+   -->    <input class='field' placeholder="Exterior" id="exteriorTextField" type="text"><br>
+      <input class='field' placeholder="ZIP Code" id="zipTextField" type="text"><br>
+
+      
+
+      </form>
+
+      <div>
+          <input  class="add-address btn blue-hover round bottom blue-button" type="button" value="Add Address">
+        </div>
+
+  	</center>
+  </div>
+
+
+</body>
+
+</html>
