@@ -45,6 +45,11 @@ $("#tasksData").on("click",".pay-task",function() {
   }
 });
 
+ $("#tasksData").on("click",".delete-button", function() {
+     var taskId = $(this).closest('tr').attr('id');
+     var taskRef = firebase.database().ref('children/' + childID +'/tasks/' + taskId);
+     taskRef.remove();
+ });
 });
 
 function initializeFireBase() {
@@ -172,10 +177,10 @@ function loadTasks() {
 
 
         if(sAmount ==="" ){
-          html += "0</td>" + sBoton + " </tr>"
+          html += "0</td> <td><div> <button class='delete-button'> x </button> </div> <div>" + sBoton + "</div> </td></tr>"
         }
         else{
-          html+= sAmount + " </td>" + sBoton + " </tr>";
+          html+= sAmount + " </td> <td><div> <button class='delete-button'> x </button> </div><div>" + sBoton + "</div> </td></tr>";
         }
       }
     }

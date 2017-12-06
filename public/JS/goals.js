@@ -6,16 +6,18 @@ $(document).ready(function() {
 
   //Add realtime Listener
   addLoginListener();
-
+//Checar esta función bien
   $("#goalsData").on("click",".delete-button", function() {
 
     goalId = $(this).closest('tr').attr('id');
-    var childenRef = firebase.database().ref('children/' + childID);
-    var noGoal = childRef.child('wishlist/' + goalId);
+    var childrenRef = firebase.database().ref('children/' + childID);
+    var noGoal = childrenRef.child('wishlist/' + goalId);
     childrenRef.once('value').then(function(snapshot) {
         var bal = snapshot.val().balance;
-        var nest = Number(snapshot.child('wishlist/' + goalId).substring(1));
-        bal = bal - nest * 100;
+        var nest = Number(snapshot.child('wishlist/' + goalId +'/nest').val().substring(1));
+        console.log(nest);
+        bal = bal + nest * 100;
+        console.log(bal);
         childrenRef.update({balance:bal});
     });
     noGoal.remove();
