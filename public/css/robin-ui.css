@@ -1,4 +1,111 @@
 
+/* .tile {
+  width: 300px;
+  height: 300px;
+  color: white;
+} */
+
+p {
+  font-family: Helvetica, sans-serif
+}
+.tile {
+  color: rgb(15, 15, 99);
+  width: 240px;
+  height: 240px;
+  display: inline-block;
+  margin: 10px;
+  font-size: 1.5em;
+  font-family: Helvetica, sans-serif;
+
+}
+
+.item-img {
+  border: 30px;
+  border-radius: 25px;
+  width: 200px;
+  height: 200px;
+  
+}
+
+.order {
+  /* background: rgb(159, 159, 204); */
+  width: 30%;
+  height: 100%;
+  display: inline-block;
+  position: fixed;
+  right: 0px;
+  border-left: 5px solid #5A37FF;
+}
+
+.order p {
+  margin: 20px;
+  font-size: 3em;
+  color: navy;
+  font-weight: 600;
+}
+
+.order-list{
+  margin: 10px;
+}
+
+table {
+  width: 30vh;
+  color: black;
+}
+
+.name {
+  height: 30px;
+  border-bottom: 2px solid navy;
+}
+
+td .price{
+  float: right;
+  right: 0px;
+}
+
+.items{
+  width: 70%;
+}
+
+.total-box {
+  display: inline-block;
+  position: fixed;
+  bottom: 0px;
+  height: 150px;
+  width: 30%;
+  right: 0px;
+  border-top: 5px solid #5A37FF;
+}
+
+.total-box p {
+  display: inline-block;
+  margin: 20px;
+  font-size: 1.5em;
+  color: navy;
+  font-weight: 600;
+}
+
+.total-amount {
+  position: fixed;
+  display: inline-block;
+  right: 0px;
+}
+
+.charge-btn {
+  border-radius: 100px;
+  background-color: #18D37E;
+  font-style: helvetica;
+  width: 65%;
+  height: 50px;
+  text-transform: capitalize;
+  font-size: 2em;
+  color: white;
+}
+
+
+
+
+
 @media screen and (min-width: 720px){
 
   .loader {
