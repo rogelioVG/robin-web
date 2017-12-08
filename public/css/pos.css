@@ -1,0 +1,123 @@
+p {
+  font-family: Helvetica, sans-serif
+}
+
+body {
+    background: rgb(243, 243, 243);
+}
+.tile {
+  color: rgb(15, 15, 99);
+  width: 240px;
+  height: 240px;
+  display: inline-block;
+  margin: 10px;
+  font-size: 1.5em;
+  font-family: Helvetica, sans-serif;
+
+}
+
+.item-img {
+  border: 30px;
+  border-radius: 25px;
+  width: 200px;
+  height: 200px;
+  
+}
+
+.order {
+  /* background: rgb(159, 159, 204); */
+  width: 30%;
+  height: 97%;
+  display: inline-block;
+  position: fixed;
+  right: 20px;
+  /* border: 5px solid #5A37FF; */
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0px 0px 40px lightgray;
+}
+
+.order p {
+  margin: 20px;
+  font-size: 3em;
+  color: navy;
+  font-weight: 600;
+}
+
+.order-list{
+  margin: 10px;
+}
+
+tr {
+    height: 50px;
+}
+
+table {
+  color: black;
+  float: right;
+  font-size: 20px;
+  font-family: Helvetica, sans-serif
+}
+
+.name {
+  border-bottom: 2px solid navy;
+  margin-right: 20px;
+}
+
+td .price{
+  float: bottom;
+  right: 20px;
+  margin-left: 200px;
+}
+
+
+.delete-button {
+    width: 40px;
+    height: 40px;
+    font-size: 25px;
+    background-color: #FB2C55;
+    color: white;
+    float: right; 
+    margin-top: 0px; 
+    margin-left: 10px;  
+    border-radius: 25px;
+  }
+
+.items{
+  width: 70%;
+}
+
+.total-box {
+  display: inline-block;
+  position: fixed;
+  bottom: 0px;
+  height: 150px;
+  width: 30%;
+  right: 20px;
+  border-top: 5px solid #5A37FF;
+}
+
+.total-box p {
+  display: inline-block;
+  margin: 20px;
+  font-size: 1.5em;
+  color: navy;
+  font-weight: 600;
+}
+
+.total-amount {
+  position: fixed;
+  display: inline-block;
+  right: 20px;
+}
+
+.charge-btn {
+  border-radius: 100px;
+  background-color: #18D37E;
+  font-style: helvetica;
+  width: 65%;
+  height: 50px;
+  text-transform: capitalize;
+  font-size: 2em;
+  color: white;
+}

@@ -1,3 +1,4 @@
+
 var childID, user, isTutor, selectedGoal;
 
 $(document).ready(function() {
