@@ -6,24 +6,35 @@ $(document).ready(function() {
 	initializeFireBase();
 	loadData();
 
-	$("#items").on("click", ".tile", function() {
+	$(".items").on("click", ".tile", function() {
+		console.log("dkdkdk")
 		const productID = $(this).attr("id");
-		const productName = $(this).closest("p.product-name").text();
-		const productPrice = Number($(this).closest("p.product-price").text());
+		const productName = $(this).find("p.product-name").text();
+		const productPrice = Number($(this).find("p.product-price").text().substring(1));
 
-		var newOrderItem = "<tr id = '" + productID + "'><td>"+ productName 
-		+ "</td> <td class = 'product-price-table'>$" + (productPrice/100).toString()
-		+ "</td> <td> <button class = '.btn-delete'>X</button> </td> </tr>";
+		console.log(productID)
+		console.log(productName)
+		console.log(productPrice)
 
-		$("#order-items table").append(newOrderItem);
-		total += productPrice;
-		$("#total").html("$" + String(total/100));
+		var newOrderItem = 
+		"<tr id = '" + productID + "'> \n "
+		+ " <td class = 'name'> \n"
+		+ productName 
+		+ "\n</td> \n "
+		+ "<td class = 'price'>$" + productPrice
+		+ "</td> \n "
+		+ " <td> <button class = 'delete-button'> x </button> </td> \n "
+		+" </tr>";
+
+		$(".order-list").append(newOrderItem);
+		total += Number(productPrice) * 100;
+		$(".total-amount").text("$" + String(total/100));
 	});
 
-	$("#order-items").on("click", ".btn-delete", function() {
-		const productPrice = Number($(this).closest("tr").find(".product-price-table").text()) * 100;
+	$(".order-list").on("click", ".delete-button", function() {
+		const productPrice = Number($(this).closest("tr").find(".price").text().substring(1)) * 100;
 		total -= productPrice;
-		$("#total").html("$" + String(total/100));
+		$(".total-amount").text("$" + String(total/100));
 		$(this).closest("tr").remove();
 	});
 
@@ -44,11 +55,41 @@ function initializeFireBase() {
 
   //Initializing with selected config
   firebase.initializeApp(config);
+  console.log("init")
 }
 
 function loadData() {
 
 	const dataRef = firebase.database().ref(school + "/products");
-	
+	var html = "";
+	dataRef.once("value", function(snapshot) {
 
+		$(".items").empty();
+		$(".items").append("<br><br>");
+
+		const products = snapshot.val();
+		var product;
+		for(var key in products) {
+			if(products.hasOwnProperty(key)) {
+				product = products[key];
+				const name = product.name;
+				const price = (Number(product.amount) / 100).toString();
+				const pictureURL = product.pictureURL;
+
+				html += "<tile class= 'tile' id='" + key + "'>\n"
+			    + "<center>\n "
+			    +  "<img class='item-img' src='" + pictureURL + "'></img>\n"   
+			    +  "<br>\n"
+			    +  "<p class='product-name'>" + name + "</p>\n"
+			    +  "<p class='product-price'>$" + price + "</p>\n"
+			    + "</center>\n"
+			  	+ "</tile>\n"
+			}
+		}
+
+		console.log(html);
+		$(".items").append(html);
+	});
 }
+
+
