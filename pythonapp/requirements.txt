@@ -6,7 +6,7 @@ click==6.7
 demjson==2.2.4
 docutils==0.14
 Flask==0.12.2
-flask-cors==3.0.3
+flask-cors==3.0.9
 gunicorn==19.7.1
 html5lib==0.9999999
 idna==2.6
